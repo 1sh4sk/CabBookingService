@@ -1,12 +1,15 @@
+import Footer from "./components/Footer"
+import HowItWorks from "./components/GetStarted"
 
 
 function App() {
 
   return (
     <>
-      <h1 class="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+    
+     
+      < HowItWorks/>
+      <Footer/>
     </>
   )
 }
