@@ -2,7 +2,7 @@ const { Router } = require("express")
 
 const router = Router()
 const { body } = require("express-validator");
-const {registerUser,loginUser, getUserProfile} = require("../controllers/user.controllers");
+const {registerUser,loginUser, getUserProfile, logoutUser} = require("../controllers/user.controllers");
 const { validateToken } = require("../middleware/tokengen");
 
 
@@ -24,5 +24,6 @@ router.post('/userlogin',[
 
 
 router.get('/profile',validateToken,getUserProfile)
+router.get('/logout',validateToken,logoutUser)
 
 module.exports = router;

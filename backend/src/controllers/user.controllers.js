@@ -2,7 +2,8 @@ const userModel = require("../models/user.model")
 const userService = require("../services/user.service")
 const { validationResult } = require("express-validator")
 const bcrypt = require("bcrypt");
-const {generatortoken} = require("../middleware/tokengen")
+const { generatortoken } = require("../middleware/tokengen");
+const blacklistTokenModel = require("../models/blacklistToken.model");
 
 
 const registerUser = async (req, res, next) => {
@@ -56,8 +57,8 @@ const loginUser = async (req, res, next) => {
 
 
         let token = generatortoken(checkEmail)
-        console.log(token);
-        
+
+
         res.json({ token, checkEmail })
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -80,6 +81,13 @@ const getUserProfile = async (req, res) => {
 };
 
 
+const logoutUser = async (req, res) => {
+
+    res.clearCookie('token')
+    const token = req.cookies?.token || req.headers.authorization.split(' ')[1]
+    await blacklistTokenModel.create({ token })
+    res.status(200).json({ message: 'logged Out' })
+}
 
 
 
@@ -90,5 +98,4 @@ const getUserProfile = async (req, res) => {
 
 
 
-
-module.exports = { registerUser, loginUser, getUserProfile };
+module.exports = { registerUser, loginUser, getUserProfile, logoutUser };
