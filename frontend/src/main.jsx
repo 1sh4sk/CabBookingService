@@ -7,10 +7,12 @@ import './index.css'
 //import Rating from './components/Rating.jsx'
 //import Population from './components/Population.jsx'
 //import UserLogin from './pages/user/UserLogin.jsx'
-import CaptainLogin from './pages/captain/CaptainLogin.jsx'
+//import CaptainLogin from './pages/captain/CaptainLogin.jsx'
+//import UserHome from './pages/user/UserHome.jsx'
+import UserSubmit from './pages/user/UserSubmit.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CaptainLogin />
+    <UserSubmit />
   </StrictMode>,
 )
