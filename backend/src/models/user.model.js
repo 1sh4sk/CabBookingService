@@ -30,7 +30,7 @@ const userschema = new Schema({
         socketid: { type: String }
     }
 },
-    { timestamps })
+    { timestamps:true })
 
 
 
@@ -41,4 +41,4 @@ const userModel = model("userModel",userschema)
 
 
 
-modules.exports = userModel
+module.exports = userModel
