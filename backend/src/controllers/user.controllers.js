@@ -1,5 +1,5 @@
 const userModel = require("../models/user.model")
-const userService = require("../services/user.service")
+const { createUser } = require("../services/user.service")
 const { validationResult } = require("express-validator")
 const bcrypt = require("bcrypt");
 const { generatortoken } = require("../middleware/tokengen");
@@ -21,7 +21,7 @@ const registerUser = async (req, res, next) => {
 
     const hass = await bcrypt.hash(password, 10);
 
-    const user = await userService.createUser(
+    const user = await createUser(
         {
 
             firstname: fullname.firstname,
@@ -84,7 +84,11 @@ const getUserProfile = async (req, res) => {
 const logoutUser = async (req, res) => {
 
     res.clearCookie('token')
-    const token = req.cookies?.token || req.headers.authorization.split(' ')[1]
+    const token = req.cookies?.token || req.headers.authorization.split(' ')[1];
+    const existingToken = await blacklistTokenModel.findOne({ token })
+    if (existingToken) {
+        return res.status(200).json({ message: 'Already logged out' })
+    }
     await blacklistTokenModel.create({ token })
     res.status(200).json({ message: 'logged Out' })
 }

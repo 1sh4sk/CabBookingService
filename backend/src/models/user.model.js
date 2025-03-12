@@ -20,6 +20,7 @@ const userschema = new Schema({
         type: String,
         required: true,
         unique: true,
+        lowercase:true
     },
     password: {
         type: String,
@@ -32,13 +33,6 @@ const userschema = new Schema({
 },
     { timestamps:true })
 
-
-
-
-
-
-const userModel = model("userModel",userschema)
-
-
+const userModel = model("userModel",userschema);
 
 module.exports = userModel
