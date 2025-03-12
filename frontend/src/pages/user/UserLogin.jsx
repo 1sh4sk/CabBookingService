@@ -25,7 +25,7 @@ const UserLogin = () => {
     
       {/* Column 2 */}
       <div className="w-3/4 relative ml-auto">
-        <img src="https://media.istockphoto.com/id/1958070379/photo/positive-employee-communicating-smartphone-evening-auto-closeup-manager-talking.jpg?s=612x612&w=0&k=20&c=gRg1_8299UN1r_CZo5MSbhivwX9TkNmr6ZSgMOnvTL0=" alt="background" className="w-full h-screen object-cover" />
+        <img src="/src/assets/User_Bg.png" alt="background" className="w-full h-screen object-cover" />
         <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-white text-center">
           <h2 className="text-3xl font-bold text-yellow-500">Sign In</h2>
           <p className="text-lg">Your journey starts here and we bet it won’t be boring</p>

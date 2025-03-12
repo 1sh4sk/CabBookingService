@@ -10,7 +10,7 @@ const UserHome = () => {
   return (
     <div>
       <header className="flex justify-between items-center bg-yellow-500 p-4">
-        <div className="flex justify-center items-center gap-3">
+        <div className="flex justify-center items-center gap-3 ml-10">
         <img src="/src/assets/logo.png" alt="Logo" className="w-15 h-15 rounded-full" />
         <h1 className='font-bold text-white text-xl'>TripMate</h1>
         </div>

@@ -8,7 +8,7 @@ const UserSubmit = () => {
   return (
     <div>
       <header className="flex justify-between items-center bg-yellow-500 p-2">
-        <div className="flex justify-center items-center gap-3">
+        <div className="flex justify-center items-center gap-3 ml-10">
           <img src="/src/assets/logo.png" alt="Logo" className="w-15 h-15 rounded-full" />
           <h1 className='font-bold text-white text-xl'>TripMate</h1>
         </div>
@@ -47,7 +47,7 @@ const UserSubmit = () => {
             <h6 className="font-bold">Choose Your Ride</h6>
             <div className="border p-4 rounded-lg shadow-md mt-2 flex justify-between items-center">
               <div className="flex items-center">
-                <img src="/src/component/car.png" alt="Car" className="w-12 h-12 mr-3" />
+                <img src="https://s3-alpha-sig.figma.com/img/471e/2240/30bdd5878add15e1075ddbbc5ea06c7b?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=MwiD3GNm7-2ha6~hQlxHAN84MV6JiRA5iLY~tnDAzl6cRHp-GJyp5Z1uU705ucUn1XHXVoWPcPpCF3hGu~0mAQo6l4Qid1FdTVuM8ZHgi3Xs97Lo9hPEZBukkQV-dLJ9Mk1FSnrjF3~8NRHGNgbBD5JvGbSyxjo7uDINXNRga2MlVFeMjH1s3e5y9ucbP0UUlpNttO1JlgK3V4Q6e8d~jJt7yjEAvrKhd3bHzuAhZRqft~pz8M-o1O4rAwH4MFQvWxuVTuAXCltyaFPg4o35HFfQr20sdj5Xg1lapmpAx6tvIGT9jpeWg1d09jsIiWBrzDixIm2wqk3lWAiHXpFRPg__" alt="Car" className="w-12 h-12 mr-3" />
                 <div>
                   <p className="font-bold">TripMate GO</p>
                   <p className="text-sm text-gray-500">6 min away • 5:27 PM</p>
@@ -58,7 +58,7 @@ const UserSubmit = () => {
             </div>
             <div className="border p-4 rounded-lg shadow-md mt-2 flex justify-between items-center">
               <div className="flex items-center">
-                <img src="/src/component/auto.png" alt="Auto" className="w-12 h-12 mr-3" />
+                <img src="https://s3-alpha-sig.figma.com/img/425a/3551/832f9c228a119c37c531896b044e95a7?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=KSvIBZNs7OOlA1ghw11po70U3-Q0ttIABeP2-~vOwNf~xpsnsPmme4H9~xGWnaU-wDGoTJoG8pt7QjH3uItyohXoKEPIYpiEZ~1p~j7~9bp7-HQaE9Wpw2LEA~n7WPwq~V~6UZ8VHe0gxMr8MKxh-NKtEzHieYn5~iC03v-1ZFpCW0aYQTAnDfKBsNRxkgCU7yMR6upcYj4pcHMkulAKv3NPsPJRv8pOvdUgWNBC5AzL0Rzh6vz-7iWM6DK3Os8EtYTClGdaW2FpwAObm-Jk5Kvo4AaLVujIs9Qp0J3yx6BZSAiuq3Qx8OAgT8El76o0CUsuMbu0Ee5RWzgBevjPfg__" alt="Auto" className="w-12 h-12 mr-3" />
                 <div>
                   <p className="font-bold">TripMate Auto</p>
                   <p className="text-sm text-gray-500">6 min away • 5:27 PM</p>

@@ -25,7 +25,7 @@ const CaptainLogin= () => {
     
       {/* Column 2 */}
       <div className="w-3/4 relative ml-auto">
-        <img src="https://images.pexels.com/photos/4606346/pexels-photo-4606346.jpeg?auto=compress&cs=tinysrgb&w=600" alt="background" className="w-full h-screen object-cover" />
+        <img src="/src/assets/Captain_Bg.png" alt="background" className="w-full h-screen object-cover" />
         <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-white text-center">
           <h2 className="text-3xl font-bold text-yellow-500">Sign In</h2>
           <p className="text-lg">Ready to hit the road? Sign in and start driving towards success!</p>
