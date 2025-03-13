@@ -32,11 +32,14 @@ const getDistanceTime = async (req, res, next) => {
         if (!error.isEmpty()) {
             return res.status(400).json({ error: error.array() })
         }
-        const {origin,destination}=req.query;
+        const {origin,destination}=req.body;
+
+        console.log(origin,destination);
+        
         const distance =await getDistanceTimeSer(origin,destination)
         res.status(200).json(distance)
     } catch (error) {
-        res.status(404).json({ message: "Coordinates not found" })
+        error.cause?res.status(error.cause.status).json({error:error.message}):res.status(404).json({ message: "Coordinates not found" })
     }
 }
 
