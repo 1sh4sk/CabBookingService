@@ -1,11 +1,17 @@
-import Home from "./pages/user/Home"
-
+import { RouterComponent } from "./components"
+import { DriverDetail, MapComponent, UserDriver, UserLogin, UserSelect } from "./pages/user"
 
 function App() {
 
   return (
+
     <main>
-      <Home />
+
+      <RouterComponent />
+      {/* <DriverDetail />
+      <MapComponent />
+      <UserDriver />
+      <UserSelect /> */}
     </main>
   )
 }
