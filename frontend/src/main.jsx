@@ -4,9 +4,10 @@ import './index.css'
 //import App from './App.jsx'
 // import WhyChooseUs from './components/WhyChooseUs.jsx'
 import Header from './components/Header.jsx'
+import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Header />
+   <App/>
   </StrictMode>,
 )
