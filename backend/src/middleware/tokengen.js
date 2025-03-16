@@ -28,7 +28,6 @@ const userValidateToken = async (req, res, next) => {
 
         const withoutbearer = token.startsWith("Bearer ") ? token.split(" ")[1] : token;
 
-       
 
         const payload = jwt.verify(withoutbearer, process.env.JWT_KEY)
         const checkUser = await userModel.exists({ _id: payload.data._id })

@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/user.routes")
 const captainRouter = require("./routes/captain.routes")
 const mapsRouter =require("./routes/maps.route")
-
+const rideRouter = require("./routes/ride.routes")
 mongo();
 app.use(exp.json())
 app.use(cookieParser());
@@ -17,6 +17,7 @@ app.use(exp.urlencoded({ extended: true }));    // it allow the nested object in
 app.use("/user",userRouter)
 app.use("/captain",captainRouter)
 app.use("/maps",mapsRouter)
+app.use("/ride",rideRouter)
 
 const port = process.env.PORT || 5000;
  

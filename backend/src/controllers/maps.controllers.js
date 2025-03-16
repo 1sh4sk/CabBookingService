@@ -1,4 +1,4 @@
-const { getAddressCoordinates, getDistanceTimeSer } = require("..//services/maps.service")
+const { getAddressCoordinates, getDistanceTimeSer, getAutoSuggestionss } = require("..//services/maps.service")
 const { validationResult } = require("express-validator")
 
 
@@ -21,7 +21,7 @@ const getCoordinates = async (req, res, next) => {
         res.status(404).json({ message: "Coordinates not found" })
     }
 
-};
+}; 
 
 
 const getDistanceTime = async (req, res, next) => {
@@ -53,4 +53,23 @@ const formattedDestination = {
     }
 }
 
-module.exports = { getCoordinates, getDistanceTime } 
+
+const getAutoSuggestions =async (req,res,next)=>{
+    try {
+        const error = validationResult(req)
+
+        if (!error.isEmpty()) {
+            return res.status(400).json({ error: error.array() })
+        }
+        const { input } = req.query;
+       
+        
+        const suggestion = await getAutoSuggestionss(input);
+        res.status(200).json(suggestion)
+        
+    } catch (error) {
+        error.cause?res.status(error.cause.status).json({error:error.message}):res.status(500).json({ message: "internal server error" })
+    }
+    
+}
+module.exports = { getCoordinates, getDistanceTime ,getAutoSuggestions} 

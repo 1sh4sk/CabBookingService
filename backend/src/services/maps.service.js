@@ -24,10 +24,7 @@ const getAddressCoordinates = async (address) => {
 const getDistanceTimeSer = async (origin, destination) => {
 
     try {
-        const getMinutesFromSeconds = (seconds) => {
-            return Math.round(seconds / 60);
-        };
-
+       
         if (!origin || !destination) {
             throw new Error("Origin and destination are required.", { cause: { status: 404 } });
         }
@@ -106,4 +103,62 @@ const getDistanceTimeSer = async (origin, destination) => {
         throw error;
     }
 }
-module.exports = { getAddressCoordinates, getDistanceTimeSer } 
+
+// const getAutoSuggestions = async (input) => {
+//     if(!input) throw new Error("Input is required ");
+//     const apiKey = process.env.GOOGLE_MAPS_API;
+//     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}`;
+
+//     try {
+//         const response = await axios.get(url);
+
+//         if (response.data.status === "OK") {
+//             const location = response.data.results[0].geometry.location;
+//             return { lat: location.lat, lng: location.lng };
+//         } else {
+//             throw new Error("Invalid Address or API issue");
+//         } 
+        
+//     } catch (error) {
+//         console.log(error)
+//         throw error;
+//     }
+// }
+
+
+const getAutoSuggestionss = async (input) => {
+    if (!input) {
+        throw new Error("Query is required");
+    } 
+
+    const apiKey = process.env.GOOGLE_MAPS_API;
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(input)}&key=${apiKey}`;
+
+    try {
+        const response = await axios.get(url);
+console.log(response.data); 
+        if (response.data.status !== "OK") {
+            console.error("Google Maps API Error:", response.data);
+            throw new Error("Unable to fetch suggestions");
+        }
+
+        const predictions = response.data?.predictions;
+
+        if (!predictions || predictions.length === 0) {
+            throw new Error("No suggestions found");
+        }
+            console.log(predictions);
+            
+        return predictions.map(place => ({
+            description: place.description,
+            place_id: place.place_id
+        }));
+
+    } catch (error) {
+        console.error("Error fetching location:", error.message);
+        throw error;
+    } 
+};
+
+
+module.exports = { getAddressCoordinates, getDistanceTimeSer ,getAutoSuggestionss } 
