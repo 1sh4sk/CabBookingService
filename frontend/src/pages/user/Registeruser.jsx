@@ -1,22 +1,58 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router';
+import React, { useContext, useState } from 'react';
+import { Link, redirect, useNavigate } from 'react-router';
+import { registerUser } from '../../api/userApi';
+import { toast } from 'react-toastify';
+import { userDataContext } from '../../context/UserContext';
 
 function Registeruser() {
-  const [formData, setFormData] = useState({
+
+  const initialState = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-  });
+  }
+
+  const [formData, setFormData] = useState(initialState);
+
+  const navigate = useNavigate();
+  const { setUser } = useContext(userDataContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    try {
+      const { firstName, lastName, email, password } = formData;
+
+      const userData = {
+        fullname: {
+          firstname: firstName,
+          lastname: lastName,
+        },
+        email,
+        password,
+      }
+      const res = await registerUser(userData);
+      if (res.status === 201) {
+        toast.success('Registration successful');
+        localStorage.setItem('token', res.data.token);
+        setUser(res.data.user);
+        navigate('/home')
+      }
+
+      setFormData(initialState);
+
+    } catch (error) {
+      if (error.status === 409) {
+        toast.error(error?.response?.data?.message);
+      } else {
+        toast.error(error?.response?.data?.error[0]?.msg);
+      }
+    }
   };
 
 

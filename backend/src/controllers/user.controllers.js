@@ -37,8 +37,6 @@ const registerUser = async (req, res, next) => {
 
     return res.status(201).json({ token, user });
 
-
-
 }
 
 const loginUser = async (req, res, next) => {
@@ -56,10 +54,10 @@ const loginUser = async (req, res, next) => {
         if (!checkpassword) return res.status(409).json({ message: "Password invalid" });
 
 
-        let token = generatortoken(checkEmail)
+        let token = generatortoken(checkEmail);
 
 
-        res.json({ token, checkEmail })
+        res.json({ token, user: checkEmail })
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

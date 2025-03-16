@@ -51,7 +51,7 @@ const Header = () => {
         </header>
 
         {/* Main Content */}
-        <div className="flex flex-col items-end items-center justify-center min-h-screen pr-30">
+        <div className="flex flex-col  items-center justify-center min-h-screen pr-30">
           {/* Pickup & Drop Form */}
           <div className="bg-opacity-100 p-10 rounded-xl border-5 border-white shadow-lg w-full max-w-lg ">
             <div className="space-y-4">
@@ -83,13 +83,13 @@ const Header = () => {
           </div>
           {/* Floating Text */}
           <div className="absolute top-0 left-0 ">
-            <p className="border-4 border-white rounded-full bg-white p-2 rounded-lg mt-50 ml-20 px-4 py-2">
+            <p className="border-4 border-white bg-white p-2 rounded-lg mt-50 ml-20 px-4 py-2">
               Easy to Extend <br />
               Rental Hours
             </p>
           </div>
           <div className="absolute top-0 left-0 ">
-            <p className="border-4 border-white rounded-full bg-white p-2 rounded-lg mt-150 ml-100 px-4 py-2">
+            <p className="border-4 border-white  bg-white p-2 rounded-lg mt-150 ml-100 px-4 py-2">
               Most Flexible <br />
               Payment Plan
             </p>

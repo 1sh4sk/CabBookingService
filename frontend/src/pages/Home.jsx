@@ -1,4 +1,4 @@
-import { Header, Population, Rating, WhyChooseUs } from "../../components";
+import { Header, Population, Rating, WhyChooseUs } from "../components";
 
 const Home = () => {
     return <div>
