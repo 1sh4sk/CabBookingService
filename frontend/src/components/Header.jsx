@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router";
 
 const Header = () => {
   return (
@@ -16,7 +17,7 @@ const Header = () => {
           <div className="flex items-center space-x-2">
             <img src="/src/assets/logo.png" alt="Logo" className="w-15 h-15 rounded-full" />
             <h1 className="text-lg font-bold text-green-600 tracking-widest">
-              TRIPMATE<br/>
+              TRIPMATE<br />
               <span className="text-[8px] italic text-gray-500">YOUR JOURNEY, OUR PRIORITY</span>
             </h1>
           </div>
@@ -36,12 +37,16 @@ const Header = () => {
 
           {/* Right Side - Buttons */}
           <div className="flex items-center space-x-4">
-          <button className="text-gray-700 font-medium px-6 py-2 border-2 border-yellow-500 hover:border-yellow-500 hover:text-white hover:bg-yellow-500 transition duration-300 rounded-full">
-  Login
-</button>
-<button className="bg-yellow-500 text-white px-6 py-2 border-2 border-yellow-500 rounded-full font-medium hover:bg-white hover:text-gray-600 hover:border-yellow-500 transition duration-300">
-  Register
-</button>
+            <Link to="/login">
+              <button className="text-gray-700 font-medium px-6 py-2 border-2 border-yellow-500 hover:border-yellow-500 hover:text-white hover:bg-yellow-500 transition duration-300 rounded-full cursor-pointer">
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className="bg-yellow-500 text-white px-6 py-2 border-2 border-yellow-500 rounded-full font-medium hover:bg-white hover:text-gray-600 hover:border-yellow-500 transition duration-300 cursor-pointer">
+                Register
+              </button>
+            </Link>
           </div>
         </header>
 
@@ -79,18 +84,18 @@ const Header = () => {
           {/* Floating Text */}
           <div className="absolute top-0 left-0 ">
             <p className="border-4 border-white rounded-full bg-white p-2 rounded-lg mt-50 ml-20 px-4 py-2">
-                Easy to Extend <br />
-                Rental Hours
+              Easy to Extend <br />
+              Rental Hours
             </p>
           </div>
-        <div className="absolute top-0 left-0 ">
+          <div className="absolute top-0 left-0 ">
             <p className="border-4 border-white rounded-full bg-white p-2 rounded-lg mt-150 ml-100 px-4 py-2">
-                Most Flexible <br />
-                Payment Plan
+              Most Flexible <br />
+              Payment Plan
             </p>
+          </div>
         </div>
-        </div>
-       
+
       </div>
     </>
   );

@@ -3,3 +3,7 @@ export { default as Rating } from './Rating';
 export { default as Population } from './Population';
 export { default as WhyChooseUs } from './WhyChooseUs';
 export { default as RouterComponent } from './RouterComponent';
+export { default as Footer } from './Footer';
+export { default as GetStarted } from './GetStarted';
+export { default as ReviewTemplate } from './ReviewTemplate';
+export { default as TaxiTemplate } from './TaxiTemplate';

@@ -5,3 +5,5 @@ export { default as UserHome } from './UserHome';
 export { default as UserLogin } from './UserLogin';
 export { default as UserSelect } from './UserSelect';
 export { default as UserSubmit } from './UserSubmit';
+export { default as Registeruser } from './Registeruser';
+export { default as Home } from './Home';
