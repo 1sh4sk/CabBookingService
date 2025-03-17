@@ -1,4 +1,3 @@
-
 import { RouterComponent } from "./components"
 import { ToastContainer } from 'react-toastify';
 
@@ -6,8 +5,6 @@ import { ToastContainer } from 'react-toastify';
 function App() {
 
   return (
-
-
     <main>
       <RouterComponent />
       <ToastContainer />

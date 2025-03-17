@@ -1,8 +1,10 @@
+
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { registerCaptain } from "../../api/captainApi";
 import { toast } from 'react-toastify';
 import { captainDataContext } from "../../context/CaptainContext";
+
 // import CaptainBg from "../assets/Captainbg.png"; // Ensure correct import
 
 function CaptainRegister() {
@@ -18,6 +20,7 @@ function CaptainRegister() {
     agreeTerms: false,
   });
 
+
   const navigate = useNavigate();
   const { setCaptain } = useContext(captainDataContext);
 
@@ -28,6 +31,7 @@ function CaptainRegister() {
       [name]: type === "checkbox" ? checked : value,
     });
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +77,7 @@ function CaptainRegister() {
         toast.error(error?.response?.data?.error[0]?.msg);
       }
     }
-  };
+  }
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -109,12 +113,14 @@ function CaptainRegister() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input type="text" name="vehicleColor" placeholder="Vehicle Color" className="border p-2 rounded-md" value={formData.vehicleColor} onChange={handleChange} required />
               <input type="text" name="vehiclePlate" placeholder="Vehicle Plate" className="border p-2 rounded-md" value={formData.vehiclePlate} onChange={handleChange} required />
+
               <input type="number" name="vehicleCapacity" placeholder="Vehicle Capacity" className="border p-2 rounded-md" value={formData.vehicleCapacity} onChange={handleChange} required />
               <select name="vehicleType" className="border p-2 rounded-md" value={formData.vehicleType} onChange={handleChange} required>
                 <option value="">Vehicle Type</option>
                 <option value="car">Car</option>
                 <option value="auto">Auto</option>
                 <option value="motorcycle">Motorcycle</option>
+
               </select>
             </div>
           </div>
@@ -145,7 +151,6 @@ function CaptainRegister() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
