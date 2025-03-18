@@ -48,10 +48,11 @@ const CaptainLogin = () => {
   return (
     <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 p-4">
       {/* Column 1 */}
+
       <form onSubmit={handleSubmit} className="w-1/4 bg-white p-10 pr-10 pl-10 absolute left-30 top-15 z-10 shadow-lg rounded-lg flex flex-col items-center">
         <img src="/src/assets/logo.png" alt="Logo" className="w-20 h-20 rounded-full" />
         <br />
-
+        frontend
         <label className="block text-black w-full font-bold" >What's your email ?</label>
         <input name="email" type="email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded mt-1 mb-4" placeholder="example@gmail.com" />
         <br />

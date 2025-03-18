@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, redirect, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { registerUser } from '../../api/userApi';
 import { toast } from 'react-toastify';
 import { userDataContext } from '../../context/UserContext';
@@ -12,7 +12,6 @@ function Registeruser() {
     email: '',
     password: '',
   }
-
   const [formData, setFormData] = useState(initialState);
 
   const navigate = useNavigate();
@@ -120,7 +119,7 @@ const ImageCard = () => {
       <div className="absolute inset-0 flex flex-col justify-center items-end  text-white p-80 text-right">
         <h2 className="text-lg font-bold  text-center  text-yellow-400  ">Register</h2>
         <p className="text-white mt-2">
-          join the ride -adventures avait at
+          join the ride -adventures await at
         </p>
         <p className="text-white mt-2">
           every turn!

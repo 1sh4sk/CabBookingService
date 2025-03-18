@@ -47,10 +47,13 @@ const UserLogin = () => {
 
 
   return (
-    <div className="flex relative h-screen">
-      {/* Column 1 */}
-      <div className="w-1/4 bg-white p-10 absolute left-30 top-15 z-10 shadow-lg rounded-lg flex flex-col items-center">
-        <img src="/src/assets/logo.png" alt="Logo" className="w-20 h-20 rounded-full" />
+
+    <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 p-4">
+      {/* Column 1 - Login Form */}
+      <div className="w-full lg:w-1/4 bg-white p-6 sm:p-8 md:p-10 lg:p-10 lg:pr-10 lg:pl-10 lg:absolute lg:left-30 lg:top-15 z-10 shadow-lg rounded-lg flex flex-col items-center">
+        <img src="/src/assets/logo.png" alt="Logo" className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full" />
+
+
         <br />
 
         <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
@@ -89,12 +92,16 @@ const UserLogin = () => {
         </Link>
       </div>
 
-      {/* Column 2 */}
-      <div className="w-3/4 relative ml-auto">
-        <img src="/src/assets/User_Bg.png" alt="background" className="w-full h-screen object-cover" />
+      {/* Column 2 - Background Image */}
+      <div className="w-full lg:w-3/4 relative lg:ml-auto">
+        <img
+          src="/src/assets/Section.png"
+          alt="background"
+          className="w-full h-64 sm:h-72 md:h-96 lg:h-screen object-cover"
+        />
         <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-white text-center">
           <h2 className="text-2xl sm:text-md  font-bold text-yellow-500">Sign In</h2>
-          <p className="text-sm sm:text-sm lg:text-xl">Your journey starts here and we bet <br/> it won’t be boring</p>
+          <p className="text-sm sm:text-sm lg:text-xl">Your journey starts here and we bet <br /> it won’t be boring</p>
         </div>
       </div>
     </div>
