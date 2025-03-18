@@ -25,25 +25,6 @@ const UserHome = () => {
   }
 
   return (
-<<<<<<< HEAD
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="flex justify-between items-center bg-black md:bg-[#F7B401] p-4">
-            
-        <div className="flex items-center gap-3">
-          <img src="/src/assets/logo.png" alt="Logo" className="w-10 h-10 rounded-full" />
-          <h1 className='font-bold text-white text-lg md:text-xl'>TripMate</h1>
-        </div>
-        <FontAwesomeIcon icon={faCircleUser} className="text-white text-3xl md:text-4xl cursor-pointer" />
-      </header>
-
-      {/* Main Grid Layout */}
-      <div className="flex flex-col-reverse md:flex-col lg:flex-row gap-6 p-4">
-        {/* Trip Finder Section */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center p-4">
-          <div className="border bg-white p-4 w-full max-w-md rounded-lg shadow-md border-gray-300">
-            <h6 className="font-bold text-lg">Find a Trip</h6>
-=======
     <div>
       <header className="flex justify-between items-center bg-yellow-500 p-4">
         <div className="flex justify-center items-center gap-3 ml-10">
@@ -60,7 +41,6 @@ const UserHome = () => {
           {/* Column 1 */}
           <div className=" bg-white p-4 ml-60 mr-5 items-center justify-center border-3 rounded-md shadow-md border-gray-300">
             <h6 className="font-bold">Find a Trip</h6>
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
             <br />
             <div className="flex items-center rounded p-3 mb-4 bg-yellow-50">
               <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 text-yellow-500" />
@@ -93,12 +73,7 @@ const UserHome = () => {
           </div>
         </div>
 
-<<<<<<< HEAD
-        {/* Map Section */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-800 text-white font-bold h-72 md:h-96 lg:h-150 rounded-lg">
-=======
         <div className="flex items-center justify-center mt-10 mb-10 mr-40 bg-gray-800 text-white font-bold h-140 rounded-lg">
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
           <MapComponent />
         </div>
       </div>

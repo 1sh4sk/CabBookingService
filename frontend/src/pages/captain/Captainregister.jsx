@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { registerCaptain } from "../../api/captainApi";
 import { toast } from 'react-toastify';
 import { captainDataContext } from "../../context/CaptainContext";
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
 // import CaptainBg from "../assets/Captainbg.png"; // Ensure correct import
 
 function CaptainRegister() {
@@ -22,12 +18,9 @@ function CaptainRegister() {
     agreeTerms: false,
   });
 
-<<<<<<< HEAD
-=======
   const navigate = useNavigate();
   const { setCaptain } = useContext(captainDataContext);
 
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({

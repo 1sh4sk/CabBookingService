@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-
-function Registeruser() {
-  const [formData, setFormData] = useState({
-=======
 import React, { useContext, useState } from 'react';
 import { Link, redirect, useNavigate } from 'react-router';
 import { registerUser } from '../../api/userApi';
@@ -13,39 +7,22 @@ import { userDataContext } from '../../context/UserContext';
 function Registeruser() {
 
   const initialState = {
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-<<<<<<< HEAD
-  });
-=======
   }
 
   const [formData, setFormData] = useState(initialState);
 
   const navigate = useNavigate();
   const { setUser } = useContext(userDataContext);
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-<<<<<<< HEAD
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
-  return (
-    <div className="flex justify-center items-center min-h-screen bg-white-900">
-     
-      <div className="bg-white rounded-lg  overflow-hidden flex max-w-sm w-full mx-0 z-30 relative left-50">
-        
-=======
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -85,7 +62,6 @@ function Registeruser() {
 
       <div className="bg-white rounded-lg  overflow-hidden flex max-w-sm w-full mx-0 z-30 relative left-50">
 
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
         {/* Form Section */}
         <div className="p-8 w-full h-120 mt-1 md:w-full">
           <div className="mb-6 text-center">
@@ -114,26 +90,11 @@ function Registeruser() {
             </div>
 
             <button type="submit" className="bg-yellow-400 text-black font-bold py-2 px-3 rounded-md w-full hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-<<<<<<< HEAD
-              Sign In
-=======
               Sign Up
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
             </button>
           </form>
 
           <p className="text-center mt-4 text-sm">
-<<<<<<< HEAD
-            Don't have an account? <a href="#" className="text-yellow-600 font-semibold hover:underline">Sign up here</a>
-          </p>
-        </div>
-
-       
-      </div>
-      <div> 
-      {/* Image Section */}
-     <ImageCard /></div>
-=======
             Don't have an account? <Link to="/login" className="text-yellow-600 font-semibold hover:underline">Sign in here</Link>
           </p>
         </div>
@@ -143,7 +104,6 @@ function Registeruser() {
       <div>
         {/* Image Section */}
         <ImageCard /></div>
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
     </div>
   );
 }
@@ -151,30 +111,10 @@ function Registeruser() {
 const ImageCard = () => {
   return (
     <div className="max-w-xl  image overflow-hidden shadow-lg bg-white ">
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
       <img
         className="w-full h-full object-cover"
         src="./src/assets/register.png"
         alt=" "
-<<<<<<< HEAD
-        
-        />
-         <div className="absolute inset-0 flex flex-col justify-center items-end  text-white p-80 text-right">
-        <h2 className="text-lg font-bold  text-center  text-yellow-400  ">Register</h2> 
-        <p className="text-white mt-2">
-          join the ride -adventures avait at 
-        </p>
-        <p className="text-white mt-2">
-            every turn!
-        </p>
-     </div>
-    </div>
-    
-=======
 
       />
       <div className="absolute inset-0 flex flex-col justify-center items-end  text-white p-80 text-right">
@@ -188,7 +128,6 @@ const ImageCard = () => {
       </div>
     </div>
 
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
   );
 };
 

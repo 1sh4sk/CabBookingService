@@ -1,11 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-<<<<<<< HEAD
-import { faMapMarkerAlt, faMapPin, faBars } from "@fortawesome/free-solid-svg-icons";
-=======
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt,faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router";
->>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
 
 const Header = () => {
   return (
