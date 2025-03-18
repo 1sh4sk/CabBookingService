@@ -4,12 +4,12 @@ const {Schema,model, Types}=require("mongoose")
 const rideSchema=new Schema({
     user:{
         type:Types.ObjectId,
-        ref:"User",
+        ref:"user",
         required:true
     },
     captain:{
         type:Types.ObjectId,
-        ref:"Captain",
+        ref:"captain",
         
     },
     pickup:{
@@ -43,6 +43,11 @@ const rideSchema=new Schema({
     },
     signature:{
         type:String
+    },
+    otp:{
+        type:String,
+        select:false,
+        required:true
     }
 },{timestamps:true})
 

@@ -14,7 +14,7 @@ const registerUser = async (req, res, next) => {
         return res.status(400).json({ error: error.array() })
     }
 
-    const { fullname, email, password } = req.body;
+    const { fullname, email, password,phonenumber } = req.body;
     const checkEmail = await userModel.exists({ email });
 
     if (checkEmail) return res.status(409).json({ message: "email already Exists" });
@@ -27,7 +27,8 @@ const registerUser = async (req, res, next) => {
             firstname: fullname.firstname,
             lastname: fullname.lastname || "",
             email,
-            password: hass
+            password: hass,
+            phonenumber
 
         }
     )

@@ -13,7 +13,7 @@ const userschema = new Schema({
         lastname: {
             type: String,
 
-            minlength: [3, "Required minimum 3 Characters"]
+           
         }
     },
     email: {
@@ -26,6 +26,10 @@ const userschema = new Schema({
         type: String,
         required: true,
         select: false
+    },
+    phonenumber:{
+        type:Number,
+        required:true
     },
     livetracking: {
         socketid: { type: String }
