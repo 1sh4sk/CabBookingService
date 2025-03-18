@@ -1,7 +1,7 @@
 import React from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const PopulationService = () => {
+const Population = () => {
   return (
     <div className="bg-[#F8F6F1] min-h-screen bg-cover bg-center bg-no-repeat sm:p-6 md:p-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:mx-20">
@@ -106,4 +106,4 @@ const PopulationService = () => {
   );
 };
 
-export default PopulationService;
+export default Population;
