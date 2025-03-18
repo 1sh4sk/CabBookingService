@@ -29,7 +29,7 @@ router.post('/login', [
     body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
 ], loginCaptain)
 
-router.get('/profile',captainValidateToken,getCaptainProfile)
-router.get('/logout',captainValidateToken,logoutCaptain)
+router.get('/profile', captainValidateToken, getCaptainProfile)
+router.get('/logout', captainValidateToken, logoutCaptain)
 
 module.exports = router; 

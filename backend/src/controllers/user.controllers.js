@@ -57,7 +57,6 @@ const loginUser = async (req, res, next) => {
 
         let token = generatortoken(checkEmail);
 
-
         res.json({ token, user: checkEmail })
     } catch (error) {
         res.status(500).json({ error: error.message });
