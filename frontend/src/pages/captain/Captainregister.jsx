@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { registerCaptain } from "../../api/captainApi";
+import { toast } from 'react-toastify';
+import { captainDataContext } from "../../context/CaptainContext";
+>>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
 // import CaptainBg from "../assets/Captainbg.png"; // Ensure correct import
 
 function CaptainRegister() {
@@ -14,6 +22,12 @@ function CaptainRegister() {
     agreeTerms: false,
   });
 
+<<<<<<< HEAD
+=======
+  const navigate = useNavigate();
+  const { setCaptain } = useContext(captainDataContext);
+
+>>>>>>> ea004dfa52e6c1ca05b1b076dbbfefc746a3ea97
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -22,9 +36,50 @@ function CaptainRegister() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+
+
+    try {
+
+      const { firstName, lastName, email, password, vehicleColor, vehiclePlate, vehicleCapacity, vehicleType, agreeTerms } = formData;
+
+      const userData = {
+        fullname: {
+          firstname: firstName,
+          lastname: lastName,
+        },
+        email,
+        password,
+        vehicle: {
+          color: vehicleColor,
+          plate: vehiclePlate,
+          capacity: vehicleCapacity,
+          vehicletype: vehicleType,
+        },
+        agreeTerms
+      }
+
+      console.log(userData);
+
+
+      const res = await registerCaptain(userData);
+      if (res.status === 201) {
+        toast.success('Registration successful');
+        localStorage.setItem('token', res.data.token);
+        setCaptain(res.data.user);
+        navigate('/captain-home')
+      }
+
+      setFormData(initialState);
+
+    } catch (error) {
+      if (error.status === 409) {
+        toast.error(error?.response?.data?.message);
+      } else {
+        toast.error(error?.response?.data?.error[0]?.msg);
+      }
+    }
   };
 
   return (
@@ -61,12 +116,12 @@ function CaptainRegister() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input type="text" name="vehicleColor" placeholder="Vehicle Color" className="border p-2 rounded-md" value={formData.vehicleColor} onChange={handleChange} required />
               <input type="text" name="vehiclePlate" placeholder="Vehicle Plate" className="border p-2 rounded-md" value={formData.vehiclePlate} onChange={handleChange} required />
-              <input type="text" name="vehicleCapacity" placeholder="Vehicle Capacity" className="border p-2 rounded-md" value={formData.vehicleCapacity} onChange={handleChange} required />
+              <input type="number" name="vehicleCapacity" placeholder="Vehicle Capacity" className="border p-2 rounded-md" value={formData.vehicleCapacity} onChange={handleChange} required />
               <select name="vehicleType" className="border p-2 rounded-md" value={formData.vehicleType} onChange={handleChange} required>
                 <option value="">Vehicle Type</option>
-                <option value="sedan">Sedan</option>
-                <option value="suv">SUV</option>
-                <option value="hatchback">Hatchback</option>
+                <option value="car">Car</option>
+                <option value="auto">Auto</option>
+                <option value="motorcycle">Motorcycle</option>
               </select>
             </div>
           </div>
@@ -82,7 +137,7 @@ function CaptainRegister() {
         </form>
 
         <p className="text-center mt-4 text-sm">
-          Already have an account? <a href="#" className="text-yellow-600 font-semibold hover:underline">Sign in here</a>
+          Already have an account? <Link to="/captain-login" className="text-yellow-600 font-semibold hover:underline">Sign in here</Link>
         </p>
       </div>
 

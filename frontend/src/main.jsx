@@ -1,11 +1,17 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import Header from './pages/user/UserSubmit.jsx'
+
 import App from './App.jsx'
+import { BrowserRouter } from 'react-router'
+import UserContext from './context/UserContext.jsx'
+import CaptainContext from './context/CaptainContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Header />
-  </StrictMode>,
+  <CaptainContext>
+    <UserContext>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserContext>
+  </CaptainContext>
 )

@@ -12,23 +12,20 @@ import RideRequest from "./pages/captain/RideRequest"
 import Confirm from "./pages/captain/Confirm"
 import FinishRide from "./pages/captain/FinishRide"
 
+import { RouterComponent } from "./components"
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
 
   return (
-    <>
-    
-       {/* <Registeruser/>   */}
-       {/* <Captainregister />   */}
-       {/* <TaxiTemplate/>   */}
-       {/* <ReviewTemplate/> */}
-        {/* <GetStarted />  */}
-         <DriverDashboard/>  
-           <RideRequest/>    
-         <Confirm/>   
-         <FinishRide/>  
-     
-    </>
+
+
+    <main>
+      <RouterComponent />
+      <ToastContainer />
+    </main>
+
   )
 }
 
