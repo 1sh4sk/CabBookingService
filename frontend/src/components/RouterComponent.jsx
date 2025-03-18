@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import { DriverDetail, Home, Registeruser, UserDriver, UserHome, UserLogin, UserProtectedWrapper, UserSelect } from "../pages/user";
-import { CaptainLogin, CaptainProtectedWrapper, Captainregister } from "../pages/captain";
+import { CaptainLogin, CaptainProtectedWrapper, Captainregister, DriverDashboard } from "../pages/captain";
 
 const RouterComponent = () => {
     return <div>
@@ -22,7 +22,7 @@ const RouterComponent = () => {
             <Route path="/captain-register" element={<Captainregister />} />
             <Route path="/captain-login" element={<CaptainLogin />} />
             <Route element={<CaptainProtectedWrapper />}>
-                <Route path="/captain-home" element={<h1>captain home</h1>} />
+                <Route path="/captain-home" element={<DriverDashboard />} />
             </Route>
 
             <Route path="*" element={<h1>something went wrong!</h1>} />
