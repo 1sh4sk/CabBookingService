@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { registerUser } from '../../api/userApi';
@@ -18,12 +17,10 @@ function Registeruser() {
   const navigate = useNavigate();
   const { setUser } = useContext(userDataContext);
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,13 +89,11 @@ function Registeruser() {
             </div>
 
             <button type="submit" className="bg-yellow-400 text-black font-bold py-2 px-3 rounded-md w-full hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-
               Sign Up
             </button>
           </form>
 
           <p className="text-center mt-4 text-sm">
-
             Don't have an account? <Link to="/login" className="text-yellow-600 font-semibold hover:underline">Sign in here</Link>
           </p>
         </div>
@@ -108,7 +103,6 @@ function Registeruser() {
       <div>
         {/* Image Section */}
         <ImageCard /></div>
-
     </div>
   );
 }
@@ -116,7 +110,6 @@ function Registeruser() {
 const ImageCard = () => {
   return (
     <div className="max-w-xl  image overflow-hidden shadow-lg bg-white ">
-
       <img
         className="w-full h-full object-cover"
         src="./src/assets/register.png"
