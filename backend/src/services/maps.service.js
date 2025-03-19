@@ -1,7 +1,9 @@
 const axios = require("axios");
+const captainModel = require("../models/captain.model");
 
 const getAddressCoordinates = async (address) => {
     try {
+
         const apiKey = process.env.GOOGLE_MAPS_API;
         const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
@@ -21,10 +23,10 @@ const getAddressCoordinates = async (address) => {
 };
 
 
-const getDistanceTimeSer = async (origin, destination) => {
+const getDistanceTimeSer = async (origin, destination, rideFare) => {
 
     try {
-       
+
         if (!origin || !destination) {
             throw new Error("Origin and destination are required.", { cause: { status: 404 } });
         }
@@ -32,6 +34,27 @@ const getDistanceTimeSer = async (origin, destination) => {
         const apiKey = process.env.GOOGLE_MAPS_API
 
         const url = `https://routes.googleapis.com/directions/v2:computeRoutes`;
+
+
+        // const requestBody = {
+        //     origin: {
+        //         location: {
+        //             latLng: {
+        //                 latitude: origin.lat,
+        //                 longitude: origin.lng,
+        //             },
+        //         },
+        //     },
+        //     destination: {
+        //         location: {
+        //             latLng: {
+        //                 latitude: destination.lat,
+        //                 longitude: destination.lng,
+        //             },
+        //         },
+        //     },
+        //     travelMode: "DRIVE"
+        // };
 
 
         const requestBody = {
@@ -54,6 +77,9 @@ const getDistanceTimeSer = async (origin, destination) => {
             travelMode: "DRIVE"
         };
 
+
+
+
         const response = await axios.post(url, requestBody,
             {
                 headers: {
@@ -64,6 +90,8 @@ const getDistanceTimeSer = async (origin, destination) => {
             }
 
         );
+        // console.log(response );
+
 
 
         if (!response.data) {
@@ -78,13 +106,15 @@ const getDistanceTimeSer = async (origin, destination) => {
 
         const route = response.data.routes[0];
 
-        const totalSeconds = parseInt(route.duration);  
-        
+        if (rideFare) return route;
+
+        const totalSeconds = parseInt(route.duration);
+
         // Convert seconds into days, hours, and minutes
         const days = Math.floor(totalSeconds / (24 * 3600));
         const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
         const minutes = Math.round((totalSeconds % 3600) / 60);
-        
+
         let durationText = "";
         if (days > 0) durationText += `${days} day${days > 1 ? "s" : ""} `;
         if (hours > 0) durationText += `${hours} hour${hours > 1 ? "s" : ""} `;
@@ -104,39 +134,17 @@ const getDistanceTimeSer = async (origin, destination) => {
     }
 }
 
-// const getAutoSuggestions = async (input) => {
-//     if(!input) throw new Error("Input is required ");
-//     const apiKey = process.env.GOOGLE_MAPS_API;
-//     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}`;
-
-//     try {
-//         const response = await axios.get(url);
-
-//         if (response.data.status === "OK") {
-//             const location = response.data.results[0].geometry.location;
-//             return { lat: location.lat, lng: location.lng };
-//         } else {
-//             throw new Error("Invalid Address or API issue");
-//         } 
-        
-//     } catch (error) {
-//         console.log(error)
-//         throw error;
-//     }
-// }
-
-
 const getAutoSuggestionss = async (input) => {
     if (!input) {
         throw new Error("Query is required");
-    } 
+    }
 
     const apiKey = process.env.GOOGLE_MAPS_API;
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(input)}&key=${apiKey}`;
 
     try {
         const response = await axios.get(url);
-console.log(response.data); 
+
         if (response.data.status !== "OK") {
             console.error("Google Maps API Error:", response.data);
             throw new Error("Unable to fetch suggestions");
@@ -147,18 +155,30 @@ console.log(response.data);
         if (!predictions || predictions.length === 0) {
             throw new Error("No suggestions found");
         }
-            console.log(predictions);
-            
+        console.log(predictions);
+
         return predictions.map(place => ({
             description: place.description,
-            place_id: place.place_id
+            place_id: place.place_id,
+            terms: place.terms,
         }));
 
     } catch (error) {
         console.error("Error fetching location:", error.message);
         throw error;
-    } 
+    }
 };
 
+const getCaptionInRadius = async (lat, lng, radius) => {
+    //radius in km
+    const captain = await captainModel.find({
+        location: {
+            $geoWithin: {
+                $centerSphere: [[lat, lng], radius / 6371],
+            },
+        },
+    });
+    return captain;
+}
 
-module.exports = { getAddressCoordinates, getDistanceTimeSer ,getAutoSuggestionss } 
+module.exports = { getAddressCoordinates, getDistanceTimeSer, getAutoSuggestionss, getCaptionInRadius } 

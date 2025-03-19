@@ -1,14 +1,29 @@
 const { Router } = require("express")
 const router = Router();
-const {body}=require("express-validator")
-const { createRidee } = require('../controllers/ride.controller');
-const { userValidateToken } = require("../middleware/tokengen");
+const { body, query } = require("express-validator")
+const { createRidee, getFaree, confirmRide, startRide, endRide } = require('../controllers/ride.controller');
+const { userValidateToken, captainValidateToken } = require("../middleware/tokengen");
 
-router.post('/create',userValidateToken ,
-body('pickup').isString().isLength({min:3}).withMessage('invalid pickup address'),
-body('destination').isString().isLength({min:3}).withMessage('invalid destination address'),
-body('vehicleType').isString().isIn(['car','auto','motorcycle']).withMessage('invalid vehicle type'),
-    createRidee 
- )
+router.post('/create', userValidateToken,
+    body('pickup').isString().isLength({ min: 3 }).withMessage('invalid pickup address'),
+    body('destination').isString().isLength({ min: 3 }).withMessage('invalid destination address'),
+    body('vehicleType').isString().isIn(['car', 'auto', 'motorcycle']).withMessage('invalid vehicle type'),
+    createRidee
+)
+
+router.get('/getfare', userValidateToken, getFaree)
+
+router.post('/confirmride', captainValidateToken,
+    body('rideId').isMongoId().withMessage("Invalid ride id"),
+    confirmRide)
+router.get('/startride', captainValidateToken,
+    query('rideId').isMongoId().withMessage("Invalid ride id"),
+    query('otp').isString().isLength({ min: 6, max: 6 }).withMessage("Invalid otp"),
+    startRide)
+router.post('/endride', captainValidateToken,
+    query('rideId').isMongoId().withMessage("Invalid ride id"),
+    endRide)
+
+
 
 module.exports = router;

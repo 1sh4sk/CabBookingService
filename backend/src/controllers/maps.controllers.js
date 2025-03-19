@@ -36,17 +36,24 @@ const getDistanceTime = async (req, res, next) => {
 
         console.log(origin,destination);
         
-const formattedOrigin = {
-    lat: origin.location.latLng.latitude, 
-    lng: origin.location.latLng.longitude
-};
+// const formattedOrigin = {
+//     lat: origin.location.latLng.latitude, 
+//     lng: origin.location.latLng.longitude
+// };
 
-const formattedDestination = {
-    lat: destination.location.latLng.latitude, 
-    lng: destination.location.latLng.longitude
-};
+// const formattedDestination = {
+//     lat: destination.location.latLng.latitude, 
+//     lng: destination.location.latLng.longitude
+// };
         
-        const distance =await getDistanceTimeSer(formattedOrigin,formattedDestination)
+//         const distance =await getDistanceTimeSer(formattedOrigin,formattedDestination)
+
+const originCoordinates = await getAddressCoordinates(origin);
+console.log("originCoordinates",originCoordinates);
+const destinationCoordinates = await getAddressCoordinates(destination);
+console.log("destinationCoordinates",destinationCoordinates);
+
+const distance =await getDistanceTimeSer(originCoordinates,destinationCoordinates)
         res.status(200).json(distance)
     } catch (error) {
         error.cause?res.status(error.cause.status).json({error:error.message}):res.status(404).json({ message: "Coordinates not found" })
