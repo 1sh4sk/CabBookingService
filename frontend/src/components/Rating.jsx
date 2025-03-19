@@ -11,57 +11,58 @@ const Rating = () => {
   return (
     <div className='bg-white bg-cover bg-center bg-no-repeat'>
         {/* Row 1 */}
-        <div className='bg-black p-10 mx-10 text-white flex justify-center rounded-xl mr-30 ml-30 mt-30 relative z-10'>
+        <div className='bg-black p-10 sm:p-6 md:p-8 lg:p-10 mx-5 sm:mx-4 md:mx-6 lg:mx-10 text-white flex flex-wrap lg:flex-nowrap md:justify-between gap-4 md:gap-6 lg:gap-10 rounded-xl mt-10 lg:mt-50 relative z-10'>
+        
             {/* Section 1*/}
-            <div className="flex items-center space-x-3 border-r pr-6 pl-1">
-                <div className="bg-white p-3 rounded-full items-center">
-                    <FontAwesomeIcon icon={faSmile} className="text-yellow-500 text-2xl" />
+            <div className="flex items-center space-x-3 border-r pr-4 sm:pr-3 md:pr-6 pl-2">
+                <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                    <FontAwesomeIcon icon={faSmile} className="text-yellow-500 text-xl sm:text-2xl" />
                 </div>
                 <div>
-                    <h2 className="text-2xl font-bold">530 +</h2>
-                    <p className="text-gray-300">Happy Raider</p>
+                    <h2 className="text-lg sm:text-2xl font-bold">530 +</h2>
+                    <p className="text-gray-300 text-sm sm:text-base">Happy Raider</p>
                 </div>
             </div>
-            {/* Section 2*/}
-            <div className="flex items-center space-x-3 border-r pr-6 pl-6">
-                <div className="bg-white p-3 rounded-full">
-                    <FontAwesomeIcon icon={faAward} className="text-yellow-500 text-2xl" />
+            {/* Section 2 */}
+            <div className="flex items-center space-x-3 border-r pr-4 sm:pr-3 md:pr-6 pl-2">
+                <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                    <FontAwesomeIcon icon={faAward} className="text-yellow-500 text-xl sm:text-2xl" />
                 </div>
                 <div>
-                    <h2 className="text-2xl font-bold">10 +</h2>
-                    <p className="text-gray-300">Riding Award</p>
+                    <h2 className="text-lg sm:text-2xl font-bold">10 +</h2>
+                    <p className="text-gray-300 text-sm sm:text-base">Riding Award</p>
                 </div>
             </div>
-            {/* Section 3*/}
-            <div className="flex items-center space-x-3 border-r pr-6 pl-6">
-                <div className="bg-white p-3 rounded-full">
-                    <FontAwesomeIcon icon={faTaxi} className="text-yellow-500 text-2xl" />
+            {/* Section 3 */}
+            <div className="flex items-center space-x-3 border-r pr-4 sm:pr-3 md:pr-6 pl-2">
+                <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                    <FontAwesomeIcon icon={faTaxi} className="text-yellow-500 text-xl sm:text-2xl" />
                 </div>
                 <div>
-                    <h2 className="text-2xl font-bold">5230 +</h2>
-                    <p className="text-gray-300">Total Cars</p>
+                    <h2 className="text-lg sm:text-2xl font-bold">5230 +</h2>
+                    <p className="text-gray-300 text-sm sm:text-base">Total Cars</p>
                 </div>
             </div>
-            {/* Section 4*/}
-            <div className="flex items-center space-x-3 pl-6">
-                <div className="bg-white p-3 rounded-full">
-                    <FontAwesomeIcon icon={faStar} className="text-yellow-500 text-2xl" />
+            {/* Section 4 */}
+            <div className="flex items-center space-x-3 pl-2">
+                <div className="bg-white p-3 rounded-full flex items-center justify-center">
+                    <FontAwesomeIcon icon={faStar} className="text-yellow-500 text-xl sm:text-2xl" />
                 </div>
                 <div>
-                    <h2 className="text-2xl font-bold">2220 +</h2>
-                    <p className="text-gray-300">5 Star Reviews</p>
+                    <h2 className="text-lg sm:text-2xl font-bold">2220 +</h2>
+                    <p className="text-gray-300 text-sm sm:text-base">5 Star Reviews</p>
                 </div>
             </div>
         </div>
 
         {/* Row 2 */}
-        <div className='bg-yellow-500 p-34 text-white grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-[-50px]'>
+        <div className='bg-yellow-500 p-6 sm:p-8 md:p-10 lg:p-25 text-white grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-[-30px] sm:mt-[-50px]'>
             {/* Left Section */}
             <div className="text-left max-w-lg">
-                <h1 className="text-5xl font-bold text-black">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
                   Loved By Thousands <br /> Of Riders And Other People.
                 </h1>
-                <p className="text-gray-800 mt-5 text-lg">
+                <p className="text-gray-800 mt-4 sm:mt-5 text-base sm:text-lg">
                   Suspendisse ultrice gravida dictum fusce placerat ultricies integer
                   quis auctor elit sed vulputate mi sit. Auctor eu augue ut lectus arcu
                   bibendum at varius vel.
@@ -72,7 +73,7 @@ const Rating = () => {
             <div className="w-full">
                 <Swiper
                     modules={[Navigation, Autoplay, Pagination]}
-                    spaceBetween={30}
+                    spaceBetween={20}
                     slidesPerView={1}
                     navigation={{
                         nextEl: '.swiper-button-next',
@@ -85,18 +86,18 @@ const Rating = () => {
                 >
                     {/* Testimonial 1 */}
                     <SwiperSlide>
-                        <div className="bg-white p-6 rounded-lg shadow-md text-black">
+                        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md text-black">
                             <div className="flex items-center space-x-4">
                                 <img src="https://randomuser.me/api/portraits/women/50.jpg" 
                                      alt="Customer" 
-                                     className="w-12 h-12 rounded-full"
+                                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-full"
                                 />
                                 <div>
-                                    <h3 className="font-bold">Courtney Henry</h3>
-                                    <p className="text-gray-600 text-sm">Happy Customer</p>
+                                    <h3 className="font-bold text-sm sm:text-base">Courtney Henry</h3>
+                                    <p className="text-gray-600 text-xs sm:text-sm">Happy Customer</p>
                                 </div>
                             </div>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-3 text-gray-700 text-sm">
                                 "Amazing service, smooth ride! Highly recommend!"
                             </p>
                         </div>
@@ -104,18 +105,18 @@ const Rating = () => {
 
                     {/* Testimonial 2 */}
                     <SwiperSlide>
-                        <div className="bg-white p-6 rounded-lg shadow-md text-black">
+                        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md text-black">
                             <div className="flex items-center space-x-4">
                                 <img src="https://randomuser.me/api/portraits/men/50.jpg" 
                                      alt="Customer" 
-                                     className="w-12 h-12 rounded-full"
+                                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-full"
                                 />
                                 <div>
-                                    <h3 className="font-bold">Robert Fox</h3>
-                                    <p className="text-gray-600 text-sm">Happy Customer</p>
+                                    <h3 className="font-bold text-sm sm:text-base">Robert Fox</h3>
+                                    <p className="text-gray-600 text-xs sm:text-sm">Happy Customer</p>
                                 </div>
                             </div>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-3 text-gray-700 text-sm">
                                 "Fast and reliable! Will definitely use again."
                             </p>
                         </div>

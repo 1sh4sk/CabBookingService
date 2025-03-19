@@ -7,14 +7,19 @@ const Header = () => {
     <div>
       {/* Background Wrapper */}
       <div
-        className="h-screen w-full bg-cover bg-center bg-no-repeat fixed top-0 left-0"
-        style={{ backgroundImage: "url('https://s3-alpha-sig.figma.com/img/00ec/c8e7/fb143a53defb59fbaae275568e95b278?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=VA632G4i6qgvTaL6Txfrp0GYLYR63V8C2qb2J1ozlVIJl5c5J32YXmqiDgV-b3XjUrhUg3gStf5Q92UrUlRB4EUeJz7OoaXTPCWuwTVo56OfcVb9L3u7Hh-bIigDts4DOvTzsQNWlskw1wrwOutKj0rswjmjJwf5vPfgb5VToADZWonFas63CeHgU-ViL9Bn0bRwYNn05k9ROhukUHUfUX92G~19vUUqDeaKHEvqgByvlV-iYF~nTeqhPlrgdO4nBy4s0Qd9iMUZH2sxxTLNkvISDwO3MSnrxF0~QixT3qDph~MhZKTs51nmpda4ej5h-HOwql1TuaGkhznhMbbPqw__')" }}
-      >
+  className="min-h-screen w-full bg-cover bg-center bg-no-repeat m-0 p-0 "
+  style={{ 
+    backgroundImage: "url('https://s3-alpha-sig.figma.com/img/00ec/c8e7/fb143a53defb59fbaae275568e95b278?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=VA632G4i6qgvTaL6Txfrp0GYLYR63V8C2qb2J1ozlVIJl5c5J32YXmqiDgV-b3XjUrhUg3gStf5Q92UrUlRB4EUeJz7OoaXTPCWuwTVo56OfcVb9L3u7Hh-bIigDts4DOvTzsQNWlskw1wrwOutKj0rswjmjJwf5vPfgb5VToADZWonFas63CeHgU-ViL9Bn0bRwYNn05k9ROhukUHUfUX92G~19vUUqDeaKHEvqgByvlV-iYF~nTeqhPlrgdO4nBy4s0Qd9iMUZH2sxxTLNkvISDwO3MSnrxF0~QixT3qDph~MhZKTs51nmpda4ej5h-HOwql1TuaGkhznhMbbPqw__')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}
+>
         {/* Header Section */}
         <header className="bg-white shadow-md py-1 px-4 sm:px-6 md:px-8 flex items-center justify-between fixed top-3 left-1/2 transform -translate-x-1/2 w-11/12 sm:w-5/6 md:w-4/5 z-50 rounded-full ">
           {/* Left Side - Logo */}
           <div className="flex items-center space-x-2">
-            <img src="/src/component/logo.png" alt="Logo" className="ml-3 mt-2 mb-2 w-10 h-10 md:w-15 md:h-15 sm:w-10 sm:h-10 rounded-full" />
+            <img src="/src/assets/logo.png" alt="Logo" className="ml-3 mt-2 mb-2 w-10 h-10 md:w-15 md:h-15 sm:w-10 sm:h-10 rounded-full" />
             <div>
               <h1 className="text-sm sm:text-md md:text-lg font-bold text-green-600"> TRIPMATE </h1>
               <h1 className="text-[6px] sm:text-[7px] md:text-[8px] italic text-gray-500">YOUR JOURNEY, OUR PRIORITY</h1>
