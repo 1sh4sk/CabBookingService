@@ -2,11 +2,10 @@ const RideModel = require('../models/ride.model');
 const { getDistanceTimeSer } = require('./maps.service')
 const crypto = require('crypto')
 
-const getFare = async ({ pickupCoordinates, destinationCoordinates, vehicleType }) => {
+const getFare = async (pickupCoordinates, destinationCoordinates, vehicleType) => {
     if (!pickupCoordinates || !destinationCoordinates) {
         throw new Error("pickupCoordinates and destinationCoordinates are required")
     }
-
     const distanceTime = await getDistanceTimeSer(pickupCoordinates, destinationCoordinates, "rideFare")
 
 

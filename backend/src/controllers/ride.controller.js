@@ -35,7 +35,7 @@ const createRidee = async (req, res) => {
 const getFaree = async (req, res) => {
     try {
         const { pickupCoordinates, destinationCoordinates } = req.query;
-        console.log(pickupCoordinates, destinationCoordinates);
+        console.log(pickupCoordinates, destinationCoordinates)
         const fare = await getFare(pickupCoordinates, destinationCoordinates)
         res.status(200).json(fare)
     } catch (error) {
