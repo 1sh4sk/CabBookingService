@@ -1,22 +1,16 @@
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Suggesstions = () => {
-    const suggestions = [
-        "24B, Near Kapoor's cafe, Sheryians Coding School, Bhopals",
-        "24B, Near Kapoor's cafe, Sheryians Coding School, Bhopals",
-        "24B, Near Kapoor's cafe, Sheryians Coding School, Bhopals",
-        "24B, Near Kapoor's cafe, Sheryians Coding School, Bhopals",
-        "24B, Near Kapoor's cafe, Sheryians Coding School, Bhopals"
-    ]
-    return <div className='w-full mt-10'>
+const Suggesstions = ({ suggestions, setPickup, setDrop, activeField }) => {
+
+    return <div className='w-[60%] h-[250px] mt-7 overflow-y-scroll' >
         {
             suggestions.map((suggestion, i) => (
-                <div key={i} className='flex gap-2'>
+                <div key={i} className='flex gap-2 mb-5 text-lg' onClick={() => activeField === 'pickup' ? setPickup(suggestion.description) : setDrop(suggestion.description)}>
                     <span className='flex items-center justify-center'>
                         <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 text-yellow-500" />
                     </span>
-                    <p>{suggestion}</p>
+                    <p>{suggestion.description}</p>
                 </div>
             ))
         }

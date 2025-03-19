@@ -22,3 +22,17 @@ export const logoutUser = () => {
         }
     );
 }
+
+export const locationSuggestions = (inputLocation) => {
+    const token = localStorage.getItem('token');
+    console.log("input", inputLocation)
+    return api.get(`/maps/get-suggestions?input=${inputLocation}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+export const getFare = () => {
+
+}
