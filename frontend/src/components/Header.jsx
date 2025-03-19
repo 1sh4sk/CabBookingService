@@ -7,7 +7,7 @@ const Header = () => {
     <div>
       {/* Background Wrapper */}
       <div
-        className="h-screen w-full bg-cover bg-center bg-no-repeat fixed top-0 left-0"
+        className="h-screen w-full bg-cover bg-center bg-no-repeat z-0"
         style={{ backgroundImage: "url('https://s3-alpha-sig.figma.com/img/00ec/c8e7/fb143a53defb59fbaae275568e95b278?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=VA632G4i6qgvTaL6Txfrp0GYLYR63V8C2qb2J1ozlVIJl5c5J32YXmqiDgV-b3XjUrhUg3gStf5Q92UrUlRB4EUeJz7OoaXTPCWuwTVo56OfcVb9L3u7Hh-bIigDts4DOvTzsQNWlskw1wrwOutKj0rswjmjJwf5vPfgb5VToADZWonFas63CeHgU-ViL9Bn0bRwYNn05k9ROhukUHUfUX92G~19vUUqDeaKHEvqgByvlV-iYF~nTeqhPlrgdO4nBy4s0Qd9iMUZH2sxxTLNkvISDwO3MSnrxF0~QixT3qDph~MhZKTs51nmpda4ej5h-HOwql1TuaGkhznhMbbPqw__')" }}
       >
         {/* Header Section */}
@@ -56,7 +56,7 @@ const Header = () => {
         </header>
 
         {/* Main Content */}
-        <div className="flex flex-col items-end items-center justify-center min-h-screen pr-4 md:pr-30">
+        <div className="flex flex-col items-center justify-center min-h-screen pr-4 md:pr-30">
           {/* Pickup & Drop Form */}
           <div className="bg-opacity-50 p-4 md:p-15 rounded-4xl border-10 border-white shadow-lg w-full max-w-md md:max-w-lg backdrop-blur-lg">
             <div className="space-y-4">

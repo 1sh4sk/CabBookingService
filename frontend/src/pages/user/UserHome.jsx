@@ -5,6 +5,7 @@ import MapComponent from './MapComponent';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { logoutUser } from '../../api/userApi';
+import Suggesstions from '../../components/Suggesstions';
 
 const UserHome = () => {
   const [pickup, setPickup] = useState('');
@@ -28,7 +29,7 @@ const UserHome = () => {
     <div className="min-h-screen">
       {/* Header */}
       <header className="flex justify-between items-center bg-black md:bg-[#F7B401] p-4">
-            
+
         <div className="flex items-center gap-3">
           <img src="/src/assets/logo.png" alt="Logo" className="w-10 h-10 rounded-full" />
           <h1 className='font-bold text-white text-lg md:text-xl'>TripMate</h1>
@@ -65,14 +66,14 @@ const UserHome = () => {
             </div>
             <button
               type="button"
-              className={`w-full p-2 rounded mt-1 mb-4 font-bold ${
-                pickup && drop ? 'bg-yellow-500 text-white' : 'bg-yellow-200 text-white cursor-not-allowed'
-              }`}
+              className={`w-full p-2 rounded mt-1 mb-4 font-bold ${pickup && drop ? 'bg-yellow-500 text-white' : 'bg-yellow-200 text-white cursor-not-allowed'
+                }`}
               disabled={!pickup || !drop}
             >
               Submit
             </button>
           </div>
+          <Suggesstions />
         </div>
 
         {/* Map Section */}

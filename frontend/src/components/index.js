@@ -7,3 +7,4 @@ export { default as Footer } from './Footer';
 export { default as GetStarted } from './GetStarted';
 export { default as ReviewTemplate } from './ReviewTemplate';
 export { default as TaxiTemplate } from './TaxiTemplate';
+export { default as Suggestions } from './Suggesstions'
