@@ -114,14 +114,14 @@ const startRidee = async ({ rideId, otp, captain }) => {
 
 }
 
-const endRidee = async ({ rideId,  captain} ) => {
+const endRidee = async ({ rideId, captain }) => {
     if (!rideId) {
         throw new Error('Ride id is required');
     }
 
     const ride = await RideModel.findOne({
         _id: rideId,
-        captain:captain._id
+        captain: captain._id
     }).populate('user').populate('captain').select('+otp');
 
     if (!ride) {
