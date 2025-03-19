@@ -4,7 +4,7 @@ import { faMapMarkerAlt, faCircleUser, faMapPin } from '@fortawesome/free-solid-
 import MapComponent from './MapComponent';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
-import { locationSuggestions, logoutUser } from '../../api/userApi';
+import { getFare, locationSuggestions, logoutUser } from '../../api/userApi';
 import Suggesstions from '../../components/Suggesstions';
 import TaxiTemplate from '../../components/TaxiTemplate';
 import UserSelect from './UserSelect';
@@ -66,11 +66,15 @@ const UserHome = () => {
     setSuggestionPanel(false);
     setOnFormSubmit(true);
     try {
-      // const res = await getF
+
+      const res = await getFare(pickup, drop);
+      console.log(res.data);
     } catch (error) {
       console.log(error)
     }
   }
+
+
 
   return (
     <div className="min-h-screen">
