@@ -23,6 +23,15 @@ export const logoutUser = () => {
     );
 }
 
+export const userProfile = () => {
+    const token = localStorage.getItem('token');
+    return api.get(`/user/profile`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
 export const locationSuggestions = (inputLocation) => {
     const token = localStorage.getItem('token');
     console.log("input", inputLocation)

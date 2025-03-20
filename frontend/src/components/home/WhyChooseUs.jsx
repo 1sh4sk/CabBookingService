@@ -19,25 +19,25 @@ const WhyChooseUs = () => {
       {/* First Row - Images */}
       <div className="flex flex-col md:flex-row gap-8 md:gap-16 w-full lg:w-1/2 items-center">
         <img
-          src="/src/assets/Top.jpg" 
+          src="/src/assets/Top.jpg"
           alt="Taxi Top View"
           className="w-64 md:w-80 lg:w-96 lg:pt-30 "
         />
         <img
-          src="/src/assets/Front.jpg" 
+          src="/src/assets/Front.jpg"
           alt="Autonomous Taxi"
           className="w-64 md:w-80 lg:w-96  shadow-lg"
-        /> 
+        />
       </div>
 
       {/* Second Row - Content */}
       <div className="w-full lg:w-1/2 lg:ml-10 text-center lg:text-left mt-8 lg:mt-0">
-        <h2 className="text-4xl md:text-5xl font-bold leading-snug">
+        <h2 className="heading">
           Why <span className="text-yellow-500 border-yellow-500 ">Choose Us?</span>
         </h2>
         <p className="text-gray-600 my-4 text-base md:text-lg leading-relaxed mb-8">
-          Suspendisse ultrice gravida dictum fusce placerat ultricies integer<br className="hidden lg:block"/>
-          quis auctor elit sed vulputate mi sit. Auctor eu augue ut lectus arcu<br className="hidden lg:block"/>
+          Suspendisse ultrice gravida dictum fusce placerat ultricies integer<br className="hidden lg:block" />
+          quis auctor elit sed vulputate mi sit. Auctor eu augue ut lectus arcu<br className="hidden lg:block" />
           bibendum at varius vel.
         </p>
 

@@ -1,1 +1,18 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap');
+
+
 @import "tailwindcss";
+
+@theme{
+    --font-sora: "Sora", sans-serif;
+    --font-epilogue:  "Epilogue", sans-serif;
+}
+
+body{
+    @apply font-sora
+}
+
+.heading{
+    @apply font-epilogue  text-4xl md:text-5xl font-bold leading-snug;
+}
