@@ -13,30 +13,30 @@ const userschema = new Schema({
         lastname: {
             type: String,
 
-           
+
         }
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        lowercase:true
+        lowercase: true
     },
     password: {
         type: String,
         required: true,
         select: false
     },
-    phonenumber:{
-        type:Number,
-        required:true
-    },
+    // phonenumber:{
+    //     type:Number,
+    //     required:true
+    // },
     livetracking: {
         socketid: { type: String }
     }
 },
-    { timestamps:true })
+    { timestamps: true })
 
-const userModel = model("userModel",userschema);
+const userModel = model("userModel", userschema);
 
 module.exports = userModel

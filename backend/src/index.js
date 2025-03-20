@@ -31,7 +31,7 @@ app.use("/ride", rideRouter);
 const server = http.createServer(app);
 
 // Initialize Socket.io (Now handled inside `socket.js`)
-initializeSocket(server);  
+initializeSocket(server);
 
 // Start the server
 const port = process.env.PORT || 5000;

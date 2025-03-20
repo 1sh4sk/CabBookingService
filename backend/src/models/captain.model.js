@@ -32,7 +32,7 @@ const captianSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['active','inactive'],
+        enum: ['active', 'inactive'],
         default: 'inactive'
     },
     vehicle: {
@@ -54,7 +54,7 @@ const captianSchema = new Schema({
         vehicletype: {
             type: String,
             required: true,
-            enum: ['car', 'auto', 'motorcycle']
+            enum: ['premier', 'tripmateauto', 'tripmatebike','tripmatego']
         }
     },
     location: {
@@ -69,4 +69,4 @@ const captianSchema = new Schema({
 
 const captainModel = model("captainModel", captianSchema)
 
-module.exports=captainModel;
+module.exports = captainModel;

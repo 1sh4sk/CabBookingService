@@ -7,7 +7,7 @@ const { userValidateToken, captainValidateToken } = require("../middleware/token
 router.post('/create', userValidateToken,
     body('pickup').isString().isLength({ min: 3 }).withMessage('invalid pickup address'),
     body('destination').isString().isLength({ min: 3 }).withMessage('invalid destination address'),
-    body('vehicleType').isString().isIn(['car', 'auto', 'motorcycle']).withMessage('invalid vehicle type'),
+    body('vehicleType').isString().isIn(['premier', 'tripmateauto', 'tripmatebike','tripmatego']).withMessage('invalid vehicle type'),
     createRidee
 )
 
