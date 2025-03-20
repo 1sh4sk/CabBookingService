@@ -46,7 +46,7 @@ const CaptainLogin = () => {
 
 
   return (
-    <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 p-4">
+    <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 ">
       {/* Column 1 */}
 
       <form onSubmit={handleSubmit} className="w-1/4 bg-white p-10 pr-10 pl-10 absolute left-30 top-15 z-10 shadow-lg rounded-lg flex flex-col items-center">

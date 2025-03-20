@@ -48,7 +48,7 @@ const UserLogin = () => {
 
   return (
 
-    <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 p-4">
+    <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 ">
       {/* Column 1 - Login Form */}
       <div className="w-full lg:w-1/4 bg-white p-6 sm:p-8 md:p-10 lg:p-10 lg:pr-10 lg:pl-10 lg:absolute lg:left-30 lg:top-15 z-10 shadow-lg rounded-lg flex flex-col items-center">
         <img src="/src/assets/logo.png" alt="Logo" className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full" />
