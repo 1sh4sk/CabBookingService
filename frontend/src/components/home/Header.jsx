@@ -92,7 +92,7 @@ const Header = () => {
 
               {/* Submit Button */}
               <button className="w-full md:w-1/2 bg-yellow-500 text-white font-bold py-2 rounded-full hover:bg-yellow-600 transition duration-300 ml-0 md:ml-25">
-                SUBMIT
+                Search
               </button>
             </div>
           </div>
