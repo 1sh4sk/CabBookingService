@@ -2,8 +2,9 @@ import { FaFacebookF, FaTwitter, FaSkype, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[url('/src/assets/Background.png')] bg-cover bg-center text-white py-10 px-6">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-[url('/src/assets/Background.png')] bg-cover bg-center text-white py-10 px-35 lg:px-35 sm:px-6 md:px-12">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
         {/* Company Info */}
         <div>
           <h2 className="text-xl font-bold flex items-center gap-2">
@@ -18,7 +19,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold">Our Services:</h3>
           <ul className="mt-3 space-y-2">
-            {['Ride Sharing', 'Taxi Rentals', 'Intercity Service', 'Taxi Reserve',].map(service => (
+            {['Ride Sharing', 'Taxi Rentals', 'Intercity Service', 'Taxi Reserve'].map(service => (
               <li key={service} className="hover:text-yellow-400 cursor-pointer">{service}</li>
             ))}
           </ul>
@@ -28,7 +29,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold">Quick Links:</h3>
           <ul className="mt-3 space-y-2">
-            {['Ride Sharing', 'Taxi Rentals', 'Intercity Service', 'Taxi Reserve', ].map(link => (
+            {['Ride Sharing', 'Taxi Rentals', 'Intercity Service', 'Taxi Reserve'].map(link => (
               <li key={link} className="hover:text-yellow-400 cursor-pointer">{link}</li>
             ))}
           </ul>
@@ -65,5 +66,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-
