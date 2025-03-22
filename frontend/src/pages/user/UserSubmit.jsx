@@ -99,7 +99,7 @@ const UserSubmit = () => {
         </div>
 
         {/* Column 2 - Map Section */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-800 text-white font-bold h-72 md:h-96 lg:h-150 rounded-lg">
+        <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-800 text-white font-bold h-72 md:h-96 lg:h-200 rounded-lg">
           <MapComponent />
         </div>
       </div>
