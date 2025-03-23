@@ -21,7 +21,6 @@ const UserProtectedWrapper = ({ children }) => {
                 const res = await userProfile();
                 if (res.status === 200) {
                     setUser(res.data.user);
-                    console.log(user);
                     setIsLoading(false);
                 }
             } catch (error) {

@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const userModel = require("../models/user.model");
+const user = require("../models/user.model");
 const blacklistTokenModel = require("../models/blacklistToken.model");
 const captainModel = require("../models/captain.model");
 
@@ -30,12 +30,12 @@ const userValidateToken = async (req, res, next) => {
 
 
         const payload = jwt.verify(withoutbearer, process.env.JWT_KEY)
-        const checkUser = await userModel.exists({ _id: payload.data._id })
+        const checkUser = await user.exists({ _id: payload.data._id })
         if (!checkUser) return res.status(401).json({ message: "usernot found" })
         req.user = payload.data
         next();
     } catch (error) {
-        res.status(401).json({ error: error.message }) 
+        res.status(401).json({ error: error.message })
     }
 }
 

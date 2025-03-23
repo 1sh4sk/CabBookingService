@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faCircleUser, faMapPin } from '@fortawesome/free-solid-svg-icons';
-import MapComponent from './MapComponent';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router';
-import { getFare, locationSuggestions, logoutUser } from '../../api/userApi';
+import { faMapMarkerAlt, faMapPin } from '@fortawesome/free-solid-svg-icons';
+import { getFare, locationSuggestions } from '../../api/userApi';
 import Suggesstions from '../../components/user/Suggesstions';
-import TaxiTemplate from '../../components/home/TaxiTemplate';
-import UserSelect from './UserSelect';
 import UserSubmit from './UserSubmit';
 
 const UserHome = () => {
@@ -18,20 +13,10 @@ const UserHome = () => {
   const [activeField, setActiveField] = useState(null);
   const [suggestionPanel, setSuggestionPanel] = useState(false)
   const [onFormSubmit, setOnFormSubmit] = useState(false)
+  const [fare, setFare] = useState({})
 
-  const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      const res = await logoutUser();
-      localStorage.removeItem('token');
-      navigate('/login');
-      toast.success('Logged out successfully', { icon: 'success' });
-    } catch (error) {
-      console.log(error);
-      toast.error('Something went wrong');
-    }
-  }
+
 
   const handlePickupChange = async (e) => {
     const newPickup = e.target.value;
@@ -40,8 +25,6 @@ const UserHome = () => {
     try {
       const res = await locationSuggestions(pickup);
       setPickupSuggestions(res.data);
-      console.log(pickupSuggestions)
-
     } catch (error) {
       console.log(error.response.data);
     }
@@ -68,7 +51,7 @@ const UserHome = () => {
     try {
 
       const res = await getFare(pickup, drop);
-      console.log(res.data);
+      setFare(res.data);
     } catch (error) {
       console.log(error)
     }
@@ -77,23 +60,9 @@ const UserHome = () => {
 
 
   return (
-    <div className='w-full flex justify-center'>
-      {/* Header */}
-      {/* <header className="flex justify-between items-center bg-black md:bg-[#F7B401] p-4">
-
-        <div className="flex items-center gap-3">
-          <img src="/src/assets/logo.png" alt="Logo" className="w-10 h-10 rounded-full" />
-          <h1 className='font-bold text-white text-lg md:text-xl'>TripMate</h1>
-        </div>
-        <FontAwesomeIcon icon={faCircleUser} className="text-white text-3xl md:text-4xl cursor-pointer" />
-      </header> */}
-
-      {/* Main Grid Layout */}
-      {/* <div className="flex flex-col-reverse md:flex-col lg:flex-row gap-6 p-4"> */}
-      {/* Trip Finder Section */}
-      {/* <div className="w-full lg:w-1/2 flex flex-col items-center p-4"> */}
+    <div className='w-full h-full flex justify-center'>
       <div className='w-full flex flex-col items-center'>
-        <form onSubmit={handleSubmit} className="border bg-white p-4 w-full  rounded-lg shadow-md border-gray-300">
+        <form onSubmit={handleSubmit} className="border  bg-white p-4 w-full rounded-lg shadow-md border-gray-300">
           <h6 className="font-bold text-lg">Find a Trip</h6>
           <br />
           <div className="flex items-center rounded p-3 mb-4 bg-yellow-50">
@@ -137,17 +106,8 @@ const UserHome = () => {
           activeField={activeField}
 
         />}
-        {onFormSubmit && <UserSubmit />}
+        {onFormSubmit && <UserSubmit fare={fare} pickup={pickup} drop={drop} />}
       </div>
-      {/* </div> */}
-
-
-
-      {/* Map Section */}
-      {/* <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-800 text-white font-bold h-72 md:h-96 lg:h-150 rounded-lg">
-          <MapComponent />
-        </div> */}
-      {/* </div> */}
     </div>
   );
 };

@@ -29,7 +29,7 @@ const CaptainLogin = () => {
       if (res.status === 200) {
         toast.success('Login successful');
         localStorage.setItem('token', res.data.token);
-        setCaptain(res.data.user);
+        setCaptain(res.data.checkEmail);
         navigate('/captain-home')
       }
 

@@ -12,7 +12,7 @@ const blacklistSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
         expires: 86400        // 86400 seconds = 24 hours
-    } 
+    }
 });
 
 module.exports = mongoose.model("Blacklist", blacklistSchema);

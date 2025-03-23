@@ -26,7 +26,6 @@ const UserLogin = () => {
     try {
 
       const res = await loginUser(formData);
-      console.log(res);
       if (res.status === 200) {
         toast.success('Login successful');
         localStorage.setItem('token', res.data.token);

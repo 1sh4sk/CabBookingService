@@ -18,7 +18,7 @@ const MapComponent = () => {
     loadGoogleMaps();
   }, []);
 
-  return <div id="map" style={{ width: "100%", height: "400px" }} />;
+  return <div id="map" className="w-full h-full " />;
 };
 
-export default MapComponent;
+export default MapComponent; 

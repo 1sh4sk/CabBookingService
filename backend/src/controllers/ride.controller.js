@@ -19,24 +19,33 @@ const createRidee = async (req, res) => {
         const ride = await createRide({ user: req.user._id, pickup, destination, pickupCoordinates, destinationCoordinates, vehicleType });
 
         const captainRadius = await getCaptionInRadius(pickupCoordinates.lat, pickupCoordinates.lng, 3);  // 3 KM
+        console.log('captain radius', captainRadius);
 
-        ride.otp = "";
-        const rideWithUser = await RideModel.findOne({ _id: ride._id }).populate('user')
+        // ride.otp = "";
+        // const rideWithUser = await RideModel.findOne({ _id: ride._id }).populate('userModel')
+        // console.log('ride with user',rideWithUser);
+
         captainRadius.map(captain => {
             sendMessageToSocketId(captain.socketId, { event: "new-ride", data: rideWithUser })
         });
 
         return res.status(201).json(ride);
     } catch (error) {
+        console.log(error)
         res.status(400).json({ message: error.message })
     }
 }
 
 const getFaree = async (req, res) => {
     try {
-        const { pickupCoordinates, destinationCoordinates } = req.query;
-        console.log(pickupCoordinates, destinationCoordinates)
-        const fare = await getFare(pickupCoordinates, destinationCoordinates)
+        const { pickup, destination, vehicleType } = req.query;
+        console.log("ride", req.body);
+        const pickupCoordinates = await getAddressCoordinates(pickup);
+        console.log("pickupCoordinates", pickupCoordinates);
+        const destinationCoordinates = await getAddressCoordinates(destination);
+        console.log("destinationCoordinates", destinationCoordinates);
+        // const { pickupCoordinates, destinationCoordinates } = req.query;
+        const fare = await getFare({ pickupCoordinates, destinationCoordinates })
         res.status(200).json(fare)
     } catch (error) {
         res.status(500).json({ message: error.message })

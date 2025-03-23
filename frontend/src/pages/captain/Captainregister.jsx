@@ -11,6 +11,7 @@ function CaptainRegister() {
     lastName: "",
     email: "",
     password: "",
+    vehicleName: "",
     vehicleColor: "",
     vehiclePlate: "",
     vehicleCapacity: "",
@@ -203,6 +204,15 @@ function CaptainRegister() {
         />
         <div className="mb-4">
           <h3 className="text-lg font-semibold mb-2">Vehicle Information</h3>
+          <input
+            type="text"
+            name="vehicleName"
+            placeholder="example@gmail.com"
+            className="border p-2 w-full rounded-md mb-4"
+            value={formData.vehicleName}
+            onChange={handleChange}
+            required
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input type="text" name="vehicleColor" placeholder="Vehicle Color" className="border p-2 rounded-md" value={formData.vehicleColor} onChange={handleChange} required />
             <input type="text" name="vehiclePlate" placeholder="Vehicle Plate" className="border p-2 rounded-md" value={formData.vehiclePlate} onChange={handleChange} required />

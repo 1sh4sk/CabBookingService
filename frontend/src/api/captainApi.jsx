@@ -22,3 +22,13 @@ export const logoutCaptain = () => {
         }
     );
 }
+
+
+export const captainProfile = () => {
+    const token = localStorage.getItem('token');
+    return api.get('/captain/profile', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}

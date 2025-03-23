@@ -6,7 +6,7 @@ const { generatortoken } = require("../middleware/tokengen");
 const blacklistTokenModel = require("../models/blacklistToken.model");
 
 
-const registerUser = async (req, res, next) => {
+const registerUser = async (req, res) => {
 
     const error = validationResult(req);
 
@@ -14,7 +14,7 @@ const registerUser = async (req, res, next) => {
         return res.status(400).json({ error: error.array() })
     }
 
-    const { fullname, email, password,phonenumber } = req.body;
+    const { fullname, email, password } = req.body;
     const checkEmail = await userModel.exists({ email });
 
     if (checkEmail) return res.status(409).json({ message: "email already Exists" });
@@ -28,7 +28,7 @@ const registerUser = async (req, res, next) => {
             lastname: fullname.lastname || "",
             email,
             password: hass,
-            phonenumber
+            // phonenumber
 
         }
     )
