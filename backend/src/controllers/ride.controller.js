@@ -19,7 +19,7 @@ const createRidee = async (req, res) => {
         const ride = await createRide({ user: req.user._id, pickup, destination, pickupCoordinates, destinationCoordinates, vehicleType });
 
         const captainRadius = await getCaptionInRadius(pickupCoordinates.lat, pickupCoordinates.lng, 3);  // 3 KM
-console.log('captain radius',captainRadius);
+        console.log('captain radius',captainRadius);
 
         // ride.otp = "";
         // const rideWithUser = await RideModel.findOne({ _id: ride._id }).populate('userModel')
@@ -38,13 +38,23 @@ console.log('captain radius',captainRadius);
 
 const getFaree = async (req, res) => {
     try {
+       
 
         const { pickup, destination, vehicleType } = req.body;
         const pickupCoordinates = await getAddressCoordinates(pickup);
         console.log("pickupCoordinates", pickupCoordinates);
         const destinationCoordinates = await getAddressCoordinates(destination);
         console.log("destinationCoordinates", destinationCoordinates);
+        if (!pickupCoordinates || !destinationCoordinates) {
+
+            throw new Error("pickupCoordinates and destinationCoordinates are required")
+        }
         // const { pickupCoordinates, destinationCoordinates } = req.query;
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
+        }
         const fare = await getFare({pickupCoordinates, destinationCoordinates})
         res.status(200).json(fare) 
     } catch (error) {

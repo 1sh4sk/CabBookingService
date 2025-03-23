@@ -4,8 +4,10 @@ const { getDistanceTimeSer } = require('./maps.service')
 const crypto = require('crypto')
 
 const getFare = async ({ pickupCoordinates, destinationCoordinates, vehicleType }) => {
+    
     console.log("pickupCoordinates form getfare Service", pickupCoordinates);
 
+   
     if (!pickupCoordinates || !destinationCoordinates) {
         throw new Error("pickupCoordinates and destinationCoordinates are required")
     }

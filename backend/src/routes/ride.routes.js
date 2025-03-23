@@ -11,7 +11,10 @@ router.post('/create', userValidateToken,
     createRidee
 )
 
-router.get('/getfare', userValidateToken, getFaree)
+router.get('/getfare', userValidateToken,
+    body('pickup').isString().isLength({ min: 3 }).withMessage('invalid pickup address'),
+    body('destination').isString().isLength({ min: 3 }).withMessage('invalid destination address'),
+     getFaree)
 
 router.post('/confirmride', captainValidateToken,
     body('rideId').isMongoId().withMessage("Invalid ride id"),

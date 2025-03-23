@@ -1,6 +1,10 @@
 const axios = require("axios");
 const captainModel = require("../models/captain.model");
 
+
+
+
+// get lat lng   from geocode api   
 const getAddressCoordinates = async (address) => {
     try {
 
@@ -22,7 +26,7 @@ const getAddressCoordinates = async (address) => {
 
 };
 
-
+// google routes api 
 const getDistanceTimeSer = async (origin, destination, rideFare) => {
 
     try {
@@ -34,28 +38,6 @@ const getDistanceTimeSer = async (origin, destination, rideFare) => {
         const apiKey = process.env.GOOGLE_MAPS_API
 
         const url = `https://routes.googleapis.com/directions/v2:computeRoutes`;
-
-
-        // const requestBody = {
-        //     origin: {
-        //         location: {
-        //             latLng: {
-        //                 latitude: origin.lat,
-        //                 longitude: origin.lng,
-        //             },
-        //         },
-        //     },
-        //     destination: {
-        //         location: {
-        //             latLng: {
-        //                 latitude: destination.lat,
-        //                 longitude: destination.lng,
-        //             },
-        //         },
-        //     },
-        //     travelMode: "DRIVE"
-        // };
-
 
         const requestBody = {
             origin: {
@@ -76,8 +58,6 @@ const getDistanceTimeSer = async (origin, destination, rideFare) => {
             },
             travelMode: "DRIVE"
         };
-
-
 
 
         const response = await axios.post(url, requestBody,
@@ -133,7 +113,7 @@ const getDistanceTimeSer = async (origin, destination, rideFare) => {
         throw error;
     }
 }
-
+//  autocomplete api
 const getAutoSuggestionss = async (input) => {
     if (!input) {
         throw new Error("Query is required");

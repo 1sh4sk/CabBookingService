@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const { generatortoken } = require("../middleware/tokengen");
 const blacklistTokenModel = require("../models/blacklistToken.model");
 
-
+// Captain Register
 const registerCaptain = async (req, res, next) => {
     const error = validationResult(req);
 
@@ -22,13 +22,14 @@ const registerCaptain = async (req, res, next) => {
 
     const hass = await bcrypt.hash(password, 10);
 
-    const captain = await createCaptain(
+    const captain = await createCaptain(           //  captainservice 
         {
 
             firstname: fullname.firstname,
             lastname: fullname.lastname || "",
             email,
             password: hass,
+            vehiclename: vehicle.vehiclename,
             color: vehicle.color,
             plate: vehicle.plate,
             capacity: vehicle.capacity,
@@ -43,6 +44,8 @@ const registerCaptain = async (req, res, next) => {
 
 }
 
+
+// login captain
 const loginCaptain = async (req, res, next) => {
     try {
       
@@ -70,6 +73,7 @@ const loginCaptain = async (req, res, next) => {
 
 }
 
+// captain profile
 
 const getCaptainProfile = async (req, res) => {
 
@@ -110,7 +114,9 @@ const getCaptainProfile = async (req, res) => {
 //     res.status(200).json({ message: 'logged Out' })
 // }
  
-const logoutCaptain = async (req, res) => {
+//
+
+const logoutCaptain = async (req, res) => {                  // captain logout
     try {
         res.clearCookie('token'); // Clear cookie
 

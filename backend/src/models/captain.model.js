@@ -36,6 +36,11 @@ const captianSchema = new Schema({
         default: 'inactive'
     },
     vehicle: {
+        vehiclename: {
+            type: String,
+            required: true,
+            min: [3, "Vehicle name must be at least 3 characters"]
+        },
         color: {
             type: String,
             required: true,
@@ -51,6 +56,7 @@ const captianSchema = new Schema({
             required: true,
             min: [1, "Capacity must be at least 1"]
         },
+       
         vehicletype: {
             type: String,
             required: true,
