@@ -1,13 +1,14 @@
 const { log } = require('console');
 const RideModel = require('../models/ride.model');
 const { getDistanceTimeSer } = require('./maps.service')
-const crypto = require('crypto')
+const crypto = require('crypto');
+const { sendMessageToSocketId } = require('../socket');
 
 const getFare = async ({ pickupCoordinates, destinationCoordinates, vehicleType }) => {
-    
+
     console.log("pickupCoordinates form getfare Service", pickupCoordinates);
 
-   
+
     if (!pickupCoordinates || !destinationCoordinates) {
         throw new Error("pickupCoordinates and destinationCoordinates are required")
     }
@@ -106,7 +107,7 @@ const startRidee = async ({ rideId, otp, captain }) => {
 
     const ride = await RideModel.findOne({
         _id: rideId
-    }).populate('userModel').populate('captainModel').select('+otp');
+    }).populate('user').populate('captain').select('+otp');
 
     if (!ride) {
         throw new Error('Ride not found');
@@ -125,14 +126,12 @@ const startRidee = async ({ rideId, otp, captain }) => {
         { status: 'ongoing' }
     );
 
-    sendMessageToSocketId(ride.user.socketId, {
-        event: 'ride-started',
-        data: ride
-    });
+    return ride;
 
 }
 
 const endRidee = async ({ rideId, captain }) => {
+
     if (!rideId) {
         throw new Error('Ride id is required');
     }
@@ -140,7 +139,9 @@ const endRidee = async ({ rideId, captain }) => {
     const ride = await RideModel.findOne({
         _id: rideId,
         captain: captain._id
-    }).populate('userModel').populate('captainModel')
+    }).populate('user').populate('captain')
+
+    console.log(ride);
 
     if (!ride) {
         throw new Error('Ride not found');
@@ -154,6 +155,8 @@ const endRidee = async ({ rideId, captain }) => {
         { _id: rideId },
         { status: 'completed' }
     );
+
+    return ride;
 
 }
 module.exports = {

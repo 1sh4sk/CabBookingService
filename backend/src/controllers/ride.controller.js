@@ -21,10 +21,10 @@ const createRidee = async (req, res) => {
         const ride = await createRide({ user: req.user._id, pickup, destination, pickupCoordinates, destinationCoordinates, vehicleType });
 
         const captainRadius = await getCaptionInRadius(pickupCoordinates.lat, pickupCoordinates.lng, 3);  // 3 KM
-        console.log('captain radius', captainRadius);
+        // console.log('captain radius', captainRadius);
 
         // ride.otp = "";
-        const rideWithUser = await RideModel.findOne({ _id: ride._id }).populate('userModel3')
+        const rideWithUser = await RideModel.findOne({ _id: ride._id }).populate('user')
         // console.log('ride with user',rideWithUser);
 
         captainRadius.map(captain => {
@@ -71,11 +71,15 @@ const confirmRide = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })
     }
+
+    const { rideId } = req.body
+
     try {
-        const { rideId } = req.body
-        const ride = await confirmRidee({ rideId, captain: req.captain });
+
+        const ride = await confirmRidee(rideId, req.captain);
+
         sendMessageToSocketId(ride.user.socketId, {
-            event: 'ride-confirmed',
+            event: "ride-confirmed",
             data: ride
         })
 
@@ -85,6 +89,7 @@ const confirmRide = async (req, res) => {
     }
 
 }
+
 const startRide = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -117,13 +122,14 @@ const endRide = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })
     }
-    const { rideId } = req.query;
+    const { rideId } = req.body;
     try {
-        const ride = await startRidee({
+        const ride = await endRidee({
             rideId,
-
             captain: req.captain
         });
+
+        console.log("end ride", ride);
 
         sendMessageToSocketId(ride.user.socketId, {
             event: 'ride-ended',
