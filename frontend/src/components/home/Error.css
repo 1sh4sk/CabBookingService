@@ -1,0 +1,40 @@
+/* Road Styling */
+.road {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;             
+  background: #253749;       
+  overflow: hidden;           
+  z-index: 1;                
+}
+
+/* Taxi Car Animation */
+.taxi {
+  position: absolute;
+  bottom: 30px;               
+  left: -150px;
+  animation: moveCar 6s linear infinite;
+  z-index: 0;                
+}
+
+.taxi img {
+  width: 120px;                
+  height: auto;
+}
+
+/* Car Animation */
+@keyframes moveCar {
+  0% {
+    left: -150px;             
+  }
+  100% {
+    left: 150%;                
+  }
+}
+
+
+button:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
