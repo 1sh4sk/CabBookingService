@@ -56,7 +56,6 @@ const captianSchema = new Schema({
             required: true,
             min: [1, "Capacity must be at least 1"]
         },
-
         vehicletype: {
             type: String,
             required: true,

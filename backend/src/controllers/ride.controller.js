@@ -20,7 +20,7 @@ const createRidee = async (req, res) => {
         console.log("destinationCoordinates", destinationCoordinates);
         const ride = await createRide({ user: req.user._id, pickup, destination, pickupCoordinates, destinationCoordinates, vehicleType });
 
-        const captainRadius = await getCaptionInRadius(pickupCoordinates.lat, pickupCoordinates.lng, 2);  // 3 KM
+        const captainRadius = await getCaptionInRadius(pickupCoordinates.lat, pickupCoordinates.lng, 3);  // 3 KM
         console.log('captain radius', captainRadius);
 
         // ride.otp = "";
