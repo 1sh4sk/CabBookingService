@@ -1,29 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faCircleUser, faMapPin, faWallet } from '@fortawesome/free-solid-svg-icons';
 import MapComponent from './MapComponent';
 import { useLocation, useNavigate } from 'react-router';
 import { createRideApi } from '../../api/rideApi';
+import { SocketContext } from '../../context/SocketContext';
 
 const UserSelect = () => {
 
   const location = useLocation();
   const { rideType, pickup, drop, price, image } = location.state || {};
   const navigate = useNavigate();
+  const { receiveMessage } = useContext(SocketContext)
 
   const vehicleType = rideType === "TripMate Bike" ? "tripmatebike" : rideType === "TripMate GO" ? "tripmatego" : rideType === "TripMate Auto" ? "tripmateauto" : "premier";
 
   const createRide = async () => {
     try {
+
       navigate("/looking-for-driver", {
         state: { rideType, pickup, drop, price, image }
       })
+
       const res = await createRideApi({ vehicleType, pickup, destination: drop })
-      console.log(res.data)
+      console.log("ride created", res.data)
+
+
+
     } catch (error) {
       console.log(error)
     }
   }
+
+
+
 
   return (
 

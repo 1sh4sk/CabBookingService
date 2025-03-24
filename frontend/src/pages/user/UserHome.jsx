@@ -6,6 +6,7 @@ import Suggesstions from '../../components/user/Suggesstions';
 import UserSubmit from './UserSubmit';
 import { SocketContext } from '../../context/SocketContext';
 import { userDataContext } from '../../context/UserContext';
+import { useNavigate } from 'react-router';
 
 const UserHome = () => {
   const [pickup, setPickup] = useState('');
@@ -29,9 +30,6 @@ const UserHome = () => {
     sendMessage('message', { userType: "user", userId: user._id });
   }, [user])
 
-  receiveMessage('ride-confirmed', (ride) => {
-    setWaitingForDriver(true);
-  })
 
   const handlePickupChange = async (e) => {
     const newPickup = e.target.value;

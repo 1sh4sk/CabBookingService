@@ -9,3 +9,4 @@ export { default as Registeruser } from './Registeruser';
 export { default as Home } from '../Home';
 export { default as UserProtectedWrapper } from './UserProtectedWrapper'
 export { default as UserHomeLayout } from './UserHomeLayout'
+export { default as MakePayment } from './MakePayment'
