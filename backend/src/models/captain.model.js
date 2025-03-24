@@ -27,7 +27,7 @@ const captianSchema = new Schema({
         required: true,
         select: false
     },
-    socketid: {
+    socketId: {
         type: String
     },
     status: {
@@ -36,6 +36,11 @@ const captianSchema = new Schema({
         default: 'inactive'
     },
     vehicle: {
+        vehiclename: {
+            type: String,
+            required: true,
+            min: [3, "Vehicle name must be at least 3 characters"]
+        },
         color: {
             type: String,
             required: true,
@@ -51,21 +56,34 @@ const captianSchema = new Schema({
             required: true,
             min: [1, "Capacity must be at least 1"]
         },
+
         vehicletype: {
             type: String,
             required: true,
-            enum: ['premier', 'tripmateauto', 'tripmatebike','tripmatego']
+            enum: ['premier', 'tripmateauto', 'tripmatebike', 'tripmatego']
         }
     },
+    // location: {
+    //     ltd: {
+    //         type: Number
+    //     },
+    //     lng: {
+    //         type: Number
+    //     }
+    // },
     location: {
-        lat: {
-            type: Number
+        type: {
+            type: String,
+            enum: ['Point']  // Fix: Define type explicitly
         },
-        lng: {
-            type: Number
+        coordinates: {
+            type: [Number],  // Fix: Store as an array [longitude, latitude]
         }
-    },
+    }
 }, { timestamps: true })
+
+captianSchema.index({ location: "2dsphere" });
+
 
 const captainModel = model("captainModel", captianSchema)
 

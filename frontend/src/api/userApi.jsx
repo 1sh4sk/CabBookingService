@@ -42,12 +42,19 @@ export const locationSuggestions = (inputLocation) => {
     })
 }
 
+
 export const getFare = (pickup, drop) => {
     const token = localStorage.getItem('token');
-    return api.get(`/ride/getfare?pickup=${pickup}&destination=${drop}`, {
+    return api.get(`/ride/getfare`, {
+        params: {
+            pickup,
+            destination: drop
+        },
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
 }
+
+
 

@@ -1,18 +1,82 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faRoute } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { captainDataContext } from "../../context/CaptainContext";
-import CaptainHeader from "../../components/captain/captainHeader";
+import { SocketContext } from "../../context/SocketContext";
+import Confirm from "./Confirm";
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import RideRequest from "./RideRequest";
+import { confirmRideApi } from "../../api/rideApi";
 
 const DriverDashboard = () => {
 
+  const [ridePopupPanel, setRidePopupPanel] = useState(false)
+  const [confirmRidePopupPanel, setConfirmRidePopupPanel] = useState(false)
+  const [ride, setRide] = useState(null);
+  const ridePopupPanelRef = useRef(null)
 
   const { captain } = useContext(captainDataContext)
+  const { sendMessage, receiveMessage } = useContext(SocketContext);
 
 
-  console.log("captain", captain)
+  useEffect(() => {
+    if (!captain) return;
+
+    sendMessage("message", { userType: "captain", userId: captain._id });
+
+    const updateLocation = () => {
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+
+          console.log(captain._id, position.coords.latitude, position.coords.longitude)
+
+          sendMessage("update-location-captain", {
+            userId: captain._id,
+            location: {
+              ltd: position.coords.latitude,
+              lng: position.coords.longitude
+            },
+          })
+        })
+      }
+    }
 
 
+    const locationInterval = setInterval(updateLocation, 10000);
+    updateLocation();
+
+    return () => clearInterval(locationInterval)
+  }, [captain])
+
+
+  receiveMessage("new-ride", (data) => {
+    console.log(data);
+    setRide(data);
+    setRidePopupPanel(true);
+  });
+
+  useGSAP(function () {
+    if (ridePopupPanel) {
+      gsap.to(ridePopupPanelRef.current, {
+        transform: 'translateY(0)'
+      })
+    } else {
+      gsap.to(ridePopupPanelRef.current, {
+        transform: 'translateY(100%)'
+      })
+    }
+  }, [ridePopupPanel])
+
+
+  async function confirmRide() {
+
+    const res = await confirmRideApi(ride._id)
+    setRidePopupPanel(false)
+    setConfirmRidePopupPanel(true)
+
+  }
 
   return (
     <div className="p-6 w-full lg:w-1/2">
@@ -25,8 +89,8 @@ const DriverDashboard = () => {
             className="w-12 h-12 rounded-full mr-3"
           />
           <div>
-            <p className="font-semibold text-sm">{captain.fullname.firstname} {captain.fullname.lastname}</p>
-            <p className="text-gray-500 text-sm">White Suzuki S-Presso</p>
+            <p className="font-semibold text-sm capitalize">{captain?.fullname?.firstname} {captain?.fullname?.lastname}</p>
+            <p className="text-gray-500 text-sm capitalize">{captain?.vehicle?.color} {captain?.vehicle?.vehiclename}</p>
           </div>
         </div>
 
@@ -55,7 +119,28 @@ const DriverDashboard = () => {
           <p className="text-xs">Trips Completed</p>
         </div>
       </div>
+
+      <div ref={ridePopupPanelRef} className='fixed w-[30%] rounded-xl z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12'>
+        <RideRequest
+          ride={ride}
+          setRidePopupPanel={setRidePopupPanel}
+          setConfirmRidePopupPanel={setConfirmRidePopupPanel}
+          confirmRide={confirmRide}
+
+        />
+      </div>
+
+      <div ref={ridePopupPanelRef} className='fixed w-[30%] rounded-xl z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12'>
+        <Confirm
+          ride={ride}
+          confirmRidePopupPanel={confirmRidePopupPanel}
+          setConfirmRidePopupPanel={setConfirmRidePopupPanel}
+          confirmRide={confirmRide}
+        />
+      </div>
+
     </div>
+
 
 
   );

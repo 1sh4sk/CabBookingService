@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faMapPin } from '@fortawesome/free-solid-svg-icons';
 import { getFare, locationSuggestions } from '../../api/userApi';
 import Suggesstions from '../../components/user/Suggesstions';
 import UserSubmit from './UserSubmit';
+import { SocketContext } from '../../context/SocketContext';
+import { userDataContext } from '../../context/UserContext';
 
 const UserHome = () => {
   const [pickup, setPickup] = useState('');
@@ -14,9 +16,22 @@ const UserHome = () => {
   const [suggestionPanel, setSuggestionPanel] = useState(false)
   const [onFormSubmit, setOnFormSubmit] = useState(false)
   const [fare, setFare] = useState({})
+  const [waitingForDriver, setWaitingForDriver] = useState(false);
+
+  const { sendMessage, receiveMessage } = useContext(SocketContext);
+  const { user } = useContext(userDataContext);
 
 
+  useEffect(() => {
 
+    if (!user) return;
+
+    sendMessage('message', { userType: "user", userId: user._id });
+  }, [user])
+
+  receiveMessage('ride-confirmed', (ride) => {
+    setWaitingForDriver(true);
+  })
 
   const handlePickupChange = async (e) => {
     const newPickup = e.target.value;
@@ -34,6 +49,7 @@ const UserHome = () => {
     const newDestination = e.target.value;
     setDrop(newDestination);
     setSuggestionPanel(true);
+
 
     try {
       const res = await locationSuggestions(drop);
@@ -74,7 +90,10 @@ const UserHome = () => {
               placeholder="Pickup location here"
               value={pickup}
               onChange={handlePickupChange}
-              onClick={() => setActiveField('pickup')}
+              onClick={() => {
+                setActiveField('pickup')
+                setOnFormSubmit(false)
+              }}
             />
           </div>
           <div className="flex items-center rounded p-3 mb-4 bg-yellow-50">
@@ -86,7 +105,10 @@ const UserHome = () => {
               placeholder="Drop location here"
               value={drop}
               onChange={handleDestinationChange}
-              onClick={() => setActiveField('destination')}
+              onClick={() => {
+                setActiveField('destination')
+                setOnFormSubmit(false)
+              }}
             />
           </div>
           <button
@@ -95,7 +117,7 @@ const UserHome = () => {
               }`}
             disabled={!pickup || !drop}
           >
-            Submit
+            Find a Trip
           </button>
         </form>
 

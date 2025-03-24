@@ -6,17 +6,17 @@ let io;
 
 function initializeSocket(server) {
     io = new Server(server, {
-        cors: { 
-            origin: "*", 
-            methods: ["GET", "POST", "PUT", "DELETE"] 
+        cors: {
+            origin: "*",
+            methods: ["GET", "POST", "PUT", "DELETE"]
         } // Allow all origins and common HTTP methods
     });
-    
+
     console.log("Socket initialized ✅");
 
     io.on("connection", (socket) => {
-       
-        
+
+
         console.log(`User connected: ${socket.id}`);
 
         socket.on("message", async (data) => {
@@ -26,46 +26,61 @@ function initializeSocket(server) {
             const { userId, userType } = data;
             console.log(`User ID: ${userId} joined ${userType}`);
             try {
-            if (userType === "user") {
-                await userModel.findByIdAndUpdate(userId, { socketId: socket.id });
-            } else if (userType === "captain") {
-                await captainModel.findByIdAndUpdate(userId, { socketId: socket.id });
-            }
+                if (userType === "user") {
+                    await userModel.findByIdAndUpdate(userId, { socketId: socket.id });
+                } else if (userType === "captain") {
+                    await captainModel.findByIdAndUpdate(userId, { socketId: socket.id });
+                }
             } catch (error) {
-            console.error("Error updating socket ID:", error);
+                console.error("Error updating socket ID:", error);
             }
-            
+
 
 
         });
+
+
         socket.on("update-location-captain", async (data) => {
             const { userId, location } = data;
-        
-            if (!location || !location.lat || !location.lng) {
+
+            // console.log(userId, "location:", location);
+
+            if (!location || !location.ltd || !location.lng) {
                 return socket.emit("error", { message: "Invalid location" });
             }
-        
+
+
+
+
+            // await captainModel.findByIdAndUpdate(userId, {
+            //     location: {
+            //         lng: location.lng,
+            //         ltd: location.ltd  // ✅ Fixed typo (was `ltd`, now `lat`)
+            //     }
+            // });
+
+
             await captainModel.findByIdAndUpdate(userId, {
                 location: {
-                    lat: location.lat,  // ✅ Fixed typo (was `ltd`, now `lat`)
-                    lng: location.lng
+                    type: "Point",
+                    coordinates: [location.lng, location.ltd]  // Longitude first, then Latitude
                 }
             });
         });
-        
+
 
 
         socket.on("disconnect", () => {
             console.log(`❌ User disconnected: ${socket.id}`);
         });
     });
-} 
+}
 
 function sendMessageToSocketId(socketId, messageobj) {  //  `messageobj` is an object containing the event and data
-    if (io) { 
+    if (io) {
         console.log("📡 Sending message...");
         io.to(socketId).emit(messageobj.event, messageobj.data);
-        console.log(`✅ Message sent to ${socketId}: ${message}`);
+        console.log(`✅ Message sent to ${socketId}: ${messageobj}`);
     } else {
         console.error("❌ Error: Socket.io is not initialized.");
     }

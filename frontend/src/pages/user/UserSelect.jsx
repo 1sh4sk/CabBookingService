@@ -2,17 +2,30 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faCircleUser, faMapPin, faWallet } from '@fortawesome/free-solid-svg-icons';
 import MapComponent from './MapComponent';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { createRideApi } from '../../api/rideApi';
 
 const UserSelect = () => {
 
   const location = useLocation();
   const { rideType, pickup, drop, price, image } = location.state || {};
+  const navigate = useNavigate();
 
-  console.log(image);
+  const vehicleType = rideType === "TripMate Bike" ? "tripmatebike" : rideType === "TripMate GO" ? "tripmatego" : rideType === "TripMate Auto" ? "tripmateauto" : "premier";
+
+  const createRide = async () => {
+    try {
+      navigate("/looking-for-driver", {
+        state: { rideType, pickup, drop, price, image }
+      })
+      const res = await createRideApi({ vehicleType, pickup, destination: drop })
+      console.log(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
-    // <div className="flex flex-col-reverse md:flex-col lg:flex-row gap-6 p-4">
 
     <div div className="w-full h-full flex items-center flex-col bg-white" >
       <h6 className="w-full font-bold text-lg text-left">Confirm your Ride</h6>
@@ -56,7 +69,7 @@ const UserSelect = () => {
 
       {/* Request Ride Button */}
       <div className='w-full mt-6 flex justify-center'>
-        <button className='w-full  p-3 font-bold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors'>
+        <button className='w-full  p-3 font-bold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors cursor-pointer active:bg-color-yellow' onClick={createRide}>
           Confirm  ride
         </button>
       </div>

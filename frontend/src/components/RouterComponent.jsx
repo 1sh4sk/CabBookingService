@@ -15,9 +15,9 @@ const RouterComponent = () => {
             <Route element={<UserProtectedWrapper />} >
                 <Route element={<UserHomeLayout />} >
                     <Route path="/home" element={<UserHome />} />
+                    <Route path="/confirm-ride" element={<UserSelect />} />
                     <Route path="/looking-for-driver" element={<UserDriver />} />
                     <Route path="/driver-detail" element={<DriverDetail />} />
-                    <Route path="/confirm-ride" element={<UserSelect />} />
                 </Route>
             </Route>
 

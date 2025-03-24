@@ -13,7 +13,6 @@ const UserSubmit = ({ fare, pickup, drop }) => {
   ];
 
   const handleRideSelection = (rideType, price, image) => {
-    console.log(image);
     navigate('/confirm-ride', {
       state: { rideType, pickup, drop, price, image },
     });
@@ -37,9 +36,9 @@ const UserSubmit = ({ fare, pickup, drop }) => {
                 className="w-10 h-10 md:w-12 md:h-12 mr-3"
               />
               <div>
-                <p className="font-bold text-sm md:text-base">{ride.name}</p>
+                <p className="font-bold text-sm md:text-base text-left">{ride.name}</p>
                 <p className="text-xs md:text-sm text-gray-500">6 min away • 5:27 PM</p>
-                <p className="text-xs text-gray-400">Affordable compact rides</p>
+                {/* <p className="text-xs text-gray-400">Affordable compact rides</p> */}
               </div>
             </div>
             <p className="font-bold text-sm md:text-base">₹{ride.price}</p>

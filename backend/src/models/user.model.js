@@ -31,8 +31,11 @@ const userschema = new Schema({
     //     type:Number,
     //     required:true
     // },
-    livetracking: {
-        socketid: { type: String }
+    // livetracking: {
+    //     socketId: { type: String }
+    // }
+    socketId: {
+        type: String
     }
 },
     { timestamps: true })

@@ -36,7 +36,7 @@ function CaptainRegister() {
 
     try {
 
-      const { firstName, lastName, email, password, vehicleColor, vehiclePlate, vehicleCapacity, vehicleType, agreeTerms } = formData;
+      const { firstName, lastName, email, password, vehicleColor, vehiclePlate, vehicleCapacity, vehicleType, agreeTerms, vehicleName } = formData;
 
       const userData = {
         fullname: {
@@ -46,6 +46,7 @@ function CaptainRegister() {
         email,
         password,
         vehicle: {
+          vehiclename: vehicleName,
           color: vehicleColor,
           plate: vehiclePlate,
           capacity: vehicleCapacity,
@@ -207,7 +208,7 @@ function CaptainRegister() {
           <input
             type="text"
             name="vehicleName"
-            placeholder="example@gmail.com"
+            placeholder="Vehicle Name "
             className="border p-2 w-full rounded-md mb-4"
             value={formData.vehicleName}
             onChange={handleChange}
@@ -219,9 +220,10 @@ function CaptainRegister() {
             <input type="number" name="vehicleCapacity" placeholder="Vehicle Capacity" className="border p-2 rounded-md" value={formData.vehicleCapacity} onChange={handleChange} required />
             <select name="vehicleType" className="border p-2 rounded-md" value={formData.vehicleType} onChange={handleChange} required>
               <option value="">Vehicle Type</option>
-              <option value="car">Car</option>
-              <option value="auto">Auto</option>
-              <option value="motorcycle">Motorcycle</option>
+              <option value="tripmatebike">Tripmate Bike</option>
+              <option value="tripmateauto">Tripmate Auto</option>
+              <option value="tripmatego">Tripmate Go</option>
+              <option value="premier">Premier</option>
             </select>
           </div>
         </div>

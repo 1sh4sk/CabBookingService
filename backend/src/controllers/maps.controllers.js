@@ -2,7 +2,7 @@ const { getAddressCoordinates, getDistanceTimeSer, getAutoSuggestionss } = requi
 const { validationResult } = require("express-validator")
 
 
-
+// get lat & lng 
 
 const getCoordinates = async (req, res) => {
 
@@ -14,8 +14,7 @@ const getCoordinates = async (req, res) => {
     const { address } = req.query;
     try {
 
-
-        const coorinates = await getAddressCoordinates(address);
+        const coorinates = await getAddressCoordinates(address);   // service
         res.status(200).json(coorinates)
     } catch (error) {
         res.status(404).json({ message: "Coordinates not found" })
@@ -23,7 +22,7 @@ const getCoordinates = async (req, res) => {
 
 };
 
-
+// get distance and duration  point to point
 const getDistanceTime = async (req, res) => {
 
     try {
@@ -33,34 +32,20 @@ const getDistanceTime = async (req, res) => {
             return res.status(400).json({ error: error.array() })
         }
         const { origin, destination } = req.body;
-
         console.log(origin, destination);
-
-        // const formattedOrigin = {
-        //     lat: origin.location.latLng.latitude, 
-        //     lng: origin.location.latLng.longitude
-        // };
-
-        // const formattedDestination = {
-        //     lat: destination.location.latLng.latitude, 
-        //     lng: destination.location.latLng.longitude
-        // };
-
-        //         const distance =await getDistanceTimeSer(formattedOrigin,formattedDestination)
-
-        const originCoordinates = await getAddressCoordinates(origin);
+        const originCoordinates = await getAddressCoordinates(origin);  // service
         console.log("originCoordinates", originCoordinates);
-        const destinationCoordinates = await getAddressCoordinates(destination);
+        const destinationCoordinates = await getAddressCoordinates(destination);  // service
         console.log("destinationCoordinates", destinationCoordinates);
 
-        const distance = await getDistanceTimeSer(originCoordinates, destinationCoordinates)
+        const distance = await getDistanceTimeSer(originCoordinates, destinationCoordinates)  // service
         res.status(200).json(distance)
     } catch (error) {
         error.cause ? res.status(error.cause.status).json({ error: error.message }) : res.status(404).json({ message: "Coordinates not found" })
     }
 }
 
-
+// auto suggestion
 const getAutoSuggestions = async (req, res, next) => {
     try {
         const error = validationResult(req)
@@ -69,9 +54,7 @@ const getAutoSuggestions = async (req, res, next) => {
             return res.status(400).json({ error: error.array() })
         }
         const { input } = req.query;
-
-
-        const suggestion = await getAutoSuggestionss(input);
+        const suggestion = await getAutoSuggestionss(input); //service
         res.status(200).json(suggestion)
 
     } catch (error) {

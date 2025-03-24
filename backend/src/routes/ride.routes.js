@@ -7,11 +7,14 @@ const { userValidateToken, captainValidateToken } = require("../middleware/token
 router.post('/create', userValidateToken,
     body('pickup').isString().isLength({ min: 3 }).withMessage('invalid pickup address'),
     body('destination').isString().isLength({ min: 3 }).withMessage('invalid destination address'),
-    body('vehicleType').isString().isIn(['premier', 'tripmateauto', 'tripmatebike','tripmatego']).withMessage('invalid vehicle type'),
+    body('vehicleType').isString().isIn(['premier', 'tripmateauto', 'tripmatebike', 'tripmatego']).withMessage('invalid vehicle type'),
     createRidee
 )
 
-router.get('/getfare', userValidateToken, getFaree)
+router.get('/getfare', userValidateToken,
+    query('pickup').isString().isLength({ min: 3 }).withMessage('invalid pickup address'),
+    query('destination').isString().isLength({ min: 3 }).withMessage('invalid destination address'),
+    getFaree)
 
 router.post('/confirmride', captainValidateToken,
     body('rideId').isMongoId().withMessage("Invalid ride id"),

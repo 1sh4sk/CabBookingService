@@ -1,16 +1,14 @@
 const { Schema, model, Types } = require("mongoose")
-const userModel =require("../models/user.model")
+const userModel = require("../models/user.model")
 
 const rideSchema = new Schema({
     user: {
         type: Types.ObjectId,
-        ref: "user",
-        required: true
+        ref: "userModel",
     },
     captain: {
         type: Types.ObjectId,
-        ref: "captain",
-
+        ref: "captainModel",
     },
     pickup: {
         type: String,
