@@ -15,6 +15,7 @@ const DriverDashboard = () => {
   const [confirmRidePopupPanel, setConfirmRidePopupPanel] = useState(false)
   const [ride, setRide] = useState(null);
   const ridePopupPanelRef = useRef(null)
+  const rideConfirmPopupPanelRef = useRef(null);
 
   const { captain } = useContext(captainDataContext)
   const { sendMessage, receiveMessage } = useContext(SocketContext);
@@ -52,7 +53,7 @@ const DriverDashboard = () => {
 
 
   receiveMessage("new-ride", (data) => {
-    console.log(data);
+    console.log("new ride", data);
     setRide(data);
     setRidePopupPanel(true);
   });
@@ -69,13 +70,28 @@ const DriverDashboard = () => {
     }
   }, [ridePopupPanel])
 
+  useGSAP(function () {
+    if (confirmRidePopupPanel) {
+      gsap.to(rideConfirmPopupPanelRef.current, {
+        transform: 'translateY(0)'
+      })
+    } else {
+      gsap.to(rideConfirmPopupPanelRef.current, {
+        transform: 'translateY(100%)'
+      })
+    }
+  }, [confirmRidePopupPanel])
+
 
   async function confirmRide() {
-
-    const res = await confirmRideApi(ride._id)
-    setRidePopupPanel(false)
-    setConfirmRidePopupPanel(true)
-
+    try {
+      const res = await confirmRideApi({ rideId: ride._id, captainId: captain._id });
+      console.log("confirm ride", res.data);
+      setConfirmRidePopupPanel(true)
+      setRidePopupPanel(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -130,7 +146,7 @@ const DriverDashboard = () => {
         />
       </div>
 
-      <div ref={ridePopupPanelRef} className='fixed w-[30%] rounded-xl z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12'>
+      <div ref={rideConfirmPopupPanelRef} className='fixed w-[30%] rounded-xl z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12'>
         <Confirm
           ride={ride}
           confirmRidePopupPanel={confirmRidePopupPanel}

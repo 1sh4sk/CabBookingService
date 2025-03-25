@@ -11,9 +11,13 @@
 }
 
 body{
-    @apply font-sora
+    @apply font-sora;
 }
 
 .heading{
     @apply font-epilogue  text-4xl md:text-5xl font-bold leading-snug;
 }
+
+ button{
+    @apply cursor-pointer;
+ }

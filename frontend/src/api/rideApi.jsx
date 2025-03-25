@@ -11,12 +11,36 @@ export const createRideApi = (rideData) => {
 }
 
 
-export const confirmRideApi = (rideId) => {
+export const confirmRideApi = (data) => {
     const token = localStorage.getItem('token');
 
-    return api.post(`/ride/confirmride`, rideId, {
+    return api.post(`/ride/confirmride`, data, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     });
+}
+
+export const rideStartApi = (rideId, otp) => {
+    const token = localStorage.getItem('token');
+
+    return api.get(`/ride/startride`, {
+        params: {
+            rideId,
+            otp
+        },
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+export const finishRideApi = (rideId) => {
+    const token = localStorage.getItem('token');
+
+    return api.post(`/ride/endride`, { rideId }, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 }

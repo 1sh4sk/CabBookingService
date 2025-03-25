@@ -10,7 +10,7 @@ const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         //basic connection
         socket.on('connect', () => {
-            console.log('Connected to server');
+            console.log('Connected to server', socket.id);
         });
 
         socket.on('disconnect', () => {
@@ -19,14 +19,19 @@ const SocketContextProvider = ({ children }) => {
 
     }, []);
 
+
+
+
     const sendMessage = (eventName, message) => {
         socket.emit(eventName, message);
     }
 
     const receiveMessage = (eventName, callback) => {
+        console.log("receive message")
         socket.on(eventName, callback);
     }
-    return <SocketContext.Provider value={{ sendMessage, receiveMessage }}>
+
+    return <SocketContext.Provider value={{ sendMessage, receiveMessage, socket }}>
         {children}
     </SocketContext.Provider>;
 };

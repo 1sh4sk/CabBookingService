@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import CaptainHeader from "../../components/captain/captainHeader";
+import { LiveTracking } from "../../components";
 
 const CaptainHomeLayout = () => {
     return <div className="min-h-screen flex flex-col bg-gray-100">
@@ -12,7 +13,7 @@ const CaptainHomeLayout = () => {
 
             {/* Map Section */}
             <div className="w-full flex items-center justify-center bg-gray-800 text-white font-bold h-72 md:h-96 lg:h-150 rounded-lg">
-                Map
+                <LiveTracking />
             </div>
         </div>
 

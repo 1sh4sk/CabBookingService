@@ -76,14 +76,30 @@ function initializeSocket(server) {
     });
 }
 
-function sendMessageToSocketId(socketId, messageobj) {  //  `messageobj` is an object containing the event and data
-    if (io) {
-        console.log("📡 Sending message...");
-        io.to(socketId).emit(messageobj.event, messageobj.data);
-        console.log(`✅ Message sent to ${socketId}: ${messageobj}`);
-    } else {
+function sendMessageToSocketId(socketId, messageobj) {
+    // if (io) {
+    //     console.log("📡 Sending message...");
+    //     io.to(socketId).emit(messageobj.event, messageobj.data);
+    //     console.log(`✅ Message sent to ${socketId}: ${messageobj}`);
+    // } else {
+    //     console.error("❌ Error: Socket.io is not initialized.");
+    // }
+
+    if (!io) {
         console.error("❌ Error: Socket.io is not initialized.");
+        return;
     }
+
+    if (!socketId || typeof socketId !== "string") {
+        console.error("❌ Error: Invalid socket ID.");
+        return;
+    }
+
+    console.log("📡 Sending message...");
+
+    io.to(socketId).emit(messageobj.event, messageobj.data);
+
+    console.log(`✅ Message sent to ${socketId}: ${JSON.stringify(messageobj, null, 2)}`);
 }
 
 module.exports = { initializeSocket, sendMessageToSocketId };

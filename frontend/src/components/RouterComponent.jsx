@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
-import { DriverDetail, Home, Registeruser, UserDriver, UserHome, UserHomeLayout, UserLogin, UserProtectedWrapper, UserSelect } from "../pages/user";
-import { CaptainLogin, CaptainProtectedWrapper, Captainregister, DriverDashboard } from "../pages/captain";
+import { DriverDetail, Home, MakePayment, Registeruser, UserDriver, UserHome, UserHomeLayout, UserLogin, UserProtectedWrapper, UserSelect } from "../pages/user";
+import { CaptainLogin, CaptainProtectedWrapper, Captainregister, DriverDashboard, FinishRide } from "../pages/captain";
 import CaptainHomeLayout from "../pages/captain/CaptainHomeLayout";
 
 const RouterComponent = () => {
@@ -18,6 +18,7 @@ const RouterComponent = () => {
                     <Route path="/confirm-ride" element={<UserSelect />} />
                     <Route path="/looking-for-driver" element={<UserDriver />} />
                     <Route path="/driver-detail" element={<DriverDetail />} />
+                    <Route path="/make-payment" element={<MakePayment />} />
                 </Route>
             </Route>
 
@@ -28,6 +29,7 @@ const RouterComponent = () => {
             <Route element={<CaptainProtectedWrapper />}>
                 <Route element={<CaptainHomeLayout />}>
                     <Route path="/captain-home" element={<DriverDashboard />} />
+                    <Route path="/ride-complete" element={<FinishRide />} />
                 </Route>
             </Route>
 

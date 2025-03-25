@@ -10,3 +10,5 @@ export { default as TaxiTemplate } from './home/TaxiTemplate';
 export { default as Suggestions } from './user/Suggesstions'
 
 export { default as UserHeader } from './user/UserHeader'
+
+export { default as LiveTracking } from './LiveTracking'

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { UserHeader } from "../../components";
+import { LiveTracking, UserHeader } from "../../components";
 import MapComponent from "./MapComponent";
 
 const UserHomeLayout = () => {
@@ -10,7 +10,8 @@ const UserHomeLayout = () => {
                 <Outlet />
             </div>
             <div className="w-full h-full lg:w-3/5 flex items-center justify-center text-white font-bold  rounded-xl overflow-hidden bg-gray-400">
-                <MapComponent />
+                {/* <MapComponent /> */}
+                <LiveTracking />
             </div>
         </div>
     </div>;

@@ -19,12 +19,14 @@ router.get('/getfare', userValidateToken,
 router.post('/confirmride', captainValidateToken,
     body('rideId').isMongoId().withMessage("Invalid ride id"),
     confirmRide)
+
 router.get('/startride', captainValidateToken,
     query('rideId').isMongoId().withMessage("Invalid ride id"),
     query('otp').isString().isLength({ min: 6, max: 6 }).withMessage("Invalid otp"),
     startRide)
+
 router.post('/endride', captainValidateToken,
-    query('rideId').isMongoId().withMessage("Invalid ride id"),
+    body('rideId').isMongoId().withMessage("Invalid ride id"),
     endRide)
 
 
