@@ -2,12 +2,13 @@ const { instance } = require('../../src/payment');
 
 const crypto = require('crypto');
 const paymentModel = require('../models/payment.model');
+const { error } = require('console');
 
 
 
 const checkouts = async (req, res) => {
     try {
-        console.log("riggered");
+        
 
         const options = {
             // amount: 50000,  //static demo amount Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -36,8 +37,9 @@ const paymentVerification = async (req, res) => {
         const body = razorpay_order_id + "|" + razorpay_payment_id;
 
         //  Generate HMAC (Hash-based Message Authentication Code) using 'crypto' module
-        const expectedSignature = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
-            .update(body.toString())
+        const expectedSignature = crypto
+            .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+            .update(body)
             .digest('hex');
 
         console.log("sig received ", razorpay_signature);
@@ -46,6 +48,8 @@ const paymentVerification = async (req, res) => {
         //Compare the generated signature with the one received from Razorpay
         const verifysign = expectedSignature === razorpay_signature;
 
+
+       console.log("verifysign",verifysign);
 
         if (verifysign) {
             await paymentModel.create({
@@ -61,6 +65,7 @@ const paymentVerification = async (req, res) => {
            
             res.status(400).json({
                 success: false,
+                message: 'Payment verification failed verifiysign is false',
             });
         }
         
