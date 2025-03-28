@@ -1,4 +1,3 @@
-const { log } = require('console');
 const RideModel = require('../models/ride.model');
 const { getDistanceTimeSer } = require('./maps.service')
 const crypto = require('crypto');
@@ -6,7 +5,6 @@ const { sendMessageToSocketId } = require('../socket');
 
 const getFare = async ({ pickupCoordinates, destinationCoordinates, vehicleType }) => {
 
-    console.log("pickupCoordinates form getfare Service", pickupCoordinates);
 
 
     if (!pickupCoordinates || !destinationCoordinates) {
@@ -36,7 +34,6 @@ const getFare = async ({ pickupCoordinates, destinationCoordinates, vehicleType 
 
     if (vehicleType) {
 
-        console.log("vehicleType    hvhg  ", vehicleType);
         const fare = Math.round(baseFare + (distanceMeters * farePerKm[vehicleType] / 1000) + (totalSeconds * farePerMin[vehicleType] / 60));
 
         return fare;
@@ -73,7 +70,6 @@ const createRide = async ({ user, pickup, destination, pickupCoordinates, destin
     if (!fare) {
         throw new Error({ message: "Failed to calculate fare" });
     }
-    console.log("fare form create ride", fare);
 
     const ride = RideModel.create({
         user,
@@ -141,7 +137,6 @@ const endRidee = async ({ rideId, captain }) => {
         captain: captain._id
     }).populate('user').populate('captain')
 
-    console.log(ride);
 
     if (!ride) {
         throw new Error('Ride not found');

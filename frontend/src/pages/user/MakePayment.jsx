@@ -3,18 +3,53 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { SocketContext } from "../../context/SocketContext";
+import { checkoutApi, getKey } from "../../api/paymentApi";
+import { userDataContext } from "../../context/UserContext";
 
 const MakePayment = () => {
 
     const location = useLocation();
     const rideDetail = location.state || {};
     const { receiveMessage } = useContext(SocketContext);
+    const { user } = useContext(userDataContext);
     const navigate = useNavigate();
 
     receiveMessage('ride-ended', ride => {
         navigate('/home')
     })
 
+
+
+    const handlePaymentCheckout = async (amount) => {
+        const { data: { key } } = await getKey();
+
+        console.log(key);
+
+        const res = await checkoutApi(amount);
+
+        const { order } = res.data;
+        // Open Razorpay Checkout
+        const options = {
+            key, // Replace with your Razorpay key_id
+            amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            currency: 'INR',
+            name: 'user',
+            description: 'Test Transaction',
+            order_id: order.id, // This is the order_id created in the backend
+            callback_url: 'http://localhost:7000/payment/paymentverification', // Your success URL
+            prefill: {
+                name: 'Gaurav Kumar',
+                email: 'gaurav.kumar@example.com',
+                contact: '9999999999'
+            },
+            theme: {
+                color: '#F7B401'
+            },
+        };
+
+        const razor = new window.Razorpay(options);
+        razor.open()
+    }
 
     return <div className='w-full flex flex-col p-4'>
         {/* Driver Info */}
@@ -50,17 +85,6 @@ const MakePayment = () => {
             ))}
         </div>
 
-        {/* Ride Details */}
-        {/* <div className="mt-6 space-y-3">
-            {[{ icon: faMapMarkerAlt, text: "112/17 A", subText: "example street, area, state" },
-            { icon: faMapPin, text: "Drop Location", subText: "example street, area, state" },
-            { icon: faWallet, text: "₹445", subText: "Cash" }].map(({ icon, text, subText }) => (
-              <div key={text} className='flex items-center gap-4 border-b pb-2'>
-                <FontAwesomeIcon icon={icon} className="text-[#F7B401] text-2xl" />
-                <h1 className='font-bold text-base'>{text} <br /><span className='text-gray-500 text-sm'>{subText}</span></h1>
-              </div>
-            ))}
-          </div> */}
 
         <div className="mt-10 space-y-3">
             <div className='flex items-center gap-4 border-b pb-2'>
@@ -84,7 +108,7 @@ const MakePayment = () => {
         </div>
 
         {/* Payment Button */}
-        <button className='w-full p-3 mt-6 rounded bg-green-500 text-white font-bold text-base'>
+        <button onClick={() => handlePaymentCheckout(rideDetail?.fare)} className='w-full p-3 mt-6 rounded bg-green-500 text-white font-bold text-base'>
             Make a Payment
         </button>
     </div>;

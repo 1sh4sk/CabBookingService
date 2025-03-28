@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router";
 import { DriverDetail, Home, MakePayment, Registeruser, UserDriver, UserHome, UserHomeLayout, UserLogin, UserProtectedWrapper, UserSelect } from "../pages/user";
 import { CaptainLogin, CaptainProtectedWrapper, Captainregister, DriverDashboard, FinishRide } from "../pages/captain";
 import CaptainHomeLayout from "../pages/captain/CaptainHomeLayout";
+import PaymentSuccess from "../pages/PaymentSuccess";
 
 const RouterComponent = () => {
     return <div>
@@ -32,6 +33,8 @@ const RouterComponent = () => {
                     <Route path="/ride-complete" element={<FinishRide />} />
                 </Route>
             </Route>
+
+            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
 
             <Route path="*" element={<h1>something went wrong!</h1>} />
         </Routes>

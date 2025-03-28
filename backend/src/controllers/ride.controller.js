@@ -15,17 +15,13 @@ const createRidee = async (req, res) => {
     try {
         const { pickup, destination, vehicleType } = req.body;
         const pickupCoordinates = await getAddressCoordinates(pickup);
-        console.log("pickupCoordinates", pickupCoordinates);
         const destinationCoordinates = await getAddressCoordinates(destination);
-        console.log("destinationCoordinates", destinationCoordinates);
         const ride = await createRide({ user: req.user._id, pickup, destination, pickupCoordinates, destinationCoordinates, vehicleType });
 
         const captainRadius = await getCaptionInRadius(pickupCoordinates.lat, pickupCoordinates.lng, 3);  // 3 KM
-        // console.log('captain radius', captainRadius);
 
         // ride.otp = "";
         const rideWithUser = await RideModel.findOne({ _id: ride._id }).populate('user')
-        // console.log('ride with user',rideWithUser);
 
         captainRadius.map(captain => {
             sendMessageToSocketId(captain.socketId, {
@@ -129,7 +125,6 @@ const endRide = async (req, res) => {
             captain: req.captain
         });
 
-        console.log("end ride", ride);
 
         sendMessageToSocketId(ride.user.socketId, {
             event: 'ride-ended',
