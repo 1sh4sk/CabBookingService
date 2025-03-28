@@ -1,7 +1,7 @@
 import { Footer, GetStarted, Header, Population, Rating, ReviewTemplate, TaxiTemplate, WhyChooseUs } from "../components";
 
 const Home = () => {
-    return <div>
+    return <div className="relative">
         <Header />
         <WhyChooseUs />
         <Population />

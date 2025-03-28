@@ -10,12 +10,16 @@
     --color-color-yellow: #F7B401;
 }
 
+*{
+    scroll-behavior: smooth;
+}
+
 body{
-    @apply font-sora;
+    @apply font-sora w-screen overflow-x-hidden;
 }
 
 .heading{
-    @apply font-epilogue  text-4xl md:text-5xl font-bold leading-snug;
+    @apply font-epilogue  font-bold leading-snug;
 }
 
  button{

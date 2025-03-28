@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 function App() {
 
   return (
-    <main>
+    <main className="overflow-x-hidden w-screen">
       <RouterComponent />
       <ToastContainer />
     </main>

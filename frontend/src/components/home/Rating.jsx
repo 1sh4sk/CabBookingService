@@ -22,60 +22,38 @@ const Rating = () => {
     }
   };
 
+  const stats = [
+    { icon: faSmile, value: "530 +", label: "Happy Raider" },
+    { icon: faAward, value: "10 +", label: "Riding Award" },
+    { icon: faTaxi, value: "5230 +", label: "Total Cars" },
+    { icon: faStar, value: "2220 +", label: "5 Star Reviews" }
+  ];
+
+
   return (
-    <div className='bg-white bg-cover bg-center bg-no-repeat'>
-      {/* Row 1 */}
-      <div className='bg-[url("/src/assets/Background.png")] bg-cover bg-center bg-no-repeat p-10 sm:p-6 md:p-8 lg:p-10 mx-5 sm:mx-4 md:mx-6 lg:mx-30 text-white  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  lg:flex-nowrap md:justify-between gap-4 md:gap-6 lg:gap-10 rounded-xl mt-10 lg:mt-20 relative z-10'>
-         {/* Section 1  */}
-        <div className="flex items-center space-x-3 pr-4 sm:pr-3 md:pr-6 pl-2">
-          <div className="bg-white p-3 rounded-full flex items-center justify-center">
-            <FontAwesomeIcon icon={faSmile} className="text-yellow-500 text-xl sm:text-2xl" />
-          </div>
-          <div>
-            <h2 className="text-lg sm:text-2xl font-bold">530 +</h2>
-            <p className="text-gray-300 text-sm sm:text-base">Happy Raider</p>
-          </div>
-        </div>
+    <div id="testimonials" className='bg-white bg-cover bg-center bg-no-repeat'>
 
-        {/* Section 2 */}
-        <div className="flex items-center space-x-3 pr-4 sm:pr-3 md:pr-6 pl-2">
-          <div className="bg-white p-3 rounded-full flex items-center justify-center">
-            <FontAwesomeIcon icon={faAward} className="text-yellow-500 text-xl sm:text-2xl" />
-          </div>
-          <div>
-            <h2 className="text-lg sm:text-2xl font-bold">10 +</h2>
-            <p className="text-gray-300 text-sm sm:text-base">Riding Award</p>
-          </div>
-        </div>
 
-        {/* Section 3 */}
-        <div className="flex items-center space-x-3 pr-4 sm:pr-3 md:pr-6 pl-2">
-          <div className="bg-white p-3 rounded-full flex items-center justify-center">
-            <FontAwesomeIcon icon={faTaxi} className="text-yellow-500 text-xl sm:text-2xl" />
-          </div>
-          <div>
-            <h2 className="text-lg sm:text-2xl font-bold">5230 +</h2>
-            <p className="text-gray-300 text-sm sm:text-base">Total Cars</p>
-          </div>
-        </div>
+      <div className="bg-[url('/src/assets/rating-bg.svg')] bg-cover bg-center bg-no-repeat p-10 p sm:p-6 md:p-8 lg:p-10 mx-15 sm:mx-4 md:mx-6 lg:mx-30 text-white flex flex-wrap gap-7 sm:flex-nowrap rounded-2xl mt-10 relative z-10 items-center justify-center ">
 
-        {/* Section 4 */}
-        <div className="flex items-center space-x-3 pl-2">
-          <div className="bg-white p-3 rounded-full flex items-center justify-center">
-            <FontAwesomeIcon icon={faStar} className="text-yellow-500 text-xl sm:text-2xl" />
+        {stats.map((stat, index) => (
+          <div key={index} className="flex gap-3 w-52 sm:w-fit xl:gap-4  ">
+            <div className="bg-white p-3 min-w-12 h-12  rounded-full flex items-center justify-center">
+              <FontAwesomeIcon icon={stat.icon} className="text-yellow-500 text-xl sm:text-2xl" />
+            </div>
+            <div className="flex flex-col">
+              <h2 className="text-lg xl:text-2xl font-bold">{stat.value}</h2>
+              <p className="text-gray-300 text-sm xl:text-base">{stat.label}</p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-lg sm:text-2xl font-bold">2220 +</h2>
-            <p className="text-gray-300 text-sm sm:text-base">5 Star Reviews</p>
-          </div>
-        </div>
+        ))}
       </div>
 
       {/* Row 2 */}
-      <div className='bg-yellow-500 p-6 sm:p-15 md:p-20 lg:p-30 text-white grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-[-30px] sm:mt-[-50px]'>
+      <div className='bg-yellow-500 p-6 pt-16 sm:p-15 md:py-30 xl:p-30 text-white grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mt-[-30px] sm:mt-[-50px]'>
         {/* Left Section */}
         <div className="text-left max-w-lg">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
+          <h1 className="text-3xl sm:text-4xl xl:text-6xl leading-snug font-bold text-black font-epilogue">
             Loved By Thousands <br /> Of Riders And Other People.
           </h1>
           <p className="text-gray-800 mt-4 sm:mt-5 text-base sm:text-lg">
