@@ -8,6 +8,7 @@
     --font-sora: "Sora", sans-serif;
     --font-epilogue:  "Epilogue", sans-serif;
     --color-color-yellow: #F7B401;
+    --color-color-lightgray: #F8F6F1;
 }
 
 *{
@@ -24,4 +25,12 @@ body{
 
  button{
     @apply cursor-pointer;
+ }
+
+ label{
+    @apply block text-black w-full font-medium;
+ }
+
+ input,select{
+    @apply outline-none w-full px-4 py-2 text-sm rounded-lg mt-2 mb-4 bg-color-lightgray placeholder:text-sm;
  }

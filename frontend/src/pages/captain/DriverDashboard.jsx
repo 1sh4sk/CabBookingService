@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faRoute } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faRoute, faSuitcaseRolling } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import { captainDataContext } from "../../context/CaptainContext";
 import { SocketContext } from "../../context/SocketContext";
@@ -95,7 +95,7 @@ const DriverDashboard = () => {
   }
 
   return (
-    <div className="p-6 w-full lg:w-1/2">
+    <div className="p-6 lg:p-0 lg:pt-6 h-auto bg-white lg:bg-transparent rounded-2xl -mt-14 lg:mt-0 lg:rounded-none  z-10 w-full lg:w-1/2 ">
       <div className="flex items-center justify-between">
         {/* Driver Details */}
         <div className="flex items-center">
@@ -105,7 +105,7 @@ const DriverDashboard = () => {
             className="w-12 h-12 rounded-full mr-3"
           />
           <div>
-            <p className="font-semibold text-sm capitalize">{captain?.fullname?.firstname} {captain?.fullname?.lastname}</p>
+            <p className="font-semibold text-lg capitalize">{captain?.fullname?.firstname} {captain?.fullname?.lastname}</p>
             <p className="text-gray-500 text-sm capitalize">{captain?.vehicle?.color} {captain?.vehicle?.vehiclename}</p>
           </div>
         </div>
@@ -118,25 +118,25 @@ const DriverDashboard = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-color-yellow text-white p-5 py-7 mt-4 rounded-md text-center">
+      <div className="grid grid-cols-3 items-center gap-2  sm:gap-4 lg:gap-3 bg-color-yellow text-white px-5 lg:px-3 py-7 mt-5 rounded-xl text-center">
         <div>
-          <FontAwesomeIcon icon={faClock} className="text-lg mx-auto mb-1" />
-          <p className="text-sm">10.2</p>
-          <p className="text-xs">Hours Online</p>
+          <FontAwesomeIcon icon={faClock} className="text-2xl sm:text-3xl lg:text-2xl mb-1" />
+          <p className="text-sm sm:text-lg lg:text-sm font-semibold">10.2</p>
+          <p className="text-xs sm:text-sm lg:text-xs">Hours Online</p>
         </div>
         <div>
-          <FontAwesomeIcon icon={faRoute} className="text-lg mx-auto mb-1" />
-          <p className="text-sm">30 KM</p>
-          <p className="text-xs">Total Distance</p>
+          <FontAwesomeIcon icon={faRoute} className="text-2xl sm:text-3xl lg:text-2xl  mb-1" />
+          <p className="text-sm sm:text-lg lg:text-sm font-semibold">30 KM</p>
+          <p className="text-xs sm:text-sm lg:text-xs">Total Distance</p>
         </div>
         <div>
-          <FontAwesomeIcon icon={faClock} className="text-lg mx-auto mb-1" />
-          <p className="text-sm">20</p>
-          <p className="text-xs">Trips Completed</p>
+          <FontAwesomeIcon icon={faSuitcaseRolling} className="text-2xl sm:text-3xl lg:text-2xl mb-1" />
+          <p className="text-sm sm:text-lg lg:text-sm font-semibold">20</p>
+          <p className="text-xs sm:text-sm lg:text-xs">Trips Completed</p>
         </div>
       </div>
 
-      <div ref={ridePopupPanelRef} className='fixed w-[30%] rounded-xl z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12'>
+      <div ref={ridePopupPanelRef} className='fixed w-full lg:w-[35%] xl:w-[30%] rounded-3xl z-10 bottom-0 left-0 lg:left-5 xl:left-10 translate-y-full bg-white md:px-3 md:py-10 md:pt-12 py-4 px-5 '>
         <RideRequest
           ride={ride}
           setRidePopupPanel={setRidePopupPanel}
@@ -146,7 +146,7 @@ const DriverDashboard = () => {
         />
       </div>
 
-      <div ref={rideConfirmPopupPanelRef} className='fixed w-[30%] rounded-xl z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12'>
+      <div ref={rideConfirmPopupPanelRef} className='fixed w-full lg:w-[35%] xl:w-[30%] rounded-3xl z-10 bottom-0  left-0 lg:left-5 xl:left-10 translate-y-full bg-white px-4 py-4 lg:px-3 lg:py-10 lg:pt-12 '>
         <Confirm
           ride={ride}
           confirmRidePopupPanel={confirmRidePopupPanel}

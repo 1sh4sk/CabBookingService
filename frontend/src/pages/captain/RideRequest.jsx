@@ -25,11 +25,11 @@ function RideRequest({ setRidePopupPanel, ride, setConfirmRidePopupPanel, confir
     <div className="p-2 w-full">
 
 
-      <p className="font-bold mb-2">Ride for You</p>
+      <p className="font-bold mb-4 lg:mb-2">Ride for You</p>
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <img
-            src="/src/assets/Maskgroup.png"
+            src="/src/assets/mahalakshmi.png"
             alt="Rider"
             className="w-10 h-10 rounded-full mr-4"
           />
@@ -70,7 +70,6 @@ function RideRequest({ setRidePopupPanel, ride, setConfirmRidePopupPanel, confir
       <div className="flex flex-col sm:flex-row gap-4">
         <button
           onClick={() => {
-            // handleIgnore();
             setRidePopupPanel(false);
           }}
           className="bg-gray-400 text-white font-bold py-2 px-4 rounded-md w-full sm:w-1/2 hover:bg-gray-500"
@@ -80,12 +79,11 @@ function RideRequest({ setRidePopupPanel, ride, setConfirmRidePopupPanel, confir
 
         <button
           onClick={() => {
-            // handleAccept();
             setRidePopupPanel(false);
             setConfirmRidePopupPanel(true);
             confirmRide();
           }}
-          className="bg-green-500 text-white font-bold py-2 px-4 rounded-md w-full sm:w-1/2 hover:bg-green-600"
+          className="bg-green-500 text-white font-bold py-2 px-4 rounded-lg w-full sm:w-1/2 hover:bg-green-600"
         >
           Accept
         </button>

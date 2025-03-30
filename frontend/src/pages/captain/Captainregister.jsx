@@ -153,91 +153,91 @@ function CaptainRegister() {
   return (
     <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 ">
       {/* Form Section */}
-      <form onSubmit={handleSubmit} className="w-full lg:w-1/3 bg-white p-6 sm:p-8 md:p-10 lg:p-10  lg:absolute lg:left-30 lg:top-5 z-10 shadow-lg rounded-xl">
-        <div className="flex justify-center mb-6">
-          <img src="/src/assets/logo.png"
-            alt="Logo"
-            className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full"
-          />
-        </div>
-        <label className="block text-black w-full font-bold text-lg mb-1">What's your name</label>
-        <div className="flex space-x-2 mb-4">
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First name"
-            className="border p-2 w-1/2 rounded-md"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last name"
-            className="border p-2 w-1/2 rounded-md"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </div>
 
-        <label className="block text-black w-full font-bold text-lg mb-1">What's your email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="example@gmail.com"
-          className="border p-2 w-full rounded-md mb-4"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-
-        <label className="block text-black w-full font-bold text-lg mb-1">Enter password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          className="border p-2 w-full rounded-md mb-4"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold mb-2">Vehicle Information</h3>
-          <input
-            type="text"
-            name="vehicleName"
-            placeholder="Vehicle Name "
-            className="border p-2 w-full rounded-md mb-4"
-            value={formData.vehicleName}
-            onChange={handleChange}
-            required
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" name="vehicleColor" placeholder="Vehicle Color" className="border p-2 rounded-md" value={formData.vehicleColor} onChange={handleChange} required />
-            <input type="text" name="vehiclePlate" placeholder="Vehicle Plate" className="border p-2 rounded-md" value={formData.vehiclePlate} onChange={handleChange} required />
-            <input type="number" name="vehicleCapacity" placeholder="Vehicle Capacity" className="border p-2 rounded-md" value={formData.vehicleCapacity} onChange={handleChange} required />
-            <select name="vehicleType" className="border p-2 rounded-md" value={formData.vehicleType} onChange={handleChange} required>
-              <option value="">Vehicle Type</option>
-              <option value="tripmatebike">Tripmate Bike</option>
-              <option value="tripmateauto">Tripmate Auto</option>
-              <option value="tripmatego">Tripmate Go</option>
-              <option value="premier">Premier</option>
-            </select>
+      <div className="w-full h-full lg:h-auto xl:w-1/4 lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 lg:py-5 xl:py-8 xl:px-5 z-10 shadow-lg rounded-3xl">
+        <form onSubmit={handleSubmit} className="w-full  z-10  rounded-2xl">
+          <div className="flex justify-center mb-4">
+            <img src="/src/assets/logo.png"
+              alt="Logo"
+              className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-16 lg:h-16 rounded-full"
+            />
           </div>
-        </div>
+          <label >What's your name</label>
+          <div className="flex space-x-2">
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First name"
+              className=" w-1/2 "
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last name"
+              className="w-1/2"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button type="submit" className="w-full bg-yellow-500 text-white font-bold py-2 rounded mb-4 hover:bg-yellow-600 transition cursor-pointer">
-          Sign Up
-        </button>
+          <label >What's your email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="example@gmail.com"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-        <p className="text-black text-sm text-center">
-          Already have an account? <span className="text-yellow-500 cursor-pointer font-semibold hover:underline">Sign in here</span>
-        </p>
+          <label>Enter password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <div>
+            <label >Vehicle Information</label>
+            <input
+              type="text"
+              name="vehicleName"
+              placeholder="Vehicle Name"
+              className="my-2! mx-0!"
+              value={formData.vehicleName}
+              onChange={handleChange}
+              required
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <input type="text" name="vehicleColor" placeholder="Vehicle Color" className="m-0!" value={formData.vehicleColor} onChange={handleChange} required />
+              <input type="text" name="vehiclePlate" placeholder="Vehicle Plate" className="m-0!" value={formData.vehiclePlate} onChange={handleChange} required />
+              <input type="number" name="vehicleCapacity" placeholder="Vehicle Capacity" className="m-0!" value={formData.vehicleCapacity} onChange={handleChange} required />
+              <select name="vehicleType" value={formData.vehicleType} className="m-0!" onChange={handleChange} required>
+                <option value="">Vehicle Type</option>
+                <option value="tripmatebike">Tripmate Bike</option>
+                <option value="tripmateauto">Tripmate Auto</option>
+                <option value="tripmatego">Tripmate Go</option>
+                <option value="premier">Premier</option>
+              </select>
+            </div>
+          </div>
 
-      </form>
+          <button type="submit" className="w-full bg-yellow-500 text-white font-bold py-2 rounded-lg mb-2 mt-4 hover:bg-yellow-600 transition cursor-pointer">
+            Sign Up
+          </button>
 
+          <p className="text-black text-sm text-center">
+            Already have an account? <span className="text-yellow-500 cursor-pointer font-semibold hover:underline">Sign in here</span>
+          </p>
+
+        </form>
+      </div>
 
       {/* Image Section */}
       <div className="w-full lg:w-3/4 relative lg:ml-auto">

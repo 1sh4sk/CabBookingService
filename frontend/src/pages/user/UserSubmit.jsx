@@ -20,7 +20,7 @@ const UserSubmit = ({ fare, pickup, drop }) => {
 
   return (
     <div className='w-full flex justify-center overflow-y-scroll'>
-      <div className="mt-4 p-4 w-full max-w-md">
+      <div className="px-7 lg:mt-4 lg:p-4 w-full max-w-md">
         <h6 className="font-bold text-lg">Choose Your Ride</h6>
 
         {rides.map((ride) => (

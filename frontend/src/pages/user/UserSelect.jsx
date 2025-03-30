@@ -37,10 +37,10 @@ const UserSelect = () => {
 
   return (
 
-    <div div className="w-full h-full flex items-center flex-col bg-white" >
+    <div div className="w-full lg:w-1/2 h-full flex items-center flex-col bg-white rounded-3xl lg:rounded-none p-8 lg:p-0 z-10 -mt-14 lg:mt-0" >
       <h6 className="w-full font-bold text-lg text-left">Confirm your Ride</h6>
       <div className='w-full flex flex-col items-center justify-center'>
-        <div className={`flex flex-col items-center justify-center ${rideType === "TripMate Bike" ? 'lg:w-40 lg:h-40 mt-4' : 'lg:w-64 lg:h-64'} -mt-10 sm:w-40 sm:h-40 md:w-56 md:h-56 overflow-hidden`}>
+        <div className={`flex flex-col items-center justify-center ${rideType === "TripMate Bike" ? 'lg:w-40 lg:h-40 mt-4' : 'lg:w-64 lg:h-64'} -mt-10 w-50 h-50 sm:w-40 sm:h-40 md:w-56 md:h-56 overflow-hidden`}>
           <img
             src={image}
             alt="Car"

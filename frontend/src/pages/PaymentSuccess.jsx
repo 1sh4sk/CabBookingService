@@ -1,8 +1,9 @@
-import { useSearchParams } from "react-router";
-import { useEffect, useRef } from 'react';
+import { useNavigate, useSearchParams } from "react-router";
+import { useContext, useEffect, useRef } from 'react';
 // import { Player } from '@lordicon/react';
 // import ICON from '../../src/assets/animations/check.json'
 import ICON from '../../src/assets/animations/check.gif'
+import { SocketContext } from "../context/SocketContext";
 
 
 
@@ -10,6 +11,8 @@ const PaymentSuccess = () => {
 
     const searchQuery = useSearchParams()[0];
     const referenceNum = searchQuery.get("reference")
+    const navigate = useNavigate();
+    const { receiveMessage } = useContext(SocketContext);
 
 
 
@@ -18,6 +21,11 @@ const PaymentSuccess = () => {
     // useEffect(() => {
     //     playerRef.current?.playFromBeginning();
     // }, [])
+
+    receiveMessage('ride-ended', ride => {
+        navigate('/home')
+    })
+
 
 
     return <div className="w-screen h-screen flex items-center flex-col justify-center bg-color-yellow/80 gap-2">

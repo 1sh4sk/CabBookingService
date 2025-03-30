@@ -31,7 +31,7 @@ function Confirm({ setConfirmRidePopupPanel, ride }) {
   return (
 
 
-    <div className="w-full bg-white mt-4 rounded-xl flex flex-col p-4">
+    <div className="w-full bg-white mt-4 rounded-3xl flex flex-col p-2">
       <p className="font-bold mb-4 text-lg">Confirm this ride to start</p>
 
       {/* Rider Info */}
@@ -80,27 +80,27 @@ function Confirm({ setConfirmRidePopupPanel, ride }) {
         <input
           type="text"
           name="otp"
-          className="w-full p-2 border rounded-lg mb-4 text-center"
+          className="w-full p-2 rounded-lg mb-4 text-center"
           placeholder="Enter OTP"
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
         />
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-2 lg:gap-4 ">
           <button
             onClick={() => {
               // handleCancel();
               setConfirmRidePopupPanel(false);
             }}
-            className="bg-red-500 text-white font-bold py-2 px-4 rounded-md w-full sm:w-1/2 hover:bg-red-600"
+            className="bg-red-500 text-white font-bold py-2 px-4 rounded-lg w-full sm:w-1/2 hover:bg-red-600"
           >
             Cancel
           </button>
 
           <button
             type="submit"
-            className="bg-green-500 text-white font-bold py-2 px-4 rounded-md w-full sm:w-1/2 hover:bg-green-600"
+            className="bg-green-500 text-white font-bold py-2 px-4 rounded-lg w-full sm:w-1/2 hover:bg-green-600"
           >
             Confirm
           </button>

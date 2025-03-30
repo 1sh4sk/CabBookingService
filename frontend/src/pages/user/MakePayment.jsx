@@ -23,7 +23,6 @@ const MakePayment = () => {
     const handlePaymentCheckout = async (amount) => {
         const { data: { key } } = await getKey();
 
-        console.log(key);
 
         const res = await checkoutApi(amount);
 
@@ -51,11 +50,11 @@ const MakePayment = () => {
         razor.open()
     }
 
-    return <div className='w-full flex flex-col p-4'>
+    return <div className='w-full lg:w-1/2 flex flex-col p-4 bg-white rounded-3xl lg:rounded-none -mt-14 lg:mt-0 z-10'>
         {/* Driver Info */}
         <div className="w-full flex items-center gap-4 mb-4">
-            <img src="https://images.pexels.com/photos/5835588/pexels-photo-5835588.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Driver" className="w-14 h-14 rounded-full" />
-            <div className='w-full flex justify-between'>
+            <img src="https://images.pexels.com/photos/5835588/pexels-photo-5835588.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Driver" className="w-14 h-14 rounded-full object-cover" />
+            <div className='w-[90%] lg:w-full flex items-center justify-between'>
                 <div>
                     <h6 className="font-bold text-base capitalize">{rideDetail?.captain?.fullname?.firstname} {rideDetail?.captain?.fullname?.lastname}</h6>
                 </div>
@@ -69,7 +68,7 @@ const MakePayment = () => {
 
         {/* Message Input */}
         <div className="flex items-center border border-gray-200 rounded bg-gray-100 p-2">
-            <input type="text" placeholder="Send a message to the driver" className="w-full bg-gray-100 focus:outline-none text-base" />
+            <input type="text" placeholder="Send a message to the driver" className="w-full bg-gray-100 focus:outline-none text-base m-0!" />
             <img src='/src/assets/Map-Arrow-Right--Streamline-Solar.svg' className='h-5 w-5' alt="Send" />
         </div>
 

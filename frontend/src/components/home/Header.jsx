@@ -104,7 +104,7 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Enter pickup location"
-                  className="w-full bg-transparent outline-none text-gray-700 placeholder:text-sm"
+                  className="w-full! bg-transparent! outline-none! text-gray-700! placeholder:text-sm! m-0! p-1!"
                 />
               </div>
 
@@ -114,7 +114,7 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Enter drop location"
-                  className="w-full bg-transparent outline-none text-gray-700 placeholder:text-sm"
+                  className="w-full bg-transparent! outline-none! text-gray-700! placeholder:text-sm! m-0! p-1!"
                 />
               </div>
 

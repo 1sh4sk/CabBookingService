@@ -46,44 +46,43 @@ const CaptainLogin = () => {
 
 
   return (
-    <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 ">
+    <div className=" w-screen h-screen flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 ">
       {/* Column 1 */}
+      <div className="w-full h-full lg:h-auto xl:w-1/4 lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 xl:p-10 z-10 shadow-lg rounded-3xl">
+        <form onSubmit={handleSubmit} className="w-full  flex flex-col items-center">
+          <img src="/src/assets/logo.png" alt="Logo" className="w-20 h-20 rounded-full" />
+          <br />
+          <label className="block text-black w-full font-bold" >What's your email ?</label>
+          <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="example@gmail.com" />
 
-      <form onSubmit={handleSubmit} className="w-1/4 bg-white p-10 pr-10 pl-10 absolute left-30 top-15 z-10 shadow-lg rounded-lg flex flex-col items-center">
-        <img src="/src/assets/logo.png" alt="Logo" className="w-20 h-20 rounded-full" />
-        <br />
-        frontend
-        <label className="block text-black w-full font-bold" >What's your email ?</label>
-        <input name="email" type="email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded mt-1 mb-4" placeholder="example@gmail.com" />
-        <br />
-        <label className="block text-black w-full font-bold">Enter password</label>
-        <input name="password" type="password" value={formData.password} onChange={handleChange} className="w-full p-2 border rounded mt-1 mb-4" placeholder="password" />
-        <br />
+          <label className="block text-black w-full font-bold">Enter password</label>
+          <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder="password" />
+          <br />
 
-        <button type='submit' className="w-full bg-yellow-500 text-white py-2 rounded mb-4">Login</button>
-        <br />
-        <p className="text-black text-sm font-bold">Join a fleet?
-          <Link to="/captain-register" className="text-yellow-500 cursor-pointer"> Register as a captain</Link></p>
-        <br />
-        <br />
-        <br />
+          <button type='submit' className="w-full bg-yellow-500 text-white py-2 rounded-lg mb-4">Login</button>
+
+          <p className="text-black text-sm">Join a fleet?
+            <Link to="/captain-register" className="text-yellow-500 cursor-pointer"> Register as a captain</Link></p>
+          <br />
+          <br />
 
 
-        <button className="w-full bg-black text-white py-2 rounded mt-4">
-          <Link to="/login" className='w-full'>
-            Sign in as user
-          </Link>
-        </button>
+          <button className="w-full bg-black text-white py-2 rounded-lg mt-4">
+            <Link to="/login" className='w-full'>
+              Sign in as user
+            </Link>
+          </button>
 
-      </form>
+        </form>
+      </div>
 
 
       {/* Column 2 */}
-      <div className="w-full lg:w-3/4 relative lg:ml-auto">
-        <img src="/src/assets/captainlogin.png" alt="background" className="w-full h-screen object-cover" />
-        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-white text-center">
-          <h2 className="text-3xl font-bold text-yellow-500">Sign In</h2>
-          <p className="text-lg">Ready to hit the road? Sign in and start driving towards success!</p>
+      <div className="w-full lg:w-3/4 relative lg:ml-auto h-[60%]">
+        <img src="/src/assets/captainlogin.png" alt="background" className="w-full h-screen object-cover object-left-bottom" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 lg:top-1/3 lg:left-1/2 transform lg:-translate-x-1/3 text-white text-center">
+          <h2 className="text-3xl xl:text-4xl  mb-3 sm:text-md  font-bold text-yellow-500 font-epilogue">Sign In</h2>
+          <p className="text-[12px] sm:text-sm xl:text-lg font-light">Ready to hit the road? Sign in and start driving towards success!</p>
         </div>
       </div>
     </div>

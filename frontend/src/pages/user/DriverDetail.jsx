@@ -21,11 +21,11 @@ const DriverDetail = () => {
   console.log("ride detail", rideDetail);
 
   return (
-    <div className='w-full flex flex-col p-4'>
+    <div className='w-full lg:w-1/2 flex flex-col px-4 bg-white -mt-14 lg:mt-0 z-10 rounded-3xl lg:rounded-none py-8 lg:p-8'>
       {/* Driver Info */}
-      <div className="w-full flex items-center gap-4 mb-4">
-        <img src="https://images.pexels.com/photos/5835588/pexels-photo-5835588.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Driver" className="w-14 h-14 rounded-full" />
-        <div className='w-full flex justify-between'>
+      <div className="w-full flex  items-center gap-4 mb-4">
+        <img src="https://images.pexels.com/photos/5835588/pexels-photo-5835588.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Driver" className="w-14 h-14 rounded-full object-cover" />
+        <div className='w-[90%] flex items-center justify-between'>
           <div>
             <h6 className="font-bold text-base capitalize">{rideDetail?.captain?.fullname?.firstname} {rideDetail?.captain?.fullname?.lastname}</h6>
             <h6 className="font-bold text-base">OTP: {rideDetail?.otp}</h6>
@@ -40,7 +40,7 @@ const DriverDetail = () => {
 
       {/* Message Input */}
       <div className="flex items-center border border-gray-200 rounded bg-gray-100 p-2">
-        <input type="text" placeholder="Send a message to the driver" className="w-full bg-gray-100 focus:outline-none text-base" />
+        <input type="text" placeholder="Send a message to the driver" className="w-full bg-gray-100 focus:outline-none text-base m-0!" />
         <img src='/src/assets/Map-Arrow-Right--Streamline-Solar.svg' className='h-5 w-5' alt="Send" />
       </div>
 
