@@ -12,7 +12,7 @@ const CaptainHomeLayout = () => {
 
 
             {/* Map Section */}
-            <div className="w-full flex items-center justify-center bg-gray-800 text-white font-bold h-[80%] lg:h-150 rounded-lg ">
+            <div className="w-full flex items-center justify-center bg-gray-800 text-white font-bold h-[80%] lg:h-150 rounded-xl overflow-hidden ">
                 <LiveTracking />
             </div>
         </div>

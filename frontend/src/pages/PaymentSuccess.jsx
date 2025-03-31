@@ -15,7 +15,6 @@ const PaymentSuccess = () => {
     const { receiveMessage } = useContext(SocketContext);
 
 
-
     // const playerRef = useRef < Player > (null);
 
     // useEffect(() => {
@@ -25,6 +24,15 @@ const PaymentSuccess = () => {
     receiveMessage('ride-ended', ride => {
         navigate('/home')
     })
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            navigate('/home')
+        }, 3000)
+
+        return () => clearTimeout(timer);
+
+    }, [navigate])
 
 
 

@@ -1,26 +1,76 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { registerUser } from '../../api/userApi';
+import { useContext } from 'react';
+import { userDataContext } from '../../context/UserContext';
+import { toast } from 'react-toastify';
 
 function Registeruser() {
+
+  const navigate = useNavigate();
+
+  const { setUser } = useContext(userDataContext);
+
   const initialState = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
   };
+
   const [formData, setFormData] = useState(initialState);
 
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { firstName, lastName, email, password } = formData;
+
+      const userData = {
+        fullname: {
+          firstname: firstName,
+          lastname: lastName,
+        },
+        email,
+        password
+      }
+
+      console.log(userData);
+
+
+      const res = await registerUser(userData);
+      if (res.status === 201) {
+        toast.success('Registration successful');
+        localStorage.setItem('token', res.data.token);
+        setUser(res.data.user);
+        navigate('/home')
+      }
+
+      setFormData(initialState);
+
+    } catch (error) {
+      if (error.status === 409) {
+        toast.error(error?.response?.data?.message);
+      } else {
+        toast.error(error?.response?.data?.error[0]?.msg);
+      }
+    }
   };
 
   return (
     <div className="flex w-screen h-screen flex-col-reverse md:flex-col-reverse lg:flex-row gap-6">
       {/* Form Section */}
-      <div className="w-full h-full lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 xl:p-10 z-10 shadow-lg rounded-3xl">
-        <div className="flex justify-center mb-6">
-          <img src="/src/assets/logo.png" alt="Logo" className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full" />
+      <form onSubmit={handleSubmit} className="w-full h-full lg:h-fit lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 lg:py-20 xl:px-10 z-10 shadow-lg rounded-3xl ">
+        <div className="flex justify-center mb-8">
+          <h2 className='text-2xl font-bold font-epilogue text-color-yellow'>TripMate</h2>
         </div>
         <label>What's your name</label>
         <div className="flex space-x-2 ">
@@ -71,7 +121,7 @@ function Registeruser() {
         <p className="text-black text-sm text-center">
           Already have an account? <Link to="/login" className="text-yellow-500 cursor-pointer font-semibold hover:underline">Sign in here</Link>
         </p>
-      </div>
+      </form>
 
       {/* Image Section */}
       <div className="w-full lg:w-3/4 relative lg:ml-auto h-auto">

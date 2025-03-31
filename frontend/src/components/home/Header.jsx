@@ -1,12 +1,28 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faMapPin, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeroBg } from "../../assets";
 import { navLinks } from "../../utils";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [homeFormData, setHomeFormData] = useState({ pickup: "", destination: "" });
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setHomeFormData({ ...homeFormData, [name]: value });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitting...")
+    navigate("/home", {
+      state: homeFormData
+    })
+  }
 
   return (
     <div className=" h-screen w-full">
@@ -22,10 +38,10 @@ const Header = () => {
 
 
           {/* Left Side - Logo */}
-          <div className="flex items-center space-x-2">
-            <img src="/src/assets/logo.png" alt="Logo" className=" mt-2 mb-2 w-10 h-10 md:w-12 xl:w-15  md:h-12 xl:h-15 sm:w-10 sm:h-10 rounded-full" />
+          <div className="flex items-center space-x-2 h-15 pl-3">
+            {/* <img src="/src/assets/logo.png" alt="Logo" className=" mt-2 mb-2 w-10 h-10 md:w-12 xl:w-15  md:h-12 xl:h-15 sm:w-10 sm:h-10 rounded-full" /> */}
             <div>
-              <h1 className="text-sm sm:text-md md:text-lg font-bold text-green-600"> TRIP<span className="text-color-yellow">MATE</span> </h1>
+              <h1 className="text-sm sm:text-md md:text-lg font-bold text-color-yellow uppercase font-epilogue">TripMate </h1>
               <h1 className="text-[6px] sm:text-[7px] md:text-[8px] italic text-gray-500">YOUR JOURNEY, OUR PRIORITY</h1>
             </div>
           </div>
@@ -96,14 +112,17 @@ const Header = () => {
         {/* Main Content */}
         <div className="flex flex-col items-center lg:items-end justify-end lg:justify-center max-lg:pb-15 min-h-screen p-5 md:pr-20 xl:pr-30">
           {/* Pickup & Drop Form */}
-          <div className="bg-opacity-50 p-6 sm:p-8 xl:p-15 rounded-4xl border-7 sm:border-8 xl:border-10 border-white shadow-lg w-full max-w-md  xl:max-w-lg backdrop-blur-lg">
+          <form onSubmit={handleSubmit} className="bg-opacity-50 p-6 sm:p-8 xl:p-15 rounded-4xl border-7 sm:border-8 xl:border-10 border-white shadow-lg w-full max-w-md  xl:max-w-lg backdrop-blur-lg">
             <div className="space-y-4">
               {/* Pickup Location Input */}
               <div className="flex items-center bg-white px-3 py-2 rounded-full shadow-md">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="text-yellow-500 mr-3" />
                 <input
+                  name="pickup"
+                  value={homeFormData.pickup}
                   type="text"
                   placeholder="Enter pickup location"
+                  onChange={handleChange}
                   className="w-full! bg-transparent! outline-none! text-gray-700! placeholder:text-sm! m-0! p-1!"
                 />
               </div>
@@ -112,18 +131,21 @@ const Header = () => {
               <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-md">
                 <FontAwesomeIcon icon={faMapPin} className="mr-3 text-yellow-500" />
                 <input
+                  name="destination"
+                  value={homeFormData.destination}
                   type="text"
+                  onChange={handleChange}
                   placeholder="Enter drop location"
                   className="w-full bg-transparent! outline-none! text-gray-700! placeholder:text-sm! m-0! p-1!"
                 />
               </div>
 
               {/* Submit Button */}
-              <button className="w-full md:w-1/2 bg-yellow-500 text-white font-bold py-2 rounded-full hover:bg-yellow-600 transition duration-300 ml-0 md:ml-25">
+              <button type="submit" className="w-full md:w-1/2 bg-yellow-500 text-white font-bold py-2 rounded-full hover:bg-yellow-600 transition duration-300 ml-0 md:ml-25">
                 Search
               </button>
             </div>
-          </div>
+          </form>
 
           {/* Additional Text */}
           <div className="absolute top-0 left-0 mt-44 ml-6 px-4 py-2">

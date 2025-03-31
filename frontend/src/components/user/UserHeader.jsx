@@ -24,8 +24,7 @@ const UserHeader = () => {
 
         <Link to="/">
             <div className="flex items-center gap-3">
-                <img src="/src/assets/logo.png" alt="Logo" className="w-10 h-10 rounded-full" />
-                <h1 className='font-bold text-white text-lg md:text-xl'>TripMate</h1>
+                <h1 className='font-epilogue font-bold text-white text-lg md:text-2xl'>TripMate</h1>
             </div>
         </Link>
         <FontAwesomeIcon icon={faRightFromBracket} className="text-white text-2xl lg:text-3xl cursor-pointer" onClick={handleLogout} />

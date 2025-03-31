@@ -10,13 +10,15 @@ const MakePayment = () => {
 
     const location = useLocation();
     const rideDetail = location.state || {};
-    const { receiveMessage } = useContext(SocketContext);
+    // const { receiveMessage } = useContext(SocketContext);
     const { user } = useContext(userDataContext);
     const navigate = useNavigate();
 
-    receiveMessage('ride-ended', ride => {
-        navigate('/home')
-    })
+    // receiveMessage('ride-ended', ride => {
+    //     navigate('/home')
+    // })
+
+    console.log(user);
 
 
 
@@ -107,7 +109,7 @@ const MakePayment = () => {
         </div>
 
         {/* Payment Button */}
-        <button onClick={() => handlePaymentCheckout(rideDetail?.fare)} className='w-full p-3 mt-6 rounded bg-green-500 text-white font-bold text-base'>
+        <button onClick={() => handlePaymentCheckout(rideDetail?.fare)} className='w-full p-3 mt-6 rounded-xl bg-green-500 text-white font-bold text-base'>
             Make a Payment
         </button>
     </div>;

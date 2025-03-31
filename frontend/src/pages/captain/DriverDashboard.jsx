@@ -65,7 +65,7 @@ const DriverDashboard = () => {
       })
     } else {
       gsap.to(ridePopupPanelRef.current, {
-        transform: 'translateY(100%)'
+        transform: 'translateY(150%)'
       })
     }
   }, [ridePopupPanel])
@@ -146,7 +146,7 @@ const DriverDashboard = () => {
         />
       </div>
 
-      <div ref={rideConfirmPopupPanelRef} className='fixed w-full lg:w-[35%] xl:w-[30%] rounded-3xl z-10 bottom-0  left-0 lg:left-5 xl:left-10 translate-y-full bg-white px-4 py-4 lg:px-3 lg:py-10 lg:pt-12 '>
+      <div ref={rideConfirmPopupPanelRef} className='fixed w-full lg:w-[35%] xl:w-[30%] rounded-3xl z-10 bottom-0  left-0 lg:left-5 xl:left-10 translate-y-[150%] bg-white px-4 py-4 lg:px-3 lg:py-10 lg:pt-12 '>
         <Confirm
           ride={ride}
           confirmRidePopupPanel={confirmRidePopupPanel}

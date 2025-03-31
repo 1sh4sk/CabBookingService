@@ -8,10 +8,12 @@ import { SocketContext } from '../../context/SocketContext';
 import { userDataContext } from '../../context/UserContext';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useLocation } from 'react-router';
 
 const UserHome = () => {
-  const [pickup, setPickup] = useState('');
-  const [drop, setDrop] = useState('');
+  const location = useLocation();
+  const [pickup, setPickup] = useState(location.state.pickup || '');
+  const [drop, setDrop] = useState(location.state.destination || '');
   const [pickupSuggestions, setPickupSuggestions] = useState([]);
   const [dropSuggestions, setDropSuggestions] = useState([]);
   const [activeField, setActiveField] = useState(null);
@@ -21,13 +23,13 @@ const UserHome = () => {
   const [laptopForm, setLaptopForm] = useState(false);
   const [fare, setFare] = useState({})
 
+
   const searchPanelRef = useRef()
 
   const { sendMessage, receiveMessage } = useContext(SocketContext);
   const { user } = useContext(userDataContext);
 
   useGSAP(function () {
-    console.log("mobileForm", mobileForm)
     if (laptopForm) {
       gsap.to(searchPanelRef.current, {
         transform: 'translateY(0)'
@@ -49,7 +51,6 @@ const UserHome = () => {
 
 
   const handlePickupChange = async (e) => {
-    console.log("mobileForm", mobileForm)
     const newPickup = e.target.value;
     setPickup(newPickup);
     setSuggestionPanel(true);
@@ -62,7 +63,6 @@ const UserHome = () => {
   }
 
   const handleDestinationChange = async (e) => {
-    console.log("mobileForm", mobileForm)
     const newDestination = e.target.value;
     setDrop(newDestination);
     setSuggestionPanel(true);
@@ -138,6 +138,7 @@ const UserHome = () => {
               className={`w-full p-4 rounded-lg mt-1 mb-4 font-bold ${pickup && drop ? 'bg-yellow-500 text-white' : 'bg-yellow-200 text-white cursor-not-allowed'
                 }`}
               disabled={!pickup || !drop}
+              onClick={() => setLaptopForm(true)}
             >
               Find a Trip
             </button>
@@ -186,6 +187,7 @@ const UserHome = () => {
                 className={`w-full p-4 rounded-lg mt-1 mb-4 font-bold ${pickup && drop ? 'bg-yellow-500 text-white' : 'bg-yellow-200 text-white cursor-not-allowed'
                   }`}
                 disabled={!pickup || !drop}
+
               >
                 Find a Trip
               </button>

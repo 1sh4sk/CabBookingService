@@ -25,8 +25,7 @@ const CaptainHeader = () => {
 
     return <header className="flex justify-between items-center bg-color-yellow py-2 px-5 md:py-3 lg:py-4 sm:px-8">
         <div className="flex items-center gap-2">
-            <img src="/src/assets/logo.png" alt="Logo" className="w-10 h-10 rounded-full" />
-            <h1 className='font-bold text-white text-lg md:text-xl'>TripMate</h1>
+            <h1 className='font-epilogue font-bold text-white text-lg md:text-2xl'>TripMate</h1>
         </div>
         <FontAwesomeIcon icon={faRightFromBracket} className="text-white text-2xl lg:text-3xl  cursor-pointer" onClick={handleLogout} />
     </header>

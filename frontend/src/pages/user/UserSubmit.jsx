@@ -20,7 +20,7 @@ const UserSubmit = ({ fare, pickup, drop }) => {
 
   return (
     <div className='w-full flex justify-center overflow-y-scroll'>
-      <div className="px-7 lg:mt-4 lg:p-4 w-full max-w-md">
+      <div className="px-7 lg:mt-8 lg:p-0 w-full max-w-md">
         <h6 className="font-bold text-lg">Choose Your Ride</h6>
 
         {rides.map((ride) => (
@@ -38,7 +38,6 @@ const UserSubmit = ({ fare, pickup, drop }) => {
               <div>
                 <p className="font-bold text-sm md:text-base text-left">{ride.name}</p>
                 <p className="text-xs md:text-sm text-gray-500">6 min away • 5:27 PM</p>
-                {/* <p className="text-xs text-gray-400">Affordable compact rides</p> */}
               </div>
             </div>
             <p className="font-bold text-sm md:text-base">₹{ride.price}</p>

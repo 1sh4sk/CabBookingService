@@ -59,10 +59,11 @@ function CaptainRegister() {
 
 
       const res = await registerCaptain(userData);
+      console.log(res.data);
       if (res.status === 201) {
         toast.success('Registration successful');
         localStorage.setItem('token', res.data.token);
-        setCaptain(res.data.user);
+        setCaptain(res.data.captain);
         navigate('/captain-home')
       }
 
@@ -233,7 +234,7 @@ function CaptainRegister() {
           </button>
 
           <p className="text-black text-sm text-center">
-            Already have an account? <span className="text-yellow-500 cursor-pointer font-semibold hover:underline">Sign in here</span>
+            Already have an account? <Link to="/captain-login" className="text-yellow-500 cursor-pointer font-semibold hover:underline">Sign in here</Link>
           </p>
 
         </form>

@@ -3,6 +3,7 @@ import { DriverDetail, Home, MakePayment, Registeruser, UserDriver, UserHome, Us
 import { CaptainLogin, CaptainProtectedWrapper, Captainregister, DriverDashboard, FinishRide } from "../pages/captain";
 import CaptainHomeLayout from "../pages/captain/CaptainHomeLayout";
 import PaymentSuccess from "../pages/PaymentSuccess";
+import Error from "./home/Error";
 
 const RouterComponent = () => {
     return <div>
@@ -36,7 +37,8 @@ const RouterComponent = () => {
 
             <Route path="/paymentsuccess" element={<PaymentSuccess />} />
 
-            <Route path="*" element={<h1>something went wrong!</h1>} />
+            <Route path="*" element={<Error />} />
+            {/* <Route path="*" element={<h1>something went wrong!</h1>} /> */}
         </Routes>
     </div>;
 };

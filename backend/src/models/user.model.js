@@ -27,13 +27,6 @@ const userschema = new Schema({
         required: true,
         select: false
     },
-    // phonenumber:{
-    //     type:Number,
-    //     required:true
-    // },
-    // livetracking: {
-    //     socketId: { type: String }
-    // }
     socketId: {
         type: String
     }
