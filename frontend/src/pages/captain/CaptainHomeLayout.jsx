@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import CaptainHeader from "../../components/captain/captainHeader";
+import CaptainHeader from "../../components/captain/CaptainHeader";
 import { LiveTracking } from "../../components";
 
 const CaptainHomeLayout = () => {
