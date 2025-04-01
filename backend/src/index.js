@@ -12,6 +12,7 @@ const captainRouter = require("./routes/captain.routes");
 const mapsRouter = require("./routes/maps.route");
 const rideRouter = require("./routes/ride.routes");
 const paymentRouter = require("./routes/payment.route");
+const adminRouter = require("./routes/admin.routes");
 const { initializeSocket } = require("./socket"); // Import socket initialization function
 
 const app = exp();
@@ -29,6 +30,7 @@ app.use("/captain", captainRouter);
 app.use("/maps", mapsRouter);
 app.use("/ride", rideRouter);
 app.use("/payment", paymentRouter);
+app.use("/admin", adminRouter);
 
 
 // Create HTTP server and pass the Express app
@@ -41,4 +43,4 @@ initializeSocket(server);
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
     console.log(`🚀 Server is running on port ${port}`);
-});
+});  
