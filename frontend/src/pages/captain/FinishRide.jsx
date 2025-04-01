@@ -23,7 +23,7 @@ const FinishRide = () => {
   };
 
   return (
-    <div className="p-6 w-full -mt-14 lg:mt-0 rounded-3xl lg:rounded-none z-10 bg-white">
+    <div className="p-6 w-full -mt-14 lg:mt-0 rounded-3xl lg:rounded-none z-10 bg-white lg:bg-transparent">
       <p className="font-bold mb-4 text-lg">Finish this Ride</p>
 
       {/* Rider Info */}

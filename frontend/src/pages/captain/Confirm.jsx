@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { rideStartApi } from "../../api/rideApi";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 function Confirm({ setConfirmRidePopupPanel, ride }) {
   const [otp, setOtp] = useState("");
@@ -24,6 +25,7 @@ function Confirm({ setConfirmRidePopupPanel, ride }) {
         })
       }
     } catch (error) {
+      toast.error(error?.response?.data?.message)
       console.log(error);
     }
   };

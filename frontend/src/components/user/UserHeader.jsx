@@ -20,9 +20,9 @@ const UserHeader = () => {
         }
     }
 
-    return <header className=" lg:static h-20 w-full fixed top-0 left-0 z-20 flex  justify-between items-center  bg-color-yellow py-2 px-5 md:py-3 lg:py-4 sm:px-8">
+    return <header className=" lg:static h-15 md:h-20 w-full fixed top-0 left-0 z-20 flex  justify-between items-center  bg-color-yellow py-2 px-5 md:py-3 lg:py-4 sm:px-8">
 
-        <Link to="/">
+        <Link to="/home">
             <div className="flex items-center gap-3">
                 <h1 className='font-epilogue font-bold text-white text-lg md:text-2xl'>TripMate</h1>
             </div>
