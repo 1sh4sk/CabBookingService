@@ -68,7 +68,7 @@ function Registeruser() {
   return (
     <div className="flex w-screen h-screen flex-col-reverse md:flex-col-reverse lg:flex-row gap-6">
       {/* Form Section */}
-      <form onSubmit={handleSubmit} className="w-full h-full lg:h-fit lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 lg:py-20 xl:px-10 z-10 shadow-lg rounded-3xl ">
+      <form onSubmit={handleSubmit} className="w-full h-full lg:h-fit lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 lg:py-15 xl:px-10 z-10 shadow-lg rounded-3xl ">
         <div className="flex justify-center mb-8">
           <h2 className='text-2xl font-bold font-epilogue text-color-yellow'>TripMate</h2>
         </div>

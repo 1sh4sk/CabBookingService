@@ -158,10 +158,7 @@ function CaptainRegister() {
       <div className="w-full h-full lg:h-auto xl:w-1/4 lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 lg:py-5 xl:py-8 xl:px-5 z-10 shadow-lg rounded-3xl">
         <form onSubmit={handleSubmit} className="w-full  z-10  rounded-2xl">
           <div className="flex justify-center mb-4">
-            <img src="/src/assets/logo.png"
-              alt="Logo"
-              className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-16 lg:h-16 rounded-full"
-            />
+            <h2 className='text-2xl font-bold font-epilogue text-color-yellow'>TripMate</h2>
           </div>
           <label >What's your name</label>
           <div className="flex space-x-2">

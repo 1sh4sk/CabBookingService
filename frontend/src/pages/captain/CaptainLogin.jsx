@@ -50,7 +50,7 @@ const CaptainLogin = () => {
       {/* Column 1 */}
       <div className="w-full h-full lg:h-auto xl:w-1/4 lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 xl:p-10 z-10 shadow-lg rounded-3xl">
         <form onSubmit={handleSubmit} className="w-full  flex flex-col items-center">
-          <img src="/src/assets/logo.png" alt="Logo" className="w-20 h-20 rounded-full" />
+          <h2 className='text-2xl font-bold font-epilogue text-color-yellow'>TripMate</h2>
           <br />
           <label className="block text-black w-full font-bold" >What's your email ?</label>
           <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="example@gmail.com" />

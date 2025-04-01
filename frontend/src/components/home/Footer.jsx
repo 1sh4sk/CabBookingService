@@ -42,12 +42,13 @@ export default function Footer() {
             placeholder="Enter your email"
             className="mt-3 w-full p-2 rounded bg-gray-800 text-white placeholder-gray-500 placeholder:text-sm text-sm"
           />
-          <button className="mt-3 w-full bg-color-yellow text-black py-2 rounded font-semibold hover:bg-yellow-600 text-sm">
+          <button className="mt-1 w-full bg-color-yellow text-black py-2 rounded-lg font-semibold hover:bg-yellow-600 text-sm">
             Subscribe Now
           </button>
+
           <div className="mt-2 flex items-center">
-            <input type="checkbox" id="agree" className="mr-2" />
-            <label htmlFor="agree" className="text-gray-300 text-sm ">I agree to receive emails.</label>
+            <input type="checkbox" id="agree" className="m-0! w-auto! mr-2!" />
+            <p htmlFor="agree" className="text-gray-300 text-sm ">I agree to receive emails.</p>
           </div>
         </div>
       </div>

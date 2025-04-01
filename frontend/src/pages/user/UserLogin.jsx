@@ -50,7 +50,7 @@ const UserLogin = () => {
     <div className="h-screen w-screen flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 ">
       {/* Column 1 - Login Form */}
       <div className="w-full h-[70%] sm:h-auto -mt-14 lg:w-1/3 xl:w-1/4 bg-white p-6 sm:p-8 md:p-8 xl:p-10 lg:pr-10 lg:pl-10 transform lg:mt-0 lg:absolute lg:left-24 xl:left-40 lg:top-1/2 lg:-translate-y-1/2    z-10 shadow-xl rounded-3xl rounded-bl-none rounded-br-none lg:rounded-xl flex flex-col items-center">
-        <img src="/src/assets/logo.png" alt="Logo" className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full" />
+        <h2 className='text-2xl font-bold font-epilogue text-color-yellow'>TripMate</h2>
 
 
         <br />
