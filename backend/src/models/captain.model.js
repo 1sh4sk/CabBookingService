@@ -27,6 +27,7 @@ const captianSchema = new Schema({
         required: true,
         select: false
     },
+    
     socketId: {
         type: String
     },
@@ -34,6 +35,11 @@ const captianSchema = new Schema({
         type: String,
         enum: ['active', 'inactive'],
         default: 'inactive'
+    },
+    approval:{
+        type: String,
+        enum: ['approved', 'pending', 'rejected'],
+        default: 'pending'
     },
     vehicle: {
         vehiclename: {
