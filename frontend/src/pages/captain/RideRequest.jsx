@@ -37,7 +37,7 @@ function RideRequest({ setRidePopupPanel, ride, setConfirmRidePopupPanel, confir
         </div>
         <div className="text-right">
           <span className="text-black font-bold">₹{ride?.fare}</span>
-          <p className="text-gray-500 text-sm">22 KM</p>
+          {/* <p className="text-gray-500 text-sm">22 KM</p> */}
         </div>
       </div>
 
