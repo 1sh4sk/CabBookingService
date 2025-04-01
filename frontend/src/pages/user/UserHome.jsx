@@ -12,8 +12,8 @@ import { useLocation } from 'react-router';
 
 const UserHome = () => {
   const location = useLocation();
-  const [pickup, setPickup] = useState(location.state.pickup || '');
-  const [drop, setDrop] = useState(location.state.destination || '');
+  const [pickup, setPickup] = useState(location?.state?.pickup || '');
+  const [drop, setDrop] = useState(location?.state?.destination || '');
   const [pickupSuggestions, setPickupSuggestions] = useState([]);
   const [dropSuggestions, setDropSuggestions] = useState([]);
   const [activeField, setActiveField] = useState(null);
