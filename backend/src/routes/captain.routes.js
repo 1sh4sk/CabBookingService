@@ -1,4 +1,5 @@
 const { Router } = require("express")
+const multiUpload = require("../middleware/cloudinary")
 
 const router = Router()
 
@@ -9,16 +10,39 @@ const { registerCaptain, loginCaptain, getCaptainProfile, logoutCaptain } = requ
 
 
 router.post('/register',
+    multiUpload,
     [
 
         body('email').isEmail().withMessage('Invalid Email'),
-        body('fullname.firstname').isLength({ min: 3 }).withMessage('First Name must be at least 3 characters long'),
         body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
-        body('vehicle.color').isLength({ min: 3 }).withMessage('Color must be at least 3 characters long'),
-        body('vehicle.vehiclename').isLength({ min: 3 }).withMessage('Vehicle Name must be at least 3 characters long'),
-        body('vehicle.plate').isLength({ min: 3 }).withMessage('Plate must be at least 3 characters long'),
-        body('vehicle.capacity').isInt({ min: 1 }).withMessage('Capacity must be at least 1'),
-        body('vehicle.vehicletype').isIn(['premier', 'tripmateauto', 'tripmatebike','tripmatego']).withMessage('Invalid Vehicle'),
+        body('vehicle').custom((value) => {
+            if (!value) throw new Error('Vehicle details are required');
+            const vehicle = JSON.parse(value);
+            if (!vehicle.color || vehicle.color.length < 3) {
+                throw new Error('Color must be at least 3 characters long');
+            }
+            if (!vehicle.vehiclename || vehicle.vehiclename.length < 3) {
+                throw new Error('Vehicle Name must be at least 3 characters long');
+            }
+            if (!vehicle.plate || vehicle.plate.length < 3) {
+                throw new Error('Plate must be at least 3 characters long');
+            }
+            if (!vehicle.capacity || vehicle.capacity < 1) {
+                throw new Error('Capacity must be at least 1');
+            }
+            if (!['premier', 'tripmateauto', 'tripmatebike', 'tripmatego'].includes(vehicle.vehicletype)) {
+                throw new Error('Invalid Vehicle');
+            }
+            return true;
+        }),
+        body('fullname').custom((value) => {
+            if (!value) throw new Error('Full name is required');
+            const fullname = JSON.parse(value);
+            if (!fullname.firstname || fullname.firstname.length < 3) {
+                throw new Error('First Name must be at least 3 characters long');
+            }
+            return true;
+        }),
 
     ],
     registerCaptain)

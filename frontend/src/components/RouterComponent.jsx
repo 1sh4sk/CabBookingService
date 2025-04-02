@@ -4,6 +4,8 @@ import { CaptainLogin, CaptainProtectedWrapper, Captainregister, DriverDashboard
 import CaptainHomeLayout from "../pages/captain/CaptainHomeLayout";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import Error from "./home/Error";
+import AdminLoginForm from "../pages/admin/AdminLogin";
+import { AdminDashboard, AdminDashboardLayout, CaptainApprovals, ManageCaptains, ManageUsers } from "../pages/admin";
 
 const RouterComponent = () => {
     return <div>
@@ -35,10 +37,20 @@ const RouterComponent = () => {
                 </Route>
             </Route>
 
-            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
 
+            {/* admin routes */}
+            <Route path="/admin-login" element={<AdminLoginForm />} />
+            {/* <Route index path="/admin-dashboardd" element={<AdminDashboard />} /> */}
+            <Route element={<AdminDashboardLayout />}>
+                <Route index path="/admin/dashboard" element={<AdminDashboard />} />
+                <Route path="/admin/manage-users" element={<ManageUsers />} />
+                <Route path="/admin/manage-captains" element={<ManageCaptains />} />
+                <Route path="/admin/captain-approvals" element={<CaptainApprovals />} />
+            </Route>
+
+
+            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
             <Route path="*" element={<Error />} />
-            {/* <Route path="*" element={<h1>something went wrong!</h1>} /> */}
         </Routes>
     </div>;
 };

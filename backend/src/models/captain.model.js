@@ -27,7 +27,7 @@ const captianSchema = new Schema({
         required: true,
         select: false
     },
-    
+
     socketId: {
         type: String
     },
@@ -36,7 +36,7 @@ const captianSchema = new Schema({
         enum: ['active', 'inactive'],
         default: 'inactive'
     },
-    approval:{
+    approval: {
         type: String,
         enum: ['approved', 'pending', 'rejected'],
         default: 'pending'
@@ -68,14 +68,6 @@ const captianSchema = new Schema({
             enum: ['premier', 'tripmateauto', 'tripmatebike', 'tripmatego']
         }
     },
-    // location: {
-    //     ltd: {
-    //         type: Number
-    //     },
-    //     lng: {
-    //         type: Number
-    //     }
-    // },
     location: {
         type: {
             type: String,
@@ -84,7 +76,23 @@ const captianSchema = new Schema({
         coordinates: {
             type: [Number],  // Fix: Store as an array [longitude, latitude]
         }
-    }
+    },
+    license_image: {
+        type: String,
+        required: true
+    },
+    vehicle_image: {
+        type: String,
+        required: true
+    },
+    rc_book_image: {
+        type: String,
+        required: true
+    },
+    driver_image: {
+        type: String,
+        required: true
+    },
 }, { timestamps: true })
 
 captianSchema.index({ location: "2dsphere" });

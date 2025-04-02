@@ -3,10 +3,13 @@ import { Link, useNavigate } from "react-router";
 import { registerCaptain } from "../../api/captainApi";
 import { toast } from 'react-toastify';
 import { captainDataContext } from "../../context/CaptainContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 // import CaptainBg from "../assets/Captainbg.png"; // Ensure correct import
 
 function CaptainRegister() {
-  const [formData, setFormData] = useState({
+
+  const initialState = {
     firstName: "",
     lastName: "",
     email: "",
@@ -17,49 +20,72 @@ function CaptainRegister() {
     vehicleCapacity: "",
     vehicleType: "",
     agreeTerms: false,
-  });
+    license_image: "",
+    vehicle_image: "",
+    rc_book_image: "",
+    driver_image: "",
+  }
+
+  const [formData, setFormData] = useState(initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
   const { setCaptain } = useContext(captainDataContext);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked, files } = e.target;
+
+
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === "checkbox"
+        ? checked
+        : type === "file"
+          ? (files.length > 0 ? files[0] : null)
+          : value,
     });
+
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
+    setIsSubmitting(true);
     try {
 
-      const { firstName, lastName, email, password, vehicleColor, vehiclePlate, vehicleCapacity, vehicleType, agreeTerms, vehicleName } = formData;
+      const formAppendData = new FormData();
+      console.log("try")
 
-      const userData = {
-        fullname: {
-          firstname: firstName,
-          lastname: lastName,
-        },
-        email,
-        password,
-        vehicle: {
-          vehiclename: vehicleName,
-          color: vehicleColor,
-          plate: vehiclePlate,
-          capacity: vehicleCapacity,
-          vehicletype: vehicleType,
-        },
-        agreeTerms
-      }
-
-      console.log(userData);
+      const { firstName, lastName, email, password, vehicleColor, vehiclePlate, vehicleCapacity, vehicleType, agreeTerms, vehicleName, license_image, vehicle_image, rc_book_image, driver_image, } = formData;
 
 
-      const res = await registerCaptain(userData);
-      console.log(res.data);
+      // Append JSON data as a string
+      formAppendData.append("fullname", JSON.stringify({
+        firstname: firstName,
+        lastname: lastName,
+      }));
+
+      formAppendData.append("email", email);
+      formAppendData.append("password", password);
+      formAppendData.append("vehicle", JSON.stringify({
+        vehiclename: vehicleName,
+        color: vehicleColor,
+        plate: vehiclePlate,
+        capacity: vehicleCapacity,
+        vehicletype: vehicleType,
+      }));
+
+      formAppendData.append("agreeTerms", agreeTerms);
+
+      // Append files separately (only if they exist)
+      if (license_image) formAppendData.append("license_image", license_image);
+      if (vehicle_image) formAppendData.append("vehicle_image", vehicle_image);
+      if (rc_book_image) formAppendData.append("rc_book_image", rc_book_image);
+      if (driver_image) formAppendData.append("driver_image", driver_image);
+
+      console.log("formAppendData", formAppendData);
+
+      const res = await registerCaptain(formAppendData);
+
       if (res.status === 201) {
         toast.success('Registration successful');
         localStorage.setItem('token', res.data.token);
@@ -68,6 +94,40 @@ function CaptainRegister() {
       }
 
       setFormData(initialState);
+      setIsSubmitting(false);
+
+      // const { firstName, lastName, email, password, vehicleColor, vehiclePlate, vehicleCapacity, vehicleType, agreeTerms, vehicleName } = formData;
+
+      // const userData = {
+      //   fullname: {
+      //     firstname: firstName,
+      //     lastname: lastName,
+      //   },
+      //   email,
+      //   password,
+      //   vehicle: {
+      //     vehiclename: vehicleName,
+      //     color: vehicleColor,
+      //     plate: vehiclePlate,
+      //     capacity: vehicleCapacity,
+      //     vehicletype: vehicleType,
+      //   },
+      //   agreeTerms
+      // }
+
+      // console.log(userData);
+
+
+      // const res = await registerCaptain(userData);
+      // console.log(res.data);
+      // if (res.status === 201) {
+      //   toast.success('Registration successful');
+      //   localStorage.setItem('token', res.data.token);
+      //   setCaptain(res.data.captain);
+      //   navigate('/captain-home')
+      // }
+
+      // setFormData(initialState);
 
     } catch (error) {
       if (error.status === 409) {
@@ -78,84 +138,11 @@ function CaptainRegister() {
     }
   }
 
-  // return (
-  //   <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gray-100 p-4">
-  //     {/* Form Section */}
-  //     <div className="bg-white shadow-lg rounded-lg p-8 w-full md:w-1/2 lg:w-1/3 relative left-50 z-30">
-  //       <div className="mb-4 text-center">
-  //         <div className="bg-yellow-400 w-16 h-8 rounded-md mb-2 mx-auto flex items-center justify-center">
-  //           <span className="text-xs font-bold">LOGO</span>
-  //         </div>
-  //       </div>
-
-  //       <form onSubmit={handleSubmit}>
-  //         <div className="mb-4">
-  //           <label className="block text-sm font-medium text-gray-700 mb-2">Captain's Name</label>
-  //           <div className="flex space-x-2">
-  //             <input type="text" name="firstName" placeholder="First name" className="border p-2 w-1/2 rounded-md" value={formData.firstName} onChange={handleChange} required />
-  //             <input type="text" name="lastName" placeholder="Last name" className="border p-2 w-1/2 rounded-md" value={formData.lastName} onChange={handleChange} required />
-  //           </div>
-  //         </div>
-
-  //         <div className="mb-4">
-  //           <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-  //           <input type="email" name="email" placeholder="example@gmail.com" className="border p-2 w-full rounded-md" value={formData.email} onChange={handleChange} required />
-  //         </div>
-
-  //         <div className="mb-4">
-  //           <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-  //           <input type="password" name="password" placeholder="Password" className="border p-2 w-full rounded-md" value={formData.password} onChange={handleChange} required />
-  //         </div>
-
-  //         <div className="mb-4">
-  //           <h3 className="text-lg font-semibold mb-2">Vehicle Information</h3>
-  //           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-  //             <input type="text" name="vehicleColor" placeholder="Vehicle Color" className="border p-2 rounded-md" value={formData.vehicleColor} onChange={handleChange} required />
-  //             <input type="text" name="vehiclePlate" placeholder="Vehicle Plate" className="border p-2 rounded-md" value={formData.vehiclePlate} onChange={handleChange} required />
-  //             <input type="number" name="vehicleCapacity" placeholder="Vehicle Capacity" className="border p-2 rounded-md" value={formData.vehicleCapacity} onChange={handleChange} required />
-  //             <select name="vehicleType" className="border p-2 rounded-md" value={formData.vehicleType} onChange={handleChange} required>
-  //               <option value="">Vehicle Type</option>
-  //               <option value="car">Car</option>
-  //               <option value="auto">Auto</option>
-  //               <option value="motorcycle">Motorcycle</option>
-  //             </select>
-  //           </div>
-  //         </div>
-
-  //         <div className="mb-4 flex items-center">
-  //           <input type="checkbox" name="agreeTerms" className="mr-2" checked={formData.agreeTerms} onChange={handleChange} required />
-  //           <label className="text-sm text-gray-700">I agree to the terms and conditions</label>
-  //         </div>
-
-  //         <button type="submit" className="bg-yellow-400 text-black font-bold py-2 px-4 rounded-md w-full hover:bg-yellow-500">
-  //           Sign Up
-  //         </button>
-  //       </form>
-
-  //       <p className="text-center mt-4 text-sm">
-  //         Already have an account? <Link to="/captain-login" className="text-yellow-600 font-semibold hover:underline">Sign in here</Link>
-  //       </p>
-  //     </div>
-
-  //     {/* Image Section */}
-  //     <div className="hidden md:block md:w-1/2 lg:w-2/3 p-4">
-  //       <div className="relative w-full h-full">
-  //         <img src={"../src/assets/Captainbg.png"} alt="Register" className="w-full h-full object-cover " />
-  //         <div className="absolute inset-0 flex flex-col justify-center items-end text-white p-6">
-  //           <h2 className="text-xl font-bold text-yellow-400">Register</h2>
-  //           <p className="mt-2">Drive with us - where every mile</p>
-  //           <p>brings new opportunities!</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
-
   return (
     <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row gap-6 ">
       {/* Form Section */}
 
-      <div className="w-full h-full lg:h-auto xl:w-1/4 lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 lg:py-5 xl:py-8 xl:px-5 z-10 shadow-lg rounded-3xl">
+      <div className="w-full h-full lg:h-auto xl:w-1/3 lg:w-1/3 -mt-14 transform lg:mt-0 lg:absolute lg:left-24 xl:left-35 lg:top-1/2 lg:-translate-y-1/2  bg-white p-6 sm:p-8 md:p-7 md:py-10 lg:py-5 xl:py-4 xl:px-5 z-10 shadow-lg rounded-3xl">
         <form onSubmit={handleSubmit} className="w-full  z-10  rounded-2xl">
           <div className="flex justify-center mb-4">
             <h2 className='text-2xl font-bold font-epilogue text-color-yellow'>TripMate</h2>
@@ -226,8 +213,37 @@ function CaptainRegister() {
             </div>
           </div>
 
-          <button type="submit" className="w-full bg-yellow-500 text-white font-bold py-2 rounded-lg mb-2 mt-4 hover:bg-yellow-600 transition cursor-pointer">
-            Sign Up
+          <div>
+            <label className="my-3 ">Required Files</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <label htmlFor="driver_image" className="h-10 cursor-pointer font-normal! text-[12px]!  relative bg-color-lightgray! flex! items-center! pl-3 rounded-lg text-gray-500!">
+                {formData.driver_image === "" ? "Upload driver image" : formData.driver_image.name}
+                <FontAwesomeIcon icon={faPaperclip} className="absolute top-0 right-0 bottom-0  rounded-xl text-lg text-color-yellow py-2.5 pr-3" />
+              </label>
+              <input type="file" id="driver_image" name="driver_image" placeholder="Upload driver image" className="m-0! cursor-pointer hidden" onChange={handleChange} required />
+
+              <label htmlFor="vehicle_image" className="h-10 cursor-pointer font-normal! text-[12px]!  relative bg-color-lightgray! flex! items-center! pl-3 rounded-lg text-gray-500!">
+                {formData.vehicle_image === "" ? "Upload vehicle image" : formData.vehicle_image.name}
+                <FontAwesomeIcon icon={faPaperclip} className="absolute top-0 right-0 bottom-0  rounded-xl text-lg text-color-yellow py-2.5 pr-3" />
+              </label>
+              <input type="file" id="vehicle_image" name="vehicle_image" placeholder="Upload vehicle image" className="m-0! hidden cursor-pointer" onChange={handleChange} required />
+
+              <label htmlFor="license_image" className="h-10 cursor-pointer font-normal! text-[12px]!  relative bg-color-lightgray! flex! items-center! pl-3 rounded-lg text-gray-500!">
+                {formData.license_image === "" ? "Upload license image" : formData.license_image.name}
+                <FontAwesomeIcon icon={faPaperclip} className="absolute top-0 right-0 bottom-0  rounded-xl text-lg text-color-yellow py-2.5 pr-3" />
+              </label>
+              <input type="file" id="license_image" name="license_image" placeholder="Upload license image" className="m-0! hidden cursor-pointer" onChange={handleChange} required />
+
+              <label htmlFor="rc_book_image" className="h-10 cursor-pointer font-normal! text-[12px]!  relative bg-color-lightgray! flex! items-center! pl-3 rounded-lg text-gray-500!">
+                {formData.rc_book_image === "" ? "Upload RC book image" : formData.rc_book_image.name}
+                <FontAwesomeIcon icon={faPaperclip} className="absolute top-0 right-0 bottom-0  rounded-xl text-lg text-color-yellow py-2.5 pr-3" />
+              </label>
+              <input type="file" id="rc_book_image" name="rc_book_image" placeholder="Upload RC book image" className="m-0! hidden cursor-pointer" onChange={handleChange} required />
+            </div>
+          </div>
+
+          <button type="submit" disabled={isSubmitting} className="w-full bg-yellow-500 text-white font-bold py-2 rounded-lg mb-2 mt-4 hover:bg-yellow-600 transition cursor-pointer">
+            {isSubmitting ? "Signing up..." : " Sign Up"}
           </button>
 
           <p className="text-black text-sm text-center">

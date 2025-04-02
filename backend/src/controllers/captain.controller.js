@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const { generatortoken } = require("../middleware/tokengen");
 const blacklistTokenModel = require("../models/blacklistToken.model");
 
+
 // Captain Register
 const registerCaptain = async (req, res, next) => {
     const error = validationResult(req);
@@ -15,7 +16,25 @@ const registerCaptain = async (req, res, next) => {
         return res.status(400).json({ error: error.array() })
     }
 
-    const { fullname, email, password, vehicle } = req.body;
+    const { email, password } = req.body;
+    const files = req.files;
+
+    // Parse JSON fields
+    const fullname = JSON.parse(req.body.fullname);
+    const vehicle = JSON.parse(req.body.vehicle);
+
+
+    const requiredFiles = ["license_image", "vehicle_image", "rc_book_image", "driver_image"];
+
+    // Check if all required images are uploaded
+    for (let file of requiredFiles) {
+
+
+        if (!req.files || !req.files[file]) {
+            return res.status(400).json({ message: `Missing required file: ${file}` });
+        }
+    }
+
     const checkEmail = await captainModel.exists({ email });
 
     if (checkEmail) return res.status(409).json({ message: "email already Exists" });
@@ -26,7 +45,7 @@ const registerCaptain = async (req, res, next) => {
         {
 
             firstname: fullname.firstname,
-            lastname: fullname.lastname || "",
+            lastname: fullname.lastname,
             email,
             password: hass,
             vehiclename: vehicle.vehiclename,
@@ -34,7 +53,10 @@ const registerCaptain = async (req, res, next) => {
             plate: vehicle.plate,
             capacity: vehicle.capacity,
             vehicletype: vehicle.vehicletype,
-
+            license_image: files["license_image"][0]?.path,
+            vehicle_image: files["vehicle_image"][0]?.path,
+            rc_book_image: files["rc_book_image"][0]?.path,
+            driver_image: files["driver_image"][0]?.path,
         }
     )
 
@@ -48,12 +70,12 @@ const registerCaptain = async (req, res, next) => {
 // login captain
 const loginCaptain = async (req, res, next) => {
     try {
-      
-        
+
+
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.status(400).json({ error: error.array() }) 
+            return res.status(400).json({ error: error.array() })
         }
 
         const { email, password } = req.body;
@@ -78,7 +100,7 @@ const loginCaptain = async (req, res, next) => {
 const getCaptainProfile = async (req, res) => {
 
     try {
-        
+
         if (!req.captain) {
             return res.status(401).json({ message: "Unauthorized" });
         }
@@ -113,7 +135,7 @@ const getCaptainProfile = async (req, res) => {
 
 //     res.status(200).json({ message: 'logged Out' })
 // }
- 
+
 //
 
 const logoutCaptain = async (req, res) => {                  // captain logout
