@@ -2,13 +2,13 @@ const { instance } = require('../../src/payment');
 
 const crypto = require('crypto');
 const paymentModel = require('../models/payment.model');
-const { error } = require('console');
+
 
 
 
 const checkouts = async (req, res) => {
     try {
-        
+
 
         const options = {
             // amount: 50000,  //static demo amount Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -49,26 +49,26 @@ const paymentVerification = async (req, res) => {
         const verifysign = expectedSignature === razorpay_signature;
 
 
-       console.log("verifysign",verifysign);
+        console.log("verifysign", verifysign);
 
         if (verifysign) {
             await paymentModel.create({
                 razorpay_order_id,
                 razorpay_payment_id,
-                razorpay_signature 
+                razorpay_signature
             })
-           
+
             res.redirect(
-                `http://localhost:5173/paymentsuccess?reference=${razorpay_payment_id}`         
+                `http://localhost:5173/paymentsuccess?reference=${razorpay_payment_id}`
             );
         } else {
-           
+
             res.status(400).json({
                 success: false,
                 message: 'Payment verification failed verifiysign is false',
             });
         }
-        
+
 
     } catch (error) {
         console.error('Error creating order:', error);

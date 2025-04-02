@@ -113,6 +113,7 @@ const getCaptainProfile = async (req, res) => {
 };
 
 
+<<<<<<< HEAD
 // const logoutCaptain = async (req, res) => {
 
 
@@ -137,6 +138,9 @@ const getCaptainProfile = async (req, res) => {
 // }
 
 //
+=======
+// captain logout
+>>>>>>> 06a16654e8206f682c3d2cd36b365c7b86fb3dda
 
 const logoutCaptain = async (req, res) => {                  // captain logout
     try {
