@@ -91,30 +91,7 @@ const getCaptainProfile = async (req, res) => {
 };
 
 
-// const logoutCaptain = async (req, res) => {
-
-
-//     res.clearCookie('token')
-
-//     //This removes the cookie named 'token' from the user's browser.
-//     //If authentication is stored in a cookie, this clears it, effectively logging the user out.
-//     const token = req.cookies?.token || req.headers.authorization.split(' ')[1]
-
-//     const existingToken = await blacklistTokenModel.findOne({ token })
-//     if (existingToken) {
-//         return res.status(200).json({ message: 'Already logged out' })
-//     }
-
-//     await blacklistTokenModel.create({ token })
-
-//     // Adds the token to a "blacklist" database table (blacklistTokenModel).
-//     // This ensures that even if the token is still valid, it cannot be used again.
-//     // await is used because it's an asynchronous database operation.
-
-//     res.status(200).json({ message: 'logged Out' })
-// }
- 
-//
+// captain logout
 
 const logoutCaptain = async (req, res) => {                  // captain logout
     try {
