@@ -112,7 +112,7 @@ const DriverDashboard = () => {
 
         {/* Earnings */}
         <div className="text-right">
-          <span className="text-black font-bold text-sm">₹225.00</span>
+          <span className="text-black font-bold text-sm">₹{captain.earnings}</span>
           <p className="text-green-500 font-bold text-xs">Earned</p>
         </div>
       </div>

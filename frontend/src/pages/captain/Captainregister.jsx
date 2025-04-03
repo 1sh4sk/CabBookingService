@@ -90,44 +90,15 @@ function CaptainRegister() {
         toast.success('Registration successful');
         localStorage.setItem('token', res.data.token);
         setCaptain(res.data.captain);
-        navigate('/captain-home')
+        if (res.data.captain.approval === "approved") {
+          navigate('/captain-home')
+        } else {
+          navigate('/approval-pending')
+        }
       }
 
       setFormData(initialState);
       setIsSubmitting(false);
-
-      // const { firstName, lastName, email, password, vehicleColor, vehiclePlate, vehicleCapacity, vehicleType, agreeTerms, vehicleName } = formData;
-
-      // const userData = {
-      //   fullname: {
-      //     firstname: firstName,
-      //     lastname: lastName,
-      //   },
-      //   email,
-      //   password,
-      //   vehicle: {
-      //     vehiclename: vehicleName,
-      //     color: vehicleColor,
-      //     plate: vehiclePlate,
-      //     capacity: vehicleCapacity,
-      //     vehicletype: vehicleType,
-      //   },
-      //   agreeTerms
-      // }
-
-      // console.log(userData);
-
-
-      // const res = await registerCaptain(userData);
-      // console.log(res.data);
-      // if (res.status === 201) {
-      //   toast.success('Registration successful');
-      //   localStorage.setItem('token', res.data.token);
-      //   setCaptain(res.data.captain);
-      //   navigate('/captain-home')
-      // }
-
-      // setFormData(initialState);
 
     } catch (error) {
       if (error.status === 409) {

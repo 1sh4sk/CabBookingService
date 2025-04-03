@@ -4,6 +4,10 @@ export const getCountApi = () => {
     return api.get("/admin/counts");
 }
 
+export const adminLogin = (data) => {
+    return api.post("/admin/login", data);
+}
+
 export const getUsersApi = () => {
     return api.get("/admin/users");
 }

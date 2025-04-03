@@ -49,7 +49,7 @@ const ManageUsers = () => {
         {loading ? (
             <p className="text-gray-500 mt-4">Loading users...</p>
         ) : (
-            <div className="mt-4 overflow-hidden rounded-lg border border-yellow-500">
+            <div className="mt-6 overflow-hidden rounded-lg border border-yellow-500">
                 <table className="w-full">
                     <thead>
                         <tr className="bg-yellow-500 text-white">

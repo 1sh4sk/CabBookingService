@@ -61,6 +61,7 @@ const ManageCaptains = () => {
                                 <th className="p-2 border-r">Email</th>
                                 <th className="p-2 border-r w-64">Vehicle Info</th>
                                 <th className="p-2 border-r w-62">Proofs</th>
+                                <th className="p-2 border-r w-64">Approval Status</th>
                                 <th className="p-2">Action</th>
                             </tr>
                         </thead>
@@ -116,6 +117,9 @@ const ManageCaptains = () => {
                                                 />
                                                 <p className="text-xs">Vehicle image</p>
                                             </div>
+                                        </td>
+                                        <td className="p-2 border-r border-yellow-500">
+                                            {captain.approval}
                                         </td>
                                         <td className="p-2">
                                             <button

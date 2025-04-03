@@ -30,7 +30,11 @@ const CaptainLogin = () => {
         toast.success('Login successful');
         localStorage.setItem('token', res.data.token);
         setCaptain(res.data.checkEmail);
-        navigate('/captain-home')
+        if (res.data.checkEmail.approval === "approved") {
+          navigate('/captain-home')
+        } else {
+          navigate('/approval-pending')
+        }
       }
 
       setFormData(initialState);

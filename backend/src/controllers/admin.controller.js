@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const userModel = require('../models/user.model');
 const captainModel = require('../models/captain.model');
 const sendApprovalEmail = require('../utils/mailsender');
+const { generatortoken } = require('../middleware/tokengen');
 
 
 // create admin
@@ -57,11 +58,24 @@ const loginAdmin = async (req, res) => {
 
         if (!checkpassword) return res.status(409).json({ message: "Password invalid" });
 
-        res.json({ admindetails: checkEmail })
+        let token = generatortoken(email);
+
+        res.json({ token, admindetails: checkEmail });
     }
     catch (error) {
         return res.status(500).json({ error: error.message });
     }
+}
+
+const logoutAdmin = async (req, res) => {
+    res.clearCookie('token')
+    const token = req.cookies?.token || req.headers.authorization.split(' ')[1];
+    const existingToken = await blacklistTokenModel.findOne({ token })
+    if (existingToken) {
+        return res.status(200).json({ message: 'Already logged out' })
+    }
+    await blacklistTokenModel.create({ token })
+    res.status(200).json({ message: 'logged Out' })
 }
 
 //getcounts of users and captain

@@ -1,11 +1,12 @@
 import { Routes, Route } from "react-router";
 import { DriverDetail, Home, MakePayment, Registeruser, UserDriver, UserHome, UserHomeLayout, UserLogin, UserProtectedWrapper, UserSelect } from "../pages/user";
-import { CaptainLogin, CaptainProtectedWrapper, Captainregister, DriverDashboard, FinishRide } from "../pages/captain";
+import { CaptainApproval, CaptainLogin, CaptainProtectedWrapper, Captainregister, DriverDashboard, FinishRide } from "../pages/captain";
 import CaptainHomeLayout from "../pages/captain/CaptainHomeLayout";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import Error from "./home/Error";
 import AdminLoginForm from "../pages/admin/AdminLogin";
 import { AdminDashboard, AdminDashboardLayout, CaptainApprovals, ManageCaptains, ManageUsers } from "../pages/admin";
+import AdminProtectedWrapper from "../pages/admin/AdminProtectedWrapper";
 
 const RouterComponent = () => {
     return <div>
@@ -35,17 +36,20 @@ const RouterComponent = () => {
                     <Route path="/captain-home" element={<DriverDashboard />} />
                     <Route path="/ride-complete" element={<FinishRide />} />
                 </Route>
+                <Route path="/approval-pending" element={<CaptainApproval />} />
             </Route>
 
 
             {/* admin routes */}
             <Route path="/admin-login" element={<AdminLoginForm />} />
             {/* <Route index path="/admin-dashboardd" element={<AdminDashboard />} /> */}
-            <Route element={<AdminDashboardLayout />}>
-                <Route index path="/admin/dashboard" element={<AdminDashboard />} />
-                <Route path="/admin/manage-users" element={<ManageUsers />} />
-                <Route path="/admin/manage-captains" element={<ManageCaptains />} />
-                <Route path="/admin/captain-approvals" element={<CaptainApprovals />} />
+            <Route element={<AdminProtectedWrapper />}>
+                <Route element={<AdminDashboardLayout />}>
+                    <Route index path="/admin/dashboard" element={<AdminDashboard />} />
+                    <Route path="/admin/manage-users" element={<ManageUsers />} />
+                    <Route path="/admin/manage-captains" element={<ManageCaptains />} />
+                    <Route path="/admin/captain-approvals" element={<CaptainApprovals />} />
+                </Route>
             </Route>
 
 
