@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { createAdmin, loginAdmin, getCounts, getAllUsers, deleteUser, getAllCaptains, deleteCaptain, approveCaptain, getPendingCaptains } = require('../controllers/admin.controller');
+const { createAdmin, loginAdmin, getCounts, getAllUsers, deleteUser, getAllCaptains, deleteCaptain, logoutAdmin,approveCaptain, getPendingCaptains } = require('../controllers/admin.controller');
 const { body } = require('express-validator');
 const captainModel = require('../models/captain.model');
 const { adminValidateToken } = require('../middleware/tokengen');
@@ -36,6 +36,7 @@ router.get("/captaipending",adminValidateToken, async (req, res) => {
 router.put("/captains/approve",adminValidateToken, approveCaptain);
 
 router.delete("/captainsdelete",adminValidateToken, deleteCaptain);
+router.get('/logout', adminValidateToken,logoutAdmin)
  
 
 module.exports = router;
