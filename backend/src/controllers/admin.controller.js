@@ -95,7 +95,7 @@ const getAllUsers = async (req, res) => {
 //delete users
 const deleteUser = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.query;
         const deletedUser = await userModel.findByIdAndDelete(id);
 
         if (!deletedUser) {
