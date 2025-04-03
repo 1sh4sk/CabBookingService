@@ -270,4 +270,3 @@ function CaptainRegister() {
 }
 
 export default CaptainRegister;
-
