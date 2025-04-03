@@ -10,13 +10,16 @@ const ManageUsers = () => {
 
     const fetchUsers = async () => {
         res = await getUsersApi();
+        console.log(res.data);
         return res.data;
     }
 
     useEffect(() => {
         try {
-            const userData = fetchUsers();
-            console.log(userData);
+            // const userData = fetchUsers();
+
+            fetchUsers();
+            // console.log(userData);
         } catch (error) {
             console.log(error);
         }
