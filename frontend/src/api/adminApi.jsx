@@ -1,44 +1,94 @@
 import api from "./api"
 
 export const getCountApi = () => {
-    return api.get("/admin/counts");
+    const token = localStorage.getItem("token");
+
+    return api.get("/admin/counts", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
 }
 
 export const adminLogin = (data) => {
     return api.post("/admin/login", data);
 }
 
+export const adminLogout = () => {
+    const token = localStorage.getItem("token");
+
+    return api.get("/admin/logout", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
 export const getUsersApi = () => {
-    return api.get("/admin/users");
+    const token = localStorage.getItem("token");
+
+    return api.get("/admin/users", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
 }
 
 export const deleteUserApi = (id) => {
+    const token = localStorage.getItem("token");
+
     return api.delete(`/admin/usersdelete/`, {
         params: {
             id
+        },
+        headers: {
+            Authorization: `Bearer ${token}`
         }
     });
 }
 
 export const getCaptainsApi = () => {
-    return api.get("/admin/captains")
+    const token = localStorage.getItem("token");
+
+    return api.get("/admin/captains", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 }
 
 export const deleteCaptain = (id) => {
+    const token = localStorage.getItem("token");
+
     return api.delete(`/admin/captainsdelete/`, {
         params: {
             id
+        },
+        headers: {
+            Authorization: `Bearer ${token}`
         }
     });
 }
 
 export const getPendingCaptains = () => {
-    return api.get("/admin/captaipending")
+    const token = localStorage.getItem("token");
+
+    return api.get("/admin/captaipending", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 }
 
 export const getCaptainApproval = (id) => {
-    console.log(id)
-    return api.put("/admin/captains/approve", null, { params: { id } })
+    const token = localStorage.getItem("token");
+
+    return api.put("/admin/captains/approve", null, {
+        params: { id },
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 }
 
 

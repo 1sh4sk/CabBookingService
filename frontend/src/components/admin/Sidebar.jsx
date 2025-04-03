@@ -2,10 +2,28 @@ import { faBars, faCar, faClipboardCheck, faHome, faSignOutAlt, faUserFriends } 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router";
+import { adminLogout } from "../../api/adminApi";
+import { toast } from "react-toastify";
 
 const Sidebar = () => {
 
     const [isOpen, setIsOpen] = useState(true);
+    const navigate = useNavigate()
+
+    const handleLogout = async () => {
+        try {
+            const res = await adminLogout();
+            if (res.status === 200) {
+                localStorage.removeItem('token');
+                navigate("/admin-login")
+                toast.success('Logged out successfully', { icon: 'success' });
+
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Something went wrong');
+        }
+    }
 
     return (
         <div className="flex">
@@ -56,7 +74,7 @@ const Sidebar = () => {
                     </NavLink>
 
                     <NavLink
-                        to="/logout"
+                        onClick={handleLogout}
                         className="flex items-center gap-3 p-3 mt-auto hover:bg-gray-700 rounded"
                     >
                         <FontAwesomeIcon icon={faSignOutAlt} className="w-6 h-6" />

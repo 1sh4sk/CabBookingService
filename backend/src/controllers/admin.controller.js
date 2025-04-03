@@ -7,6 +7,7 @@ const userModel = require('../models/user.model');
 const captainModel = require('../models/captain.model');
 const sendApprovalEmail = require('../utils/mailsender');
 const { generatortoken } = require('../middleware/tokengen');
+const blacklistTokenModel = require('../models/blacklistToken.model');
 
 
 // create admin
