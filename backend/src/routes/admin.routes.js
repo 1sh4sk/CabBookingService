@@ -14,7 +14,7 @@ router.post('/createadmin', [
 router.post('/login', [
     body('email').isEmail().withMessage('Invalid Email'),
     body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
-],adminValidateToken
+]
     , loginAdmin)
 
 // to get counts of users and captain
