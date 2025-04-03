@@ -22,7 +22,7 @@ router.get("/counts", getCounts);
 
 // to get all user data 
 router.get("/users", getAllUsers);
-router.delete("/users/:id", deleteUser);
+router.delete("/usersdelete", deleteUser);
 
 // to get all captain data
 router.get("/captains", getAllCaptains);

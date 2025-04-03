@@ -5,9 +5,9 @@ import AdminHeader from "../../components/admin/AdminHeader";
 const AdminDashboardLayout = () => {
     return <div className="flex w-screen h-screen">
         <Sidebar />
-        <div className="flex flex-col flex-1">
+        <div className="h-full w-auto  flex flex-col flex-1 ">
             <AdminHeader />
-            <div className="p-3">
+            <div className=" h-[90%] overflow-hidden p-3  ">
                 <Outlet />
             </div>
         </div>

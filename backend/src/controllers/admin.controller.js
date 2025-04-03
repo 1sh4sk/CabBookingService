@@ -96,8 +96,9 @@ const getAllUsers = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const { id } = req.query;
+        console.log(id);
         const deletedUser = await userModel.findByIdAndDelete(id);
-
+        console.log(deletedUser);
         if (!deletedUser) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -155,7 +156,6 @@ const deleteCaptain = async (req, res) => {
 const approveCaptain = async (req, res) => {
 
     try {
-        console.log(req.query.id);
 
         const captain = await captainModel.findByIdAndUpdate(
             req.query.id,

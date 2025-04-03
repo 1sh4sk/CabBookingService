@@ -24,7 +24,7 @@ const Sidebar = () => {
 
                 <nav className="flex flex-col gap-4">
                     <NavLink
-                        to="/admin"
+                        to="/admin/dashboard"
                         className="flex items-center gap-3 p-3 hover:bg-gray-700 rounded"
                     >
                         <FontAwesomeIcon icon={faHome} className="w-6 h-6" />
