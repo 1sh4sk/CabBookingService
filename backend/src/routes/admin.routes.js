@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { createAdmin, loginAdmin, getCounts, getAllUsers, deleteUser, getAllCaptains, deleteCaptain, approveCaptain, getPendingCaptains } = require('../controllers/admin.controller');
 const { body } = require('express-validator');
 const captainModel = require('../models/captain.model');
+const { adminValidateToken } = require('../middleware/tokengen');
 const router = Router();
 
 router.post('/createadmin', [
