@@ -18,6 +18,10 @@ const adminSchema = new Schema({
         type: String,
         default: 'admin'
     },
+    earnings: {
+        type: Number,
+        default: 0
+    },
 })
 
 const adminModel = model('admin', adminSchema)

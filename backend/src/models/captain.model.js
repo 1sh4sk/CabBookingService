@@ -93,6 +93,10 @@ const captianSchema = new Schema({
         type: String,
         required: true
     },
+    earnings: {
+        type: Number,
+        default: 0
+    }
 }, { timestamps: true })
 
 captianSchema.index({ location: "2dsphere" });

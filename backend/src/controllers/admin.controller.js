@@ -70,10 +70,18 @@ const getCounts = async (req, res) => {
     try {
         const totalUsers = await userModel.countDocuments();
         const totalCaptains = await captainModel.countDocuments();
-
+        const totalEarnings = await adminModel.aggregate([
+            {
+                $group: {
+                    _id: null, // Groups all records together
+                    totalEarnings: { $sum: "$earnings" } // Sum of all "earnings"
+                }
+            }
+        ]);
         return res.status(200).json({
             totalUsers,
-            totalCaptains
+            totalCaptains,
+            totalEarnings: totalEarnings.length > 0 ? totalEarnings[0].totalEarnings : 0 // Check if there are any earnings
         });
     }
     catch (error) {
