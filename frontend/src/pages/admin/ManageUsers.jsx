@@ -1,20 +1,26 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { getUsersApi } from "../../api/adminApi";
 
 const ManageUsers = () => {
 
+
     const [users, setUsers] = useState([]);
 
+    const fetchUsers = async () => {
+        res = await getUsersApi();
+        return res.data;
+    }
+
     useEffect(() => {
-        // Simulated API Call
-        setTimeout(() => {
-            setUsers([
-                { id: 1, name: "John Doe", email: "john@example.com", phone: "1234567890" },
-                { id: 2, name: "Jane Smith", email: "jane@example.com", phone: "9876543210" },
-            ]);
-        }, 1000);
-    }, []);
+        try {
+            const userData = fetchUsers();
+            console.log(userData);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [users]);
 
 
     return <div className="p-4">
