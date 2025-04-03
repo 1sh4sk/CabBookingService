@@ -7,7 +7,6 @@ const bcrypt = require("bcrypt");
 const { generatortoken } = require("../middleware/tokengen");
 const blacklistTokenModel = require("../models/blacklistToken.model");
 
-
 // Captain Register
 const registerCaptain = async (req, res, next) => {
     const error = validationResult(req);
@@ -16,25 +15,7 @@ const registerCaptain = async (req, res, next) => {
         return res.status(400).json({ error: error.array() })
     }
 
-    const { email, password } = req.body;
-    const files = req.files;
-
-    // Parse JSON fields
-    const fullname = JSON.parse(req.body.fullname);
-    const vehicle = JSON.parse(req.body.vehicle);
-
-
-    const requiredFiles = ["license_image", "vehicle_image", "rc_book_image", "driver_image"];
-
-    // Check if all required images are uploaded
-    for (let file of requiredFiles) {
-
-
-        if (!req.files || !req.files[file]) {
-            return res.status(400).json({ message: `Missing required file: ${file}` });
-        }
-    }
-
+    const { fullname, email, password, vehicle } = req.body;
     const checkEmail = await captainModel.exists({ email });
 
     if (checkEmail) return res.status(409).json({ message: "email already Exists" });
@@ -45,7 +26,7 @@ const registerCaptain = async (req, res, next) => {
         {
 
             firstname: fullname.firstname,
-            lastname: fullname.lastname,
+            lastname: fullname.lastname || "",
             email,
             password: hass,
             vehiclename: vehicle.vehiclename,
@@ -53,10 +34,7 @@ const registerCaptain = async (req, res, next) => {
             plate: vehicle.plate,
             capacity: vehicle.capacity,
             vehicletype: vehicle.vehicletype,
-            license_image: files["license_image"][0]?.path,
-            vehicle_image: files["vehicle_image"][0]?.path,
-            rc_book_image: files["rc_book_image"][0]?.path,
-            driver_image: files["driver_image"][0]?.path,
+
         }
     )
 
@@ -70,12 +48,12 @@ const registerCaptain = async (req, res, next) => {
 // login captain
 const loginCaptain = async (req, res, next) => {
     try {
-
-
+      
+        
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.status(400).json({ error: error.array() })
+            return res.status(400).json({ error: error.array() }) 
         }
 
         const { email, password } = req.body;
@@ -100,7 +78,7 @@ const loginCaptain = async (req, res, next) => {
 const getCaptainProfile = async (req, res) => {
 
     try {
-
+        
         if (!req.captain) {
             return res.status(401).json({ message: "Unauthorized" });
         }
@@ -113,34 +91,7 @@ const getCaptainProfile = async (req, res) => {
 };
 
 
-<<<<<<< HEAD
-// const logoutCaptain = async (req, res) => {
-
-
-//     res.clearCookie('token')
-
-//     //This removes the cookie named 'token' from the user's browser.
-//     //If authentication is stored in a cookie, this clears it, effectively logging the user out.
-//     const token = req.cookies?.token || req.headers.authorization.split(' ')[1]
-
-//     const existingToken = await blacklistTokenModel.findOne({ token })
-//     if (existingToken) {
-//         return res.status(200).json({ message: 'Already logged out' })
-//     }
-
-//     await blacklistTokenModel.create({ token })
-
-//     // Adds the token to a "blacklist" database table (blacklistTokenModel).
-//     // This ensures that even if the token is still valid, it cannot be used again.
-//     // await is used because it's an asynchronous database operation.
-
-//     res.status(200).json({ message: 'logged Out' })
-// }
-
-//
-=======
 // captain logout
->>>>>>> 06a16654e8206f682c3d2cd36b365c7b86fb3dda
 
 const logoutCaptain = async (req, res) => {                  // captain logout
     try {
