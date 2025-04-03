@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const userModel = require('../models/user.model');
 const captainModel = require('../models/captain.model');
 const sendApprovalEmail = require('../utils/mailsender');
+const { generatortoken } = require('../middleware/tokengen');
 
 
 // create admin
@@ -56,8 +57,8 @@ const loginAdmin = async (req, res) => {
         const checkpassword = await bcrypt.compare(password, checkEmail.password)
 
         if (!checkpassword) return res.status(409).json({ message: "Password invalid" });
-
-        res.json({ admindetails: checkEmail })
+            let token = generatortoken(checkEmail)
+        res.json({ admindetails: checkEmail , token:token})
     }
     catch (error) {
         return res.status(500).json({ error: error.message });
@@ -91,7 +92,7 @@ const getCounts = async (req, res) => {
 
 //get users data
 const getAllUsers = async (req, res) => {
-    try {
+    try { 
         const users = await userModel.find(); // Fetch all users
         return res.status(200).json(users);
     }
@@ -194,6 +195,34 @@ const approveCaptain = async (req, res) => {
 
 
 
+const logoutAdmin = async (req, res) => {                  // admin logout
+    try {
+       
+
+        // Extract token from cookies or Authorization header
+        const authHeader = req.headers.authorization || "";
+        const token = req.cookies?.token || authHeader.split(" ")[1] || null;
+        res.clearCookie('token'); // Clear cookie
+        if (!token) {
+            return res.status(400).json({ message: "No token provided" });
+        }
+
+        // Check if token is already blacklisted
+        const existingToken = await blacklistTokenModel.findOne({ token });
+        if (existingToken) {
+            return res.status(200).json({ message: "Already logged out" });
+        }
+
+        // Add token to blacklist
+        await blacklistTokenModel.create({ token });
+
+        res.status(200).json({ message: "Logged Out" });
+    } catch (error) {
+        res.status(500).json({ message: "Logout failed", error: error.message });
+    }
+};
 
 
-module.exports = { createAdmin, loginAdmin, getCounts, getAllUsers, deleteUser, getAllCaptains, deleteCaptain, approveCaptain };
+
+
+module.exports = { createAdmin, loginAdmin, getCounts, getAllUsers, deleteUser, getAllCaptains, deleteCaptain, logoutAdmin,approveCaptain };
