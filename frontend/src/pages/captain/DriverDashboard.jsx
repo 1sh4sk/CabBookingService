@@ -8,6 +8,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import RideRequest from "./RideRequest";
 import { confirmRideApi } from "../../api/rideApi";
+import { useLocation } from "react-router";
 
 const DriverDashboard = () => {
 
@@ -19,6 +20,11 @@ const DriverDashboard = () => {
 
   const { captain } = useContext(captainDataContext)
   const { sendMessage, receiveMessage } = useContext(SocketContext);
+  const location = useLocation();
+
+  // useEffect(() => {
+  //   fetchCaptainData();
+  // }, [location.search]);
 
 
   useEffect(() => {

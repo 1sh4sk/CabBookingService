@@ -15,7 +15,7 @@ const FinishRide = () => {
       const res = await finishRideApi(rideDetails._id);
 
       if (res.status === 200) {
-        navigate('/captain-home');
+        navigate('/captain-home?refresh=true');
       }
     } catch (error) {
       console.log(error);
