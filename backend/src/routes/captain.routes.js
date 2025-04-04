@@ -6,7 +6,7 @@ const router = Router()
 const { body } = require("express-validator");
 
 const { validateToken, captainValidateToken } = require("../middleware/tokengen");
-const { registerCaptain, loginCaptain, getCaptainProfile, logoutCaptain } = require("../controllers/captain.controller");
+const { registerCaptain, loginCaptain, getCaptainProfile, logoutCaptain,getCaptainProfiles } = require("../controllers/captain.controller");
 
 
 router.post('/register',
@@ -55,6 +55,7 @@ router.post('/login', [
 ], loginCaptain)
 
 router.get('/profile', captainValidateToken, getCaptainProfile)
+router.get('/captainprofile' , captainValidateToken, getCaptainProfiles)
 
 router.get('/logout', captainValidateToken, logoutCaptain)
 
