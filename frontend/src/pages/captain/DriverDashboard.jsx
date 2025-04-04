@@ -9,6 +9,7 @@ import gsap from 'gsap'
 import RideRequest from "./RideRequest";
 import { confirmRideApi } from "../../api/rideApi";
 import { useLocation } from "react-router";
+import { getCaptainProfileApi } from "../../api/captainApi";
 
 const DriverDashboard = () => {
 
@@ -18,13 +19,24 @@ const DriverDashboard = () => {
   const ridePopupPanelRef = useRef(null)
   const rideConfirmPopupPanelRef = useRef(null);
 
-  const { captain } = useContext(captainDataContext)
+  const { captain, setCaptain } = useContext(captainDataContext)
   const { sendMessage, receiveMessage } = useContext(SocketContext);
   const location = useLocation();
 
-  // useEffect(() => {
-  //   fetchCaptainData();
-  // }, [location.search]);
+  useEffect(() => {
+    try {
+      const fetchData = async () => {
+        const res = await getCaptainProfileApi(captain._id);
+        setCaptain(res.data.captainProfiles);
+      }
+
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+
+
+  }, [location.search]);
 
 
   useEffect(() => {

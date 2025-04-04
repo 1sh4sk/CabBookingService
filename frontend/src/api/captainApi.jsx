@@ -32,3 +32,16 @@ export const captainProfile = () => {
         }
     })
 }
+
+export const getCaptainProfileApi = (id) => {
+    const token = localStorage.getItem('token');
+
+    return api.get('/captain/captainprofile', {
+        params: {
+            id,
+        },
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+} 
