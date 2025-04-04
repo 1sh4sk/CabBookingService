@@ -37,7 +37,7 @@ const MakePayment = () => {
             name: 'user',
             description: 'Test Transaction',
             order_id: order.id, // This is the order_id created in the backend
-            callback_url: 'http://localhost:7000/payment/paymentverification', // Your success URL
+            callback_url: `http://localhost:7000/payment/paymentverification?captainId=${rideDetail?.captain?._id}&fare=${order.amount}`, // Your success URL
             prefill: {
                 name: 'Gaurav Kumar',
                 email: 'gaurav.kumar@example.com',
