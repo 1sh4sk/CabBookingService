@@ -130,6 +130,15 @@ const loginCaptain = async (req, res, next) => {
 
 }
 
+const getCaptainProfiles=async(req,res)=>{
+    try {
+        const {id}= req.query
+        const captainProfiles = await captainModel.findById(id).select("-password");
+        res.status(200).json({ captainProfiles });
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
 // captain profile
 
 const getCaptainProfile = async (req, res) => {
@@ -178,7 +187,7 @@ const logoutCaptain = async (req, res) => {                  // captain logout
 };
 
 
-module.exports = { registerCaptain, loginCaptain, getCaptainProfile, logoutCaptain };
+module.exports = { registerCaptain, loginCaptain, getCaptainProfile, logoutCaptain,getCaptainProfiles };
 
 
 
