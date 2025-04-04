@@ -1,3 +1,5 @@
+
+
 import { faLocationArrow, faMapMarkerAlt, faMapPin, faPhoneVolume, faShieldAlt, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
@@ -37,7 +39,7 @@ const MakePayment = () => {
             name: 'user',
             description: 'Test Transaction',
             order_id: order.id, // This is the order_id created in the backend
-            callback_url: `http://localhost:7000/payment/paymentverification?captainId=${rideDetail?.captain?._id}&fare=${order.amount}`, // Your success URL
+            callback_url: ` http://localhost:7000/payment/paymentverification?captainId=${rideDetail?.captain?._id}&fare=${order.amount}`, // Your success URL
             prefill: {
                 name: 'Gaurav Kumar',
                 email: 'gaurav.kumar@example.com',
@@ -47,6 +49,7 @@ const MakePayment = () => {
                 color: '#F7B401'
             },
         };
+
 
         const razor = new window.Razorpay(options);
         razor.open()
@@ -90,19 +93,19 @@ const MakePayment = () => {
         <div className="mt-10 space-y-3">
             <div className='flex items-center gap-4 border-b pb-2'>
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="text-[#F7B401] text-2xl" />
-                <h1 className='font-medium text-base'>
+                <h1 className='font-medium text-base lg:font-sm xl:font-base'>
                     {rideDetail?.pickup}
                 </h1>
             </div>
             <div className='flex items-center gap-4 border-b pb-2'>
                 <FontAwesomeIcon icon={faMapPin} className="text-[#F7B401] text-2xl" />
-                <h1 className='font-medium text-base'>
+                <h1 className='font-medium text-base lg:font-sm xl:font-base'>
                     {rideDetail?.destination}
                 </h1>
             </div>
             <div className='flex items-center gap-4 pb-2'>
                 <FontAwesomeIcon icon={faWallet} className="text-[#F7B401] text-2xl" />
-                <h1 className='font-medium text-base'>
+                <h1 className='font-medium text-base lg:font-sm xl:font-base'>
                     ₹{rideDetail?.fare}
                 </h1>
             </div>

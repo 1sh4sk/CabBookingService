@@ -55,6 +55,7 @@ router.post('/login', [
 ], loginCaptain)
 
 router.get('/profile', captainValidateToken, getCaptainProfile)
+
 router.get('/logout', captainValidateToken, logoutCaptain)
 
 module.exports = router; 
