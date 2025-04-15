@@ -23,6 +23,7 @@ const CaptainLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
 
       const res = await loginCaptain(formData);

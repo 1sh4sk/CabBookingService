@@ -12,6 +12,8 @@ const CaptainProtectedWrapper = ({ children }) => {
 
 
     useEffect(() => {
+        console.log(token)
+
         if (!token) {
             navigate('/captain-login')
             return
@@ -39,7 +41,7 @@ const CaptainProtectedWrapper = ({ children }) => {
     }, [token])
 
 
-    return captain ? <Outlet /> : <Navigate to="/captain-login" />;
+    return token ? <Outlet /> : <Navigate to="/captain-login" />;
 };
 
 export default CaptainProtectedWrapper;
