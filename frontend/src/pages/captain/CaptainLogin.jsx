@@ -12,6 +12,8 @@ const CaptainLogin = () => {
   }
 
   const [formData, setFormData] = useState(initialState);
+  const [loading, setLoading] = useState(false);
+
 
   const navigate = useNavigate();
   const { setCaptain } = useContext(captainDataContext);
@@ -23,31 +25,31 @@ const CaptainLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
-
       const res = await loginCaptain(formData);
       if (res.status === 200) {
         toast.success('Login successful');
         localStorage.setItem('token', res.data.token);
         setCaptain(res.data.checkEmail);
         if (res.data.checkEmail.approval === "approved") {
-          navigate('/captain-home')
+          navigate('/captain-home');
         } else {
-          navigate('/approval-pending')
+          navigate('/approval-pending');
         }
       }
-
       setFormData(initialState);
-
     } catch (error) {
       if (error.status === 409) {
         toast.error(error?.response?.data?.message);
       } else {
         toast.error(error?.response?.data?.error[0]?.msg);
       }
+    } finally {
+      setLoading(false);
     }
   };
+
 
 
   return (
@@ -64,7 +66,21 @@ const CaptainLogin = () => {
           <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder="password" />
           <br />
 
-          <button type='submit' className="w-full bg-yellow-500 text-white py-2 rounded-lg mb-4">Login</button>
+          <button
+            type='submit'
+            className={`w-full py-2 rounded-lg mb-4 text-white ${loading ? 'bg-yellow-300 cursor-not-allowed' : 'bg-yellow-500'}`}
+            disabled={loading}
+          >
+            {loading ? (
+              <div className="flex justify-center items-center">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                Logging in...
+              </div>
+            ) : (
+              'Login'
+            )}
+          </button>
+
 
           <p className="text-black text-sm">Join a fleet?
             <Link to="/captain-register" className="text-yellow-500 cursor-pointer"> Register as a captain</Link></p>

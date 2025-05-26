@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { registerUser } from '../../api/userApi';
 import { useContext } from 'react';
@@ -19,6 +19,7 @@ function Registeruser() {
   };
 
   const [formData, setFormData] = useState(initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   const handleChange = (e) => {
@@ -29,8 +30,45 @@ function Registeruser() {
     });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const { firstName, lastName, email, password } = formData;
+
+  //     const userData = {
+  //       fullname: {
+  //         firstname: firstName,
+  //         lastname: lastName,
+  //       },
+  //       email,
+  //       password
+  //     }
+
+  //     console.log(userData);
+
+
+  //     const res = await registerUser(userData);
+  //     if (res.status === 201) {
+  //       toast.success('Registration successful');
+  //       localStorage.setItem('token', res.data.token);
+  //       setUser(res.data.user);
+  //       navigate('/home')
+  //     }
+
+  //     setFormData(initialState);
+
+  //   } catch (error) {
+  //     if (error.status === 409) {
+  //       toast.error(error?.response?.data?.message);
+  //     } else {
+  //       toast.error(error?.response?.data?.error[0]?.msg);
+  //     }
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // ✅ Start loading
     try {
       const { firstName, lastName, email, password } = formData;
 
@@ -41,29 +79,27 @@ function Registeruser() {
         },
         email,
         password
-      }
-
-      console.log(userData);
-
+      };
 
       const res = await registerUser(userData);
       if (res.status === 201) {
         toast.success('Registration successful');
         localStorage.setItem('token', res.data.token);
         setUser(res.data.user);
-        navigate('/home')
+        navigate('/home');
+        setFormData(initialState);
       }
-
-      setFormData(initialState);
-
     } catch (error) {
       if (error.status === 409) {
         toast.error(error?.response?.data?.message);
       } else {
-        toast.error(error?.response?.data?.error[0]?.msg);
+        toast.error(error?.response?.data?.error[0]?.msg || "Something went wrong");
       }
+    } finally {
+      setIsSubmitting(false); // ✅ Stop loading
     }
   };
+
 
   return (
     <div className="flex w-screen h-screen flex-col-reverse md:flex-col-reverse lg:flex-row gap-6">
@@ -82,6 +118,7 @@ function Registeruser() {
             value={formData.firstName}
             onChange={handleChange}
             required
+            disabled={isSubmitting} // ✅
           />
           <input
             type="text"
@@ -91,6 +128,7 @@ function Registeruser() {
             value={formData.lastName}
             onChange={handleChange}
             required
+            disabled={isSubmitting} // ✅
           />
         </div>
 
@@ -102,6 +140,7 @@ function Registeruser() {
           value={formData.email}
           onChange={handleChange}
           required
+          disabled={isSubmitting} // ✅
         />
 
         <label>Enter password</label>
@@ -112,10 +151,11 @@ function Registeruser() {
           value={formData.password}
           onChange={handleChange}
           required
+          disabled={isSubmitting} // ✅
         />
 
-        <button className=" mt-3 w-full bg-yellow-500 text-white font-bold py-2 rounded-lg mb-4 hover:bg-yellow-600 transition">
-          Sign Up
+        <button disabled={isSubmitting} className=" mt-3 w-full bg-yellow-500 text-white font-bold py-2 rounded-lg mb-4 hover:bg-yellow-600 transition">
+          {isSubmitting ? 'Signing up...' : 'Sign Up'}
         </button>
 
         <p className="text-black text-sm text-center">
