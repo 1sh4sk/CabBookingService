@@ -1,5 +1,5 @@
 import React from "react";
-import { Choose } from "../../assets";
+import { Choose, Symboll } from "../../assets";
 
 const TaxiTemplate = () => {
   return (
@@ -37,7 +37,7 @@ const TaxiTemplate = () => {
           {/* Feature Card */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 p-8 md:p-4 bg-white rounded-lg shadow-md transition-transform hover:scale-105">
             <div className="w-12 h-12 flex justify-center items-center">
-              <img src={Symbol} alt="symbol" className="w-10" />
+              <img src={Symboll} alt="symbol" className="w-10" />
             </div>
             <div className="text-center sm:text-left">
               <h3 className="text-lg sm:text-xl font-semibold">Safety First</h3>
@@ -51,7 +51,7 @@ const TaxiTemplate = () => {
           {/* Feature Card */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 p-8 md:p-4 bg-white rounded-lg shadow-md transition-transform hover:scale-105">
             <div className="w-12 h-12 flex justify-center items-center">
-              <img src={Symbol} alt="symbol" className="w-10" />
+              <img src={Symboll} alt="symbol" className="w-10" />
             </div>
             <div className="text-center sm:text-left">
               <h3 className="text-lg sm:text-xl font-semibold">Affordable Prices</h3>
