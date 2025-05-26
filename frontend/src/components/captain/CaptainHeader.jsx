@@ -7,8 +7,10 @@ import { logoutCaptain } from "../../api/captainApi";
 const CaptainHeader = () => {
 
     const navigate = useNavigate();
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
 
     const handleLogout = async () => {
+        setIsLoggingOut(true);
         try {
             const res = await logoutCaptain();
             if (res.status === 200) {
@@ -20,6 +22,8 @@ const CaptainHeader = () => {
         } catch (error) {
             console.log(error);
             toast.error('Something went wrong');
+        } finally {
+            setIsLoggingOut(false);
         }
     }
 
@@ -27,7 +31,17 @@ const CaptainHeader = () => {
         <Link to='/captain-home' className="flex items-center gap-2">
             <h1 className='font-epilogue font-bold text-white text-lg md:text-2xl'>TripMate</h1>
         </Link>
-        <FontAwesomeIcon icon={faRightFromBracket} className="text-white text-2xl lg:text-3xl  cursor-pointer" onClick={handleLogout} />
+        {
+            isLoggingOut ? (
+                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+                <FontAwesomeIcon
+                    icon={faRightFromBracket}
+                    className="text-white text-2xl lg:text-3xl cursor-pointer"
+                    onClick={handleLogout}
+                />
+            )
+        }
     </header>
         ;
 };

@@ -23,6 +23,12 @@ const DriverDashboard = () => {
   const { sendMessage, receiveMessage } = useContext(SocketContext);
   const location = useLocation();
 
+  const fetchData = async () => {
+    const res = await getCaptainProfileApi('73tr8fiu3gf3ui3f34uif34g');
+    setCaptain(res.data.captainProfiles);
+  }
+
+  fetchData();
   useEffect(() => {
     try {
       const fetchData = async () => {

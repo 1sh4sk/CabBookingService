@@ -12,6 +12,7 @@ const UserLogin = () => {
   }
 
   const [formData, setFormData] = useState(initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
   const { setUser } = useContext(userDataContext);
@@ -23,24 +24,25 @@ const UserLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
-
       const res = await loginUser(formData);
       if (res.status === 200) {
         toast.success('Login successful');
         localStorage.setItem('token', res.data.token);
         setUser(res.data.user);
-        navigate('/home')
+        navigate('/home');
       }
 
       setFormData(initialState);
-
     } catch (error) {
-      if (error.status === 409) {
+      if (error?.response?.status === 409) {
         toast.error(error?.response?.data?.message);
       } else {
-        toast.error(error?.response?.data?.error[0]?.msg);
+        toast.error(error?.response?.data?.error?.[0]?.msg || "Login failed");
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -75,8 +77,8 @@ const UserLogin = () => {
             onChange={handleChange}
           />
 
-          <button type="submit" className="w-full bg-yellow-500 text-white py-2 rounded-lg mb-3 text-base">
-            Login
+          <button type="submit" disabled={isSubmitting} className="w-full bg-yellow-500 text-white py-2 rounded-lg mb-3 text-base">
+            {isSubmitting ? "Logging in..." : "Login"}
           </button>
         </form>
 
