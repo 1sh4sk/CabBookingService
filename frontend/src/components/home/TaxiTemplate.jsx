@@ -1,4 +1,5 @@
 import React from "react";
+import { Choose } from "../../assets";
 
 const TaxiTemplate = () => {
   return (
@@ -8,7 +9,7 @@ const TaxiTemplate = () => {
       <div className="w-full lg:w-1/2 flex justify-center mb-8 md:mb-0">
         <div className="relative">
           <img
-            src="../src/assets/choose.png"
+            src={Choose}
             alt="Taxi Illustration"
             className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] transition-transform duration-300 hover:scale-105"
           />
@@ -36,7 +37,7 @@ const TaxiTemplate = () => {
           {/* Feature Card */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 p-8 md:p-4 bg-white rounded-lg shadow-md transition-transform hover:scale-105">
             <div className="w-12 h-12 flex justify-center items-center">
-              <img src="/src/assets/symbol.png" alt="symbol" className="w-10" />
+              <img src={Symbol} alt="symbol" className="w-10" />
             </div>
             <div className="text-center sm:text-left">
               <h3 className="text-lg sm:text-xl font-semibold">Safety First</h3>
@@ -50,7 +51,7 @@ const TaxiTemplate = () => {
           {/* Feature Card */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 p-8 md:p-4 bg-white rounded-lg shadow-md transition-transform hover:scale-105">
             <div className="w-12 h-12 flex justify-center items-center">
-              <img src="/src/assets/symbol.png" alt="symbol" className="w-10" />
+              <img src={Symbol} alt="symbol" className="w-10" />
             </div>
             <div className="text-center sm:text-left">
               <h3 className="text-lg sm:text-xl font-semibold">Affordable Prices</h3>

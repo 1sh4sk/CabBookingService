@@ -2,6 +2,7 @@
 import React from 'react';
 import './Error.css';
 import { useNavigate } from 'react-router';
+import { TaxiCarGif } from '../../assets';
 
 const Error = () => {
 
@@ -33,7 +34,7 @@ const Error = () => {
 
       {/* Road and Car */}
       <div className="taxi bottom-2">
-        <img src='/src/assets/taxicar.gif' alt='car' className="w-28" />
+        <img src={TaxiCarGif} alt='car' className="w-28" />
       </div>
       <div className="road w-full absolute bottom-0 h-[50px] bg-gray-800 z-0 overflow-hidden">
 

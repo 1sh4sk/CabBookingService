@@ -1,5 +1,6 @@
 import React from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { ArrowGold, IntercityService, RideShare, Serv1, Serv2, Serv3, Serv4, Taxireserved, TaxiSharing } from '../../assets';
 
 const Population = () => {
   return (
@@ -29,7 +30,7 @@ const Population = () => {
             </button>
             {/* Golden arrow image */}
             <img
-              src="/src/assets/arrow-gold.png.webp"
+              src={ArrowGold}
               alt="Golden Arrow"
               className="absolute top-[-30px] left-[50%] transform -translate-x-1/2 w-20 sm:w-24 md:w-28 hidden lg:block"
               style={{ top: '50px', left: '70%' }}
@@ -42,7 +43,7 @@ const Population = () => {
           {/* Service 1 - Ride Sharing */}
           <div className="p-4 flex items-center space-x-4">
             <div className="bg-yellow-500 p-3 rounded-full flex items-center justify-center">
-              <img src='/src/assets/rideshare.png' className='w-15' />
+              <img src={RideShare} className='w-15' />
             </div>
             <div>
               <h1 className="text-lg md:text-xl font-semibold">Ride Sharing</h1>
@@ -53,8 +54,8 @@ const Population = () => {
             <button className="bg-black text-white px-3 py-2 rounded-lg flex items-center w-full sm:w-auto justify-center cursor-pointer">
               View Details <span className="ml-2">➜</span>
             </button>
-            <img src="/src/assets/serv1.png.webp"
-              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block" />
+            <img src={Serv1}
+              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60  hidden md:block" />
           </div>
 
           <hr className="col-span-1 sm:col-span-2 border-gray-300 border-t-2 my-2" />
@@ -62,7 +63,7 @@ const Population = () => {
           {/* Service 2 - Taxi Sharing */}
           <div className="p-4 flex items-center space-x-4">
             <div className="bg-yellow-500 p-3 rounded-full flex items-center justify-center">
-              <img src='/src/assets/Taxisharing.png' className='w-15' />
+              <img src={TaxiSharing} className='w-15' />
             </div>
             <div>
               <h1 className="text-lg md:text-xl font-semibold">Taxi Sharing</h1>
@@ -73,8 +74,8 @@ const Population = () => {
             <button className="bg-black text-white px-3 py-2 rounded-lg flex items-center w-full sm:w-auto justify-center cursor-pointer">
               View Details <span className="ml-2">➜</span>
             </button>
-            <img src="/src/assets/serv2.png.webp"
-              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block" />
+            <img src={Serv2}
+              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60  hidden md:block" />
           </div>
 
           <hr className="col-span-1 sm:col-span-2 border-gray-300 border-t-2 my-2" />
@@ -82,7 +83,7 @@ const Population = () => {
           {/* Service 3 - Taxi Reserved */}
           <div className="p-4 flex items-center space-x-4">
             <div className="bg-yellow-500 p-3 rounded-full flex items-center justify-center">
-              <img src='/src/assets/Taxireserved.png' className='w-15' />
+              <img src={Taxireserved} className='w-15' />
             </div>
             <div>
               <h1 className="text-lg md:text-xl font-semibold">Taxi Reserved</h1>
@@ -93,8 +94,8 @@ const Population = () => {
             <button className="bg-black text-white px-3 py-2 rounded-lg flex items-center w-full sm:w-auto justify-center cursor-pointer">
               View Details <span className="ml-2">➜</span>
             </button>
-            <img src="/src/assets/serv3.png.webp"
-              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block " />
+            <img src={Serv3}
+              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60 hidden md:block " />
           </div>
 
           <hr className="col-span-1 sm:col-span-2 border-gray-300 border-t-2 my-2" />
@@ -102,7 +103,7 @@ const Population = () => {
           {/* Service 4 - Intercity Service */}
           <div className="p-4 flex items-center space-x-4">
             <div className="bg-yellow-500 p-3 rounded-full flex items-center justify-center">
-              <img src='/src/assets/IntercityService.png' className='w-15' />
+              <img src={IntercityService} className='w-15' />
             </div>
             <div>
               <h1 className="text-lg md:text-xl font-semibold">Intercity Service</h1>
@@ -113,8 +114,8 @@ const Population = () => {
             <button className="bg-black text-white px-3 py-2 rounded-lg flex items-center w-full sm:w-auto justify-center cursor-pointer">
               View Details <span className="ml-2">➜</span>
             </button>
-            <img src="/src/assets/serv4.png.webp"
-              alt="Taxi Service" className="w-full sm:w-50 h-30 sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block" />
+            <img src={Serv4}
+              alt="Taxi Service" className="w-full sm:w-50 h-30 sm:object-cover md:w-30  lg:w-60 hidden md:block" />
           </div>
 
         </div>

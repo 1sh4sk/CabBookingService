@@ -40,7 +40,7 @@ function Confirm({ setConfirmRidePopupPanel, ride }) {
       <div className="bg-[#F8F6F1] flex items-center justify-between rounded-xl shadow-lg mb-4 p-5">
         <div className="flex items-center">
           <img
-            src="/src/assets/Maskgroup.png"
+            src={"/src/assets/Maskgroup.png"}
             alt="Rider"
             className="w-12 h-12 rounded-full mr-4"
           />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { TaxiCarGif } from '../../assets';
 
 const CaptainApproval = () => {
   return (
@@ -14,7 +15,7 @@ const CaptainApproval = () => {
       </div>
 
       <div className="taxi bottom-2">
-        <img src='/src/assets/taxicar.gif' alt='car' className="w-28" />
+        <img src={TaxiCarGif} alt='car' className="w-28" />
       </div>
 
       <div className="road w-full absolute bottom-0 h-[50px] bg-gray-900 shadow-inner">

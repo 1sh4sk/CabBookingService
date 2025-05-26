@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { Front, Top } from "../../assets";
 
 const WhyChooseUs = () => {
   const features = [
@@ -19,12 +20,12 @@ const WhyChooseUs = () => {
       {/* First Row - Images */}
       <div className="flex flex-col md:flex-row gap-8 md:gap-16 lg:gap-4 w-full lg:w-1/2 items-center">
         <img
-          src="/src/assets/Top.jpg"
+          src={Top}
           alt="Taxi Top View"
           className="w-64 md:w-80 lg:w-50 xl:w-70 lg:pt-30"
         />
         <img
-          src="/src/assets/Front.jpg"
+          src={Front}
           alt="Autonomous Taxi"
           className="w-64 md:w-80 lg:w-50 xl:w-70 shadow-lg"
         />

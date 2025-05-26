@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faMapPin, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
-import { HeroBg } from "../../assets";
+import { Frame, HeroBg, PinnedPointVector } from "../../assets";
 import { navLinks } from "../../utils";
 
 const Header = () => {
@@ -149,11 +149,11 @@ const Header = () => {
 
           {/* Additional Text */}
           <div className="absolute top-0 left-0 mt-44 ml-6 px-4 py-2">
-            <img src="/src/assets/frame.png" alt="details" className="w-40 xl:w-auto hidden lg:block" />
+            <img src={Frame} alt="details" className="w-40 xl:w-auto hidden lg:block" />
           </div>
           <div className="absolute top-0 left-0 mt-120 ml-70 xl:ml-120 px-4 py-2">
             <img
-              src="/src/assets/Pinned Point Vector 1.png"
+              src={PinnedPointVector}
               alt="detail"
               className="w-40 xl:w-auto hidden lg:block"
             />

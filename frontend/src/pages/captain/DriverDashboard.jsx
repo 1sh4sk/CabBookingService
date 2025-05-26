@@ -10,6 +10,7 @@ import RideRequest from "./RideRequest";
 import { confirmRideApi } from "../../api/rideApi";
 import { useLocation } from "react-router";
 import { getCaptainProfileApi } from "../../api/captainApi";
+import { Deeban } from "../../assets";
 
 const DriverDashboard = () => {
 
@@ -124,7 +125,7 @@ const DriverDashboard = () => {
         {/* Driver Details */}
         <div className="flex items-center">
           <img
-            src="/src/assets/Deeban.png"
+            src={Deeban}
             alt="Driver"
             className="w-12 h-12 rounded-full mr-3"
           />

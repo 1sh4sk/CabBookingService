@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { captainDataContext } from "../../context/CaptainContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import { captainlogin } from "../../assets";
 // import CaptainBg from "../assets/captainlogin.webp"; // Ensure correct import
 
 function CaptainRegister() {
@@ -227,7 +228,7 @@ function CaptainRegister() {
       {/* Image Section */}
       <div className="w-full lg:w-3/4 relative lg:ml-auto">
         <img
-          src="/src/assets/captainlogin.webp"
+          src={captainlogin}
           alt="background"
           className="w-full h-64 sm:h-72 md:h-96 lg:h-screen object-cover"
         />

@@ -6,6 +6,7 @@ import {
   faRoute,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { Mahalakshmi } from "../../assets";
 
 function RideRequest({ setRidePopupPanel, ride, setConfirmRidePopupPanel, confirmRide }) {
   const [rideAccepted, setRideAccepted] = useState(false);
@@ -29,7 +30,7 @@ function RideRequest({ setRidePopupPanel, ride, setConfirmRidePopupPanel, confir
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <img
-            src="/src/assets/mahalakshmi.png"
+            src={Mahalakshmi}
             alt="Rider"
             className="w-10 h-10 rounded-full mr-4"
           />

@@ -4,6 +4,7 @@ import { registerUser } from '../../api/userApi';
 import { useContext } from 'react';
 import { userDataContext } from '../../context/UserContext';
 import { toast } from 'react-toastify';
+import { Register } from '../../assets';
 
 function Registeruser() {
 
@@ -166,7 +167,7 @@ function Registeruser() {
       {/* Image Section */}
       <div className="w-full lg:w-3/4 relative lg:ml-auto h-auto">
         <img
-          src="/src/assets/register.webp"
+          src={Register}
           alt="background"
           className="w-full h-full lg:h-screen object-cover object-bottom"
         />

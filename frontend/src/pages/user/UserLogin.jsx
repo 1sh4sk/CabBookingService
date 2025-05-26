@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { userDataContext } from '../../context/UserContext';
 import { loginUser } from '../../api/userApi';
 import { toast } from 'react-toastify';
+import { Register } from '../../assets';
 
 const UserLogin = () => {
 
@@ -94,7 +95,7 @@ const UserLogin = () => {
       {/* Column 2 - Background Image */}
       <div className="w-full lg:w-3/4 relative lg:ml-auto h-auto">
         <img
-          src="/src/assets/register.webp"
+          src={Register}
           alt="background"
           className="w-full h-full lg:h-screen object-cover object-bottom"
         />

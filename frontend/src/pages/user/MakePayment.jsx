@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router";
 import { SocketContext } from "../../context/SocketContext";
 import { checkoutApi, getKey } from "../../api/paymentApi";
 import { userDataContext } from "../../context/UserContext";
+import { MapArrowRightSvg } from "../../assets";
 
 const MakePayment = () => {
 
@@ -74,7 +75,7 @@ const MakePayment = () => {
         {/* Message Input */}
         <div className="flex items-center border border-gray-200 rounded bg-gray-100 p-2">
             <input type="text" placeholder="Send a message to the driver" className="w-full bg-gray-100 focus:outline-none text-base m-0!" />
-            <img src='/src/assets/Map-Arrow-Right--Streamline-Solar.svg' className='h-5 w-5' alt="Send" />
+            <img src={MapArrowRightSvg} className='h-5 w-5' alt="Send" />
         </div>
 
         {/* Action Buttons */}
