@@ -10,7 +10,7 @@ export default function HowItWorks() {
   return (
     <div className="text-center py-18 px-4 md:px-6 lg:px-20 bg-white">
       {/* Heading */}
-      <h2 className="text-3xl md:text-4xl font-bold mb-4 font-epilogue">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 font-epilogue"> 
         How To{" "}
         <span className="text-yellow-500 relative inline-block">
           Get Started

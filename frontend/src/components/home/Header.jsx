@@ -153,7 +153,7 @@ const Header = () => {
           </div>
           <div className="absolute top-0 left-0 mt-120 ml-70 xl:ml-120 px-4 py-2">
             <img
-              src="https://s3-alpha-sig.figma.com/img/26b5/97ae/715cdf55d91aec4dc2b032065cb95bbe?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=kQtjCuekWdMpZJKt98oG3NllYMwvhFi9kzS-emjugTvjWyc9~kZgW5YnQGLsQ4bsyO9vwf3PbOrOx1zZbeEsX2S9uiz0sZ40mJw~Zeu~MTvEfAvO2PE5HwJMyiIm~vbgj6g-sypjs8xPCLvnFkcmiqRnKoYA2FhwXmdu3mX-oD~cBDfLT5Ra4~DXrEWpIyKVL8FR9zuGRWvSZfIVFl2gbKzuM69aNgjtRUGo1Px5jfsrLt7eY~gFfFcTbLHt38fDLwCyMfpu2iRKoy48MwYGxDKFwtonbNcwJqcdMHzbdOgI7ro1sma2TcjStm7nvQkpNn06FnIh3ro27B7-srqgbA__"
+              src="/src/assets/Pinned Point Vector 1.png"
               alt="detail"
               className="w-40 xl:w-auto hidden lg:block"
             />

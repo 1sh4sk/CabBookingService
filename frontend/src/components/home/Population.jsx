@@ -7,7 +7,7 @@ const Population = () => {
       {/* Background image with opacity */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
-        style={{ backgroundImage: `url('/src/assets/population.png')` }}
+        style={{ backgroundImage: `url('/src/assets/population.webp')` }}
       ></div>
 
       {/* Content */}
@@ -29,7 +29,7 @@ const Population = () => {
             </button>
             {/* Golden arrow image */}
             <img
-              src="/src/assets/arrow-gold.png.png"
+              src="/src/assets/arrow-gold.png.webp"
               alt="Golden Arrow"
               className="absolute top-[-30px] left-[50%] transform -translate-x-1/2 w-20 sm:w-24 md:w-28 hidden lg:block"
               style={{ top: '50px', left: '70%' }}
@@ -53,8 +53,8 @@ const Population = () => {
             <button className="bg-black text-white px-3 py-2 rounded-lg flex items-center w-full sm:w-auto justify-center cursor-pointer">
               View Details <span className="ml-2">➜</span>
             </button>
-            <img src="/src/assets/serv1.png.png"
-              alt="Taxi Service" className="w-full sm:w-50 h-30 sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block" />
+            <img src="/src/assets/serv1.png.webp"
+              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block" />
           </div>
 
           <hr className="col-span-1 sm:col-span-2 border-gray-300 border-t-2 my-2" />
@@ -73,8 +73,8 @@ const Population = () => {
             <button className="bg-black text-white px-3 py-2 rounded-lg flex items-center w-full sm:w-auto justify-center cursor-pointer">
               View Details <span className="ml-2">➜</span>
             </button>
-            <img src="/src/assets/serv2.png.png"
-              alt="Taxi Service" className="w-full sm:w-50 h-30 sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block" />
+            <img src="/src/assets/serv2.png.webp"
+              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block" />
           </div>
 
           <hr className="col-span-1 sm:col-span-2 border-gray-300 border-t-2 my-2" />
@@ -93,8 +93,8 @@ const Population = () => {
             <button className="bg-black text-white px-3 py-2 rounded-lg flex items-center w-full sm:w-auto justify-center cursor-pointer">
               View Details <span className="ml-2">➜</span>
             </button>
-            <img src="/src/assets/serv3.png.png"
-              alt="Taxi Service" className="w-full sm:w-50 h-30 sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block " />
+            <img src="/src/assets/serv3.png.webp"
+              alt="Taxi Service" className="w-full sm:w-50  sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block " />
           </div>
 
           <hr className="col-span-1 sm:col-span-2 border-gray-300 border-t-2 my-2" />
@@ -113,7 +113,7 @@ const Population = () => {
             <button className="bg-black text-white px-3 py-2 rounded-lg flex items-center w-full sm:w-auto justify-center cursor-pointer">
               View Details <span className="ml-2">➜</span>
             </button>
-            <img src="/src/assets/serv4.png.png"
+            <img src="/src/assets/serv4.png.webp"
               alt="Taxi Service" className="w-full sm:w-50 h-30 sm:object-cover md:w-30 h-30 lg:w-60 h-20 hidden md:block" />
           </div>
 

@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaSkype, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[url('/src/assets/Background.png')] bg-cover bg-center text-white py-10 px-5 sm:px-6 md:px-15 xl:px-30">
+    <footer className="bg-[url('/src/assets/Background.webp')] bg-cover bg-center text-white py-10 px-5 sm:px-6 md:px-15 xl:px-30">
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
         {/* Company Info */}
         <div>

@@ -51,8 +51,12 @@ const paymentVerification = async (req, res, io) => {
             return res.status(400).json({ success: false, message: "Payment verification failed" });
         }
 
-        const commission = Math.round(fare * 0.7);
-        const companyEarnings = Math.round(fare * 0.3);
+        const commission = Math.round(fare * 0.007);
+        const companyEarnings = Math.round(fare * 0.003);
+console.log("fare", fare);
+console.log("commission",commission)
+console.log("companyEarnings",companyEarnings);
+
 
         const captain = await captainModel.findByIdAndUpdate(
             captainId,

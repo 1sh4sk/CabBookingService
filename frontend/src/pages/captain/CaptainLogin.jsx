@@ -83,7 +83,7 @@ const CaptainLogin = () => {
 
       {/* Column 2 */}
       <div className="w-full lg:w-3/4 relative lg:ml-auto h-[60%]">
-        <img src="/src/assets/captainlogin.png" alt="background" className="w-full h-screen object-cover object-left-bottom" />
+        <img src="/src/assets/captainlogin.webp" alt="background" className="w-full h-screen object-cover object-left-bottom" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 lg:top-1/3 lg:left-1/2 transform lg:-translate-x-1/3 text-white text-center">
           <h2 className="text-3xl xl:text-4xl  mb-3 sm:text-md  font-bold text-yellow-500 font-epilogue">Sign In</h2>
           <p className="text-[12px] sm:text-sm xl:text-lg font-light">Ready to hit the road? Sign in and start driving towards success!</p>
